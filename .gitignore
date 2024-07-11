@@ -35,7 +35,7 @@ local Tab = Window:MakeTab({
 
 Tab:AddParagraph("作者","TMD2540")
 Tab:AddLabel("作者QQ：封号")
-Tab:AddLabel("QQ群：无了")
+Tab:AddLabel("QQ群：不愿意透露")
 Tab:AddLabel("此脚本完全不免费")
 
 local Tab = Window:MakeTab({
