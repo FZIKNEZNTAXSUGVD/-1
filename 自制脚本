@@ -1,7 +1,6 @@
 local LBLG = Instance.new("ScreenGui", game.CoreGui)
 local LBL = Instance.new("TextLabel", game.CoreGui)
 local player = game.Players.LocalPlayer
-
 LBLG.Name = "LBLG"
 LBLG.Parent = game.CoreGui
 LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
