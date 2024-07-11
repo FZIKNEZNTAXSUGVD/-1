@@ -1,3 +1,28 @@
+-- 白名单玩家列表
+local whitelist = {
+    "Player1", 
+    "Player2",
+    "Player3",
+    -- 添加更多玩家名
+}
+
+-- 检查玩家是否在白名单上
+local function checkWhitelist(playerName)
+    for _, whitelistedPlayer in ipairs(whitelist) do
+        if playerName == whitelistedPlayer then
+            return true
+        end
+    end
+    return false
+end
+
+-- 当玩家尝试加入游戏时触发
+game.Players.PlayerAdded:Connect(function(player)
+    if not checkWhitelist(player.Name) then
+        player:Kick("您不在白名单上，无法加入游戏。")
+    end
+end)
+
 local CoreGui = game:GetService("StarterGui")CoreGui:SetCore("SendNotification", {    Title = "TM脚本",    Text = "耐心等待（反挂机已开启）",    Duration = 5, })print("反挂机开启")		local vu = game:GetService("VirtualUser")		game:GetService("Players").LocalPlayer.Idled:connect(function()		   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)		   wait(1)		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)		end)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "TM脚本", HidePremium = false, SaveConfig = false, IntroText = "欢迎使用", ConfigFolder = "欢迎使用"})
