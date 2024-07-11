@@ -8,7 +8,7 @@ CoreGui:SetCore("SendNotification", {
 
 local a=tostring(game.Players.LocalPlayer.Character);
 
-if a=="用户名"then
+if a=="TMD2540z"then
 _G.lllllllll=true
 elseif a=="用户名"then
 _G.lllllllll=true
