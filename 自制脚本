@@ -1,5 +1,5 @@
 local LBLG = Instance.new("ScreenGui", game.CoreGui)
-local LBL = Instance.new("TextLabel", getParent)
+local LBL = Instance.new("TextLabel", game.CoreGui)
 local player = game.Players.LocalPlayer
 
 LBLG.Name = "LBLG"
