@@ -22,7 +22,7 @@ CoreGui:SetCore("SendNotification", {
     Duration = 5,
 })
   wait(3) --等待三秒
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/FZIKNEZNTAXSUGVD/-1/main/%E8%87%AA%E5%88%B6%E8%84%9A%E6%9C%AC"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FZIKNEZNTAXSUGVD/-1/main/%E8%87%AA%E5%88%B6%E8%84%9A%E6%9C%AC"))()
     else --验证失败执行↓
 setclipboard("QQ群")
 local CoreGui = game:GetService("StarterGui")
