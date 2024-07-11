@@ -96,7 +96,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/
 })
 
 local player = Window:MakeTab({
-	Name = "👁玩家👁",
+	Name = "玩家功能",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
@@ -144,14 +144,14 @@ player:AddTextbox({
 })
 
 player:AddButton({
-	Name = "👻穿墙",
+	Name = "穿墙",
 	Callback = function()
       	loadstring(game:HttpGet("https://pastebin.com/raw/jvyN5hT8"))()
   	end
 })
 
 player:AddButton({
-	Name = "🚀飞行",
+	Name = "飞行",
 	Callback = function()
       	loadstring(game:HttpGet("https://pastebin.com/raw/U27yQRxS"))()
   	end
