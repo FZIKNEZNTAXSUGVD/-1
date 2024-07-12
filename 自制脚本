@@ -1,6 +1,7 @@
-local LBLG = Instance.new("ScreenGui", game.CoreGui)
-local LBL = Instance.new("TextLabel", game.CoreGui)
+local LBLG = Instance.new("ScreenGui", getParent)
+local LBL = Instance.new("TextLabel", getParent)
 local player = game.Players.LocalPlayer
+
 LBLG.Name = "LBLG"
 LBLG.Parent = game.CoreGui
 LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -39,24 +40,24 @@ Start = tick()
 Heartbeat:Connect(HeartbeatUpdate)
 local CoreGui = game:GetService("StarterGui")
 CoreGui:SetCore("SendNotification", {
-    Title = "脚本集合",
+    Title = "盛蓝脚本",
     Text = "加载成功，欢迎！！！",
     Duration = 5, 
 })
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/xLRUSiKx"))()
-local Window = OrionLib:MakeWindow({Name = "名字", HidePremium = false, SaveConfig = true,IntroText = "“名字”", ConfigFolder = "“roblox启动”"})
+local Window = OrionLib:MakeWindow({Name = "盛蓝脚本中心", HidePremium = false, SaveConfig = true,IntroText = "“脚本中心”", ConfigFolder = "“身体健康。”"})
 local about = Window:MakeTab({
     Name = "必看公告",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-about:AddParagraph("😀😀😀😀😀")
-about:AddParagraph("加群领更多脚本")
-about:AddParagraph("")
-about:AddParagraph("")
-about:AddParagraph("Q群：282782261")
+about:AddParagraph("g永久免费")
+about:AddParagraph("脚本免费脚本 请勿去圈钱")
+about:AddParagraph("圈钱人死全家。")
+about:AddParagraph("我是个蔡坤。")
+about:AddParagraph("还不快双击加关注。")
 -----------------------------------------------------------------------------------------------------
 
 local Tab = Window:MakeTab({
@@ -66,11 +67,11 @@ local Tab = Window:MakeTab({
 })
 
 local Section = Tab:AddSection({
-	Name = "欢迎"
+	Name = "欢迎欢迎"
 })
 
 Tab:AddSlider({
-	Name = "脚本名字",
+	Name = "速度",
 	Min = 16,
 	Max = 200,
 	Default = 16,
@@ -142,29 +143,29 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "爬墙",
 	Callback = function()
-    脚本代码
+loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
 end
 })
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "光影V4",
 	Callback = function()
-    脚本代码
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MZEEN2424/Graphics/main/Graphics.xml"))()
 end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "变成蛇",
 	Callback = function()
-    脚本代码
+loadstring(game:HttpGet(('https://pastefy.ga/tWBTcE4R/raw'),true))()
 	end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "让别让别人控制自己",
 	Callback = function()
-    脚本代码
+loadstring(game:HttpGet(('https://pastefy.ga/a7RTi4un/raw'),true))()
 	end
 })
 
@@ -176,56 +177,94 @@ mouse = game.Players.LocalPlayer:GetMouse() tool = Instance.new("Tool") tool.Req
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "全(英文😭)",
 	Callback = function()
-    脚本代码
+loadstring(game:HttpGet("https://pastebin.com/raw/kEq7bdf9"))()
 end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "地岩",
 	Callback = function()
-    脚本代码
+loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\98\98\97\109\120\98\98\97\109\120\98\98\97\109\120\47\99\111\100\101\115\112\97\99\101\115\45\98\108\97\110\107\47\109\97\105\110\47\37\69\55\37\57\57\37\66\68\34\41\41\40\41")()
+	end
+})
+
+Tab:AddButton({
+	Name = "dx旧版本",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DXuwu/test-lol/main/YO.lua"))()
 end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "脚本中心",
 	Callback = function()
-    脚本代码
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\103\101\109\120\72\119\65\49"))()
 end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "无敌",
 	Callback = function()
-    脚本代码
+local lp = game:GetService "Players".LocalPlayer
+if lp.Character:FindFirstChild "Head" then
+    local char = lp.Character
+    char.Archivable = true
+    local new = char:Clone()
+    new.Parent = workspace
+    lp.Character = new
+    wait(2)
+    local oldhum = char:FindFirstChildWhichIsA "Humanoid"
+    local newhum = oldhum:Clone()
+    newhum.Parent = char
+    newhum.RequiresNeck = false
+    oldhum.Parent = nil
+    wait(2)
+    lp.Character = char
+    new:Destroy()
+    wait(1)
+    newhum:GetPropertyChangedSignal("Health"):Connect(
+        function()
+            if newhum.Health <= 0 then
+                oldhum.Parent = lp.Character
+                wait(1)
+                oldhum:Destroy()
+            end
+        end)
+    workspace.CurrentCamera.CameraSubject = char
+    if char:FindFirstChild "Animate" then
+        char.Animate.Disabled = true
+        wait(.1)
+        char.Animate.Disabled = false
+    end
+    lp.Character:FindFirstChild "Head":Destroy()
+end
 end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "甩飞别人",
 	Callback = function()
-    脚本代码
-end
+     loadstring(game:HttpGet("https://pastebin.com/raw/GnvPVBEi"))()
+  	end    
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "防止掉线（反挂机）",
 	Callback = function()
-    脚本代码
-end    
-})
-
-Tab:AddButton({
-	Name = "脚本名字",
-	Callback = function()
-    脚本代码
+	print("Anti Afk On")
+		local vu = game:GetService("VirtualUser")
+		game:GetService("Players").LocalPlayer.Idled:connect(function()
+		   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		   wait(1)
+		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		end)
   	end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "透视",
 	Callback = function()
      loadstring(game:HttpGet('https://pastebin.com/raw/MA8jhPWT'))()
   	end    
@@ -401,23 +440,24 @@ loadstring(game: HttpGet(('https://raw.githubusercontent.com/iK4oS/backdoor.exe/
 })
 
 Tab:AddButton({
-    Name="脚本代码名字",
+    Name="回满血后分服务器可能不可以能用",
     Callback=function()
         game.Players.LocalPlayer.Character.Humanoid.Health=10000
     end
 })
 
 Tab:AddButton({
-	Name = "代码名字",
+	Name = "键盘",
 	Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
     end
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="玩家动作",
     Callback=function()
-脚本代码
+        getgenv().she="作者小盛蓝免费请勿倒卖"
+loadstring(game:HttpGet("https://pastebin.com/raw/Zj4NnKs6"))()
     end
 })
 
@@ -428,99 +468,100 @@ local Tab = Window:MakeTab({
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "DX夜",
 	Callback = function()
-脚本代码
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DXuwu/test-lol/main/YO.lua"))()
 	end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "脚本",
 	Callback = function()
-脚本代码
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
 	end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "超级脚本",
 	Callback = function()
-    脚本代码
+loadstring(game: HttpGet("https://raw.githubusercontent.com/Fazedrab/EntitySpawner/main/doors(orionlib).lua"))()
 end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "修改",
 	Callback = function()
-    脚本代码
+loadstring(game:HttpGet"https://raw.githubusercontent.com/sponguss/Doors-Entity-Replicator/main/source.lua")()
 	end
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="微山doors",
     Callback=function()
-    脚本代码
+        --微山doors 2.3.2(愚人节快乐)
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\117\72\72\112\56\102\122\83"))()
     end
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="ms要白名单",
     Callback=function()
-    脚本代码
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/zoophiliaphobic/POOPDOORS/main/script.lua'))()
     end
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="我的",
     Callback=function()
-    脚本代码
+        loadstring(game:HttpGet("https://pastebin.com/raw/QsCas0t3"))()
     end
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="云doors",
     Callback=function()
-    脚本代码
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/EntitySpawner/main/doors(orionlib).lua"))()
     end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "最不强",
 	Callback = function()
-    脚本代码
+     loadstring(game:HttpGet(('https://pastebin.com/raw/R8QMbhzv')))()
   	end    
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="白",
     Callback=function()
-    脚本代码
+        _G["白脚本作者修狗"]="xdjhadgdsrfcyefjhsadcctyseyr6432478rudghfvszhxcaheey"loadstring(game:HttpGet(('https://raw.githubusercontent.com/wev666666/baijiaobengV2.0beta/main/%E7%99%BD%E8%84%9A%E6%9C%ACbeta'),true))()
     end
 })
 
 local Tab = Window:MakeTab({
-    Name = "脚本名字",
+    Name = "忍者传奇",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="不知道什么名字",
     Callback=function()
-    脚本代码
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptpastebin/raw/main/1"))()
     end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "忍者传奇",
 	Callback = function()
-    脚本代码
+pcall(loadstring(game:HttpGet("https://pastebin.com/raw/2UjrXwTV")))
 end
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="一样",
     Callback=function()
-    脚本代码
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/harisiskandar178/5repo/main/script4.lua"))()
     end
 })
 
@@ -531,7 +572,7 @@ local Tab = Window:MakeTab({
 })
 
 Tab:AddButton({
-    Name="别点因为没有做",
+    Name="你知道的没有。别点因为没有做",
     Callback=function()
         game.Players.LocalPlayer.Character.Humanoid.Health=0
     end
@@ -541,7 +582,7 @@ Tab:AddButton({
 
 
 local Section = Tab:AddSection({
-	Name = ""
+	Name = "付费功能"
 })
 
 
@@ -549,13 +590,13 @@ local Section = Tab:AddSection({
 
 
 local Tab = Window:MakeTab({
-	Name = "游戏名字",
+	Name = "鲨口求生2",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
 Tab:AddDropdown({
-	Name = "脚本名字",
+	Name = "免费船只",
 	Default = "1",
 	Options = {"DuckyBoatBeta", "DuckyBoat", "BlueCanopyMotorboat", "BlueWoodenMotorboat", "UnicornBoat", "Jetski", "RedMarlin", "Sloop", "TugBoat", "SmallDinghyMotorboat", "JetskiDonut", "Marlin", "TubeBoat", "FishingBoat", "VikingShip", "SmallWoodenSailboat", "RedCanopyMotorboat", "Catamaran", "CombatBoat", "TourBoat", "Duckmarine", "PartyBoat", "MilitarySubmarine",  "GingerbreadSteamBoat", "Sleigh2022", "Snowmobile", "CruiseShip"},
 	Callback = function(Value)
@@ -566,22 +607,22 @@ game:GetService("ReplicatedStorage").EventsFolder.BoatSelection.UpdateHostBoat:F
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "自动杀鲨鱼🦈",
 	Callback = function()
-    脚本代码
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/RobloxScripts/main/Misc%20Scripts/sharkbite2.lua",true))()
   	end    
 })
 
 local Tab = Window:MakeTab({
-	Name = "游戏名字。",
+	Name = "FE脚本",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "C00lgui",
 	Callback = function()
-    脚本代码
+     loadstring(game:GetObjects("rbxassetid://8127297852")[1].Source)()
   	end    
 })
 
@@ -593,109 +634,109 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "动画中心",
 	Callback = function()
-    脚本代码
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui", true))()
   	end    
 })
 
 local Tab = Window:MakeTab({
-    Name = "游戏名字",
+    Name = "力量传奇",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="修改力量",
     Callback=function()
-    脚本代码
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/jynzl/main/main/Musclas%20Legenos.lua'))()
     end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "力量传奇Muscle Legend",
 	Callback = function()
-    脚本代码
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/harisiskandar178/Roblox-Script/main/Muscle%20Legend"))()
   	end    
 })
 
 Tab:AddButton({
-    Name="游戏名字",
+    Name="力量传奇",
     Callback=function()
         loadstring(game:GetObjects("rbxassetid://10048914323")[1].Source)()
     end
 })
 
 local Tab = Window:MakeTab({
-    Name = "游戏名字",
+    Name = "彩虹朋友",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="彩虹朋友",
     Callback=function()
-    脚本代码
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Sempiller/RainbowTool/main/Turkish.lua'))();
     end
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "彩虹朋友2",
 	Callback = function()
-    脚本代码
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/JNHHGaming/Rainbow-Friends/main/Rainbow%20Friends"))()
   	end    
 })
 
 local Tab = Window:MakeTab({
-    Name = "游戏名字",
+    Name = "大闹监狱（监狱人生）",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "Moon Hub",
 	Callback = function()
-    脚本代码
+     loadstring(game:HttpGet("https://pastebin.com/raw/Gae7YC84"))();
   	end    
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "新菜单",
 	Callback = function()
-    脚本代码
+     loadstring(game:HttpGet('https://raw.githubusercontent.com/LiverMods/xRawnder/main/HubMoblie'))()
   	end    
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "v1",
 	Callback = function()
-    脚本代码
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))();
   	end    
 })
 
 local Tab = Window:MakeTab({
-    Name = "游戏名字",
+    Name = "自然灾害模拟器",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "自然灾害模拟器",
 	Callback = function()
-    脚本代码
+loadstring(game:HttpGet("https://gist.githubusercontent.com/TurkOyuncu99/7c75386107937fa006304efd24543ad4/raw/8d759dfcd95d39949c692735cfdf62baec0bf835/cafwetweg", true))() 
 end
 })
 
 local Tab = Window:MakeTab({
-    Name = "游戏名字",
+    Name = "代木大亨",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "伐木大亨",
 	Callback = function()
-    脚本代码
+loadstring(game:HttpGet('https://getexploits.com/key-system/',true))('https://da.com/936657404291084298/1006220505583460352/Script.txt')
 	end
 })
 
@@ -706,30 +747,32 @@ local Tab = Window:MakeTab({
 })
 
 Tab:AddButton({
-	Name = "脚本名字",
+	Name = "☁脚本",
 	Callback = function()
-    脚本代码
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/UWU/main/Xiaos______________________________________________________________Yun__________________________________________________________________________betaV2.2------------------------------------------------------------------------------------jsja.lua"))()
   	end
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="XC卡密:w",
     Callback=function()
-    脚本代码
+        getgenv().XC="作者XC"
+loadstring(game:HttpGet("https://pastebin.com/raw/PAFzYx0F"))()
     end
 })
 
 Tab:AddButton({
-    Name="脚本名字",
+    Name="龙脚本",
     Callback=function()
-    脚本代码
+        getgenv().long = "龙脚本，加载时间长请耐心"
+loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\108\121\121\97\105\110\105\47\108\111\110\47\109\97\105\110\47\108\105\115\119\109\34\41\41\40\41")()
     end
 })
 
 Tab:AddButton({
     Name="USA",
     Callback=function()
-        getgenv().USA="低调点。"
+        getgenv().USA="作者USA免费请勿倒卖"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/beta/main/USA.lua"))()
     end
 })
