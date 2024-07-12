@@ -45,7 +45,7 @@ Tab:AddButton({
     Name = "刀刃球",
     Callback = function()
     
-loadstring(game:HttpGet('https://pastebin.com/raw/2s02Gstm'))()    
+loadstring(game:HttpGet('https://pastebin.com/raw/2s02Gstm'))() 
     end
 })
 
