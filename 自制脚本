@@ -8,7 +8,7 @@ local Tab = Window:MakeTab({
     PremiumOnly = false
 })
 
-Tab:AddParagraph("作者：TMD2540")
+Tab:AddParagraph("作者","TMD2540")
 Tab:AddLabel("作者QQ：封了")
 Tab:AddLabel("QQ群：封了")
 Tab:AddLabel("欢迎使用脚本")
@@ -47,22 +47,51 @@ Tab:AddButton({
 })
 
 local Tab = Window:MakeTab({
-    Name = "Vape Lite公益版",
+    Name = "Vape Lite[公益版]",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
 })
 
 Tab:AddButton({
-    Name = "Vape Lite开启",
-    Callback = function()   
-
+    Name = "Vape Lite（开启）",
+    Callback = function()
+    
 loadstring(game:HttpGet("https://raw.github.com/VcPa/V/main/v"))()
     end
 })
-Tab:AddParagraph("作者：Xiao Mo")
+
+Tab:AddLabel("作者:Xiao Mo"）
 Tab:AddLabel("QQ群:906921457"）
-Tab:AddLabel("KOOK频道:71480436"）
 Tab:AddLabel("本脚本为公益版，想要体验更多内容加原作者QQ购买"）
+
+local Tab = Window:MakeTab({
+	Name = "杂脚本",
+	Icon = "rbxassetid://7734068321",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "名称",
+  Callback = function()
+ --脚本写这里
+  end
+})
+
+Tab:AddButton({
+  Name = "名称",
+  Default = false,
+  Callback = function()
+ --脚本写这里
+  end
+})
+
+Tab:AddButton({
+  Name = "名称",
+  Default = false,
+  Callback = function()
+ --脚本写这里
+  end
+})
 
 
 
