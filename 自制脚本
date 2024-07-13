@@ -8,7 +8,7 @@ local Tab = Window:MakeTab({
     PremiumOnly = false
 })
 
-Tab:AddParagraph("作者","TMD2540")
+Tab:AddParagraph("作者：TMD2540")
 Tab:AddLabel("作者QQ：封了")
 Tab:AddLabel("QQ群：封了")
 Tab:AddLabel("欢迎使用脚本")
@@ -47,13 +47,13 @@ Tab:AddButton({
 })
 
 local Tab = Window:MakeTab({
-    Name = "Vape Lite[公益版]",
+    Name = "Vape Lite公益版",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
 })
 
 Tab:AddButton({
-    Name = "Vape Lite（开启）",
+    Name = "Vape Lite开启",
     Callback = function()
     
 loadstring(game:HttpGet("https://raw.github.com/VcPa/V/main/v"))()
