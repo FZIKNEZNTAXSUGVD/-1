@@ -49,7 +49,7 @@ Tab:AddButton({
     Name = "暂时没有",
     Callback = function()
     
-脚本写这里：    
+--脚本写这里：    
     end
 })
 
