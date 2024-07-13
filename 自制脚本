@@ -55,15 +55,15 @@ local Tab = Window:MakeTab({
 Tab:AddButton({
     Name = "Vape Lite开启",
     Callback = function()
-    
-loadstring(game:HttpGet("https://raw.github.com/VcPa/V/main/v"))()
-    end
-})
 
 Tab:AddLabel("作者:Xiao Mo"）
 Tab:AddLabel("QQ群:906921457"）
 Tab:AddLabel("KOOK频道:71480436"）
-Tab:AddLabel("本脚本为公益版，想要体验更多内容加原作者QQ购买"）
+Tab:AddLabel("本脚本为公益版，想要体验更多内容加原作者QQ购买"）    
+
+loadstring(game:HttpGet("https://raw.github.com/VcPa/V/main/v"))()
+    end
+})
 
 
 
