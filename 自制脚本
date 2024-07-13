@@ -38,8 +38,16 @@ Tab:AddButton({
   end
 })
 
+Tab:AddButton({
+  Name = "作者QQ群:906921457",
+  Default = false,
+  Callback = function()
+  
+setclipboard("906921457")  
+  end
+})
 local Tab = Window:MakeTab({
-    Name = "QQ群:906921457",
+    Name = "名字",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
 })
