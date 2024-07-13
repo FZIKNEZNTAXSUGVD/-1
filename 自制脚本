@@ -35,7 +35,7 @@ Tab:AddButton({
   Name = "名称",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
@@ -43,7 +43,7 @@ Tab:AddButton({
   Name = "名称",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
@@ -64,7 +64,7 @@ loadstring(game:HttpGet("https://raw.github.com/VcPa/V/main/v"))()
 Tab:AddButton({
   Name = "作者:Xiao Mo",
   Callback = function()
- --脚本写这里
+
   end
 })
 
@@ -72,7 +72,7 @@ Tab:AddButton({
   Name = "QQ群:906921457",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
@@ -80,7 +80,7 @@ Tab:AddButton({
   Name = "KOOK频道:71480436",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
@@ -88,7 +88,7 @@ Tab:AddButton({
   Name = "当前脚本为公益版，想要体验更多内容加脚本作者Q群购买",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
@@ -97,7 +97,7 @@ Tab:AddButton({
 ",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
@@ -110,7 +110,7 @@ local Tab = Window:MakeTab({
 Tab:AddButton({
   Name = "名称",
   Callback = function()
- --脚本写这里
+
   end
 })
 
@@ -118,7 +118,7 @@ Tab:AddButton({
   Name = "名称",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
@@ -126,7 +126,7 @@ Tab:AddButton({
   Name = "名称",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
@@ -139,7 +139,7 @@ local Tab = Window:MakeTab({
 Tab:AddButton({
   Name = "名称",
   Callback = function()
- --脚本写这里
+
   end
 })
 
@@ -147,7 +147,7 @@ Tab:AddButton({
   Name = "名称",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
@@ -155,7 +155,7 @@ Tab:AddButton({
   Name = "名称",
   Default = false,
   Callback = function()
-    --脚本写这里
+
   end
 })
 
