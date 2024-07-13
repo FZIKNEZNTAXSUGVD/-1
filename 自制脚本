@@ -30,9 +30,7 @@ Tab:AddButton({
   end
 })
 
-Tab:AddLabel("脚本作者:Xiao Mo")
-Tab:AddLabel("QQ群:906921457")
-Tab:AddLabel("本脚本为公益，想要体验更多内容可以买付费版")
+
 
 local Tab = Window:MakeTab({
     Name = "列表2",
