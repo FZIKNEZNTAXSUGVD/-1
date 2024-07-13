@@ -1,6 +1,6 @@
 local CoreGui = game:GetService("StarterGui")CoreGui:SetCore("SendNotification", {    Title = "TM脚本",    Text = "耐心等待（反挂机已开启）",    Duration = 5, })print("反挂机开启")		local vu = game:GetService("VirtualUser")		game:GetService("Players").LocalPlayer.Idled:connect(function()		   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)		   wait(1)		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)		end)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "TM脚本", HidePremium = false, SaveConfig = false, IntroText = "欢迎使用", ConfigFolder = "欢迎使用"})
+local Window = OrionLib:MakeWindow({Name = "脚本合集", HidePremium = false, SaveConfig = false, IntroText = "欢迎使用", ConfigFolder = "欢迎使用"})
 
 local Tab = Window:MakeTab({
     Name = "脚本公告",
@@ -12,7 +12,10 @@ Tab:AddParagraph("作者","TMD2540")
 Tab:AddLabel("作者QQ：")
 Tab:AddLabel("QQ群：")
 Tab:AddLabel("欢迎使用脚本")
-Tab:AddLabel("")
+Tab:AddLabel("本脚本把一些脚本给作成了合集，方便脚本太多不好找")
+Tab:AddLabel("脚本永久免费，禁止倒卖")
+Tab:AddLabel("欢迎投稿脚本")
+Tab:AddLabel("脚本一般会标作者和出处")
 
 local Tab = Window:MakeTab({
 	Name = "通用功能",
