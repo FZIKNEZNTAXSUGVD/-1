@@ -31,13 +31,11 @@ Tab:AddButton({
 })
 
 
-
 local Tab = Window:MakeTab({
     Name = "列表2",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
 })
-
 
 Tab:AddButton({
     Name = "暂时没有",
