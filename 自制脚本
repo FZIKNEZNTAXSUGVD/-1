@@ -18,28 +18,28 @@ Tab:AddLabel("欢迎投稿脚本")
 Tab:AddLabel("脚本一般会标作者和出处")
 
 local Tab = Window:MakeTab({
-	Name = "通用功能",
+	Name = "Vape Lite[公益版]脚本",
 	Icon = "rbxassetid://7734068321",
 	PremiumOnly = false
 })
 
 Tab:AddButton({
-  Name = "光影",
+  Name = "Vape Lite（点击这里开启）",
   Callback = function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/arzRCgwS"))()
+    loadstring(game:HttpGet("https://raw.github.com/VcPa/V/main/v"))()
   end
 })
 
 Tab:AddButton({
-  Name = "光影2",
+  Name = "脚本作者:Xiao Mo",
   Default = false,
   Callback = function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MZEEN2424/Graphics/main/Graphics.xml"))()
+    
   end
 })
 
 local Tab = Window:MakeTab({
-    Name = "俄亥俄州",
+    Name = "QQ群:906921457",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
 })
