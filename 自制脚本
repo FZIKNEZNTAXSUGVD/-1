@@ -18,7 +18,7 @@ Tab:AddLabel("欢迎投稿脚本")
 Tab:AddLabel("脚本一般会标作者和出处")
 
 local Tab = Window:MakeTab({
-	Name = "列表1",
+	Name = "杂乱脚本",
 	Icon = "rbxassetid://7734068321",
 	PremiumOnly = false
 })
@@ -34,7 +34,7 @@ Tab:AddButton({
   Name = "名称",
   Default = false,
   Callback = function()
-    --脚本写这里
+ --脚本写这里
   end
 })
 
@@ -42,24 +42,28 @@ Tab:AddButton({
   Name = "名称",
   Default = false,
   Callback = function()
-    --脚本写这里
+ --脚本写这里
   end
 })
 
 local Tab = Window:MakeTab({
-    Name = "列表2",
+    Name = "Vape Lite[公益版]",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
 })
 
-
 Tab:AddButton({
-    Name = "暂时没有",
+    Name = "Vape Lite（开启）",
     Callback = function()
     
---脚本写这里：    
+loadstring(game:HttpGet("https://raw.github.com/VcPa/V/main/v"))()
     end
 })
+
+Tab:AddLabel("作者:Xiao Mo"）
+Tab:AddLabel("QQ群:906921457"）
+Tab:AddLabel("KOOK频道:71480436"）
+Tab:AddLabel("本脚本为公益版，想要体验更多内容加原作者QQ购买"）
 
 
 
