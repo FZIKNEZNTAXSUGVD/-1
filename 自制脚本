@@ -15,7 +15,7 @@ Tab:AddLabel("欢迎使用脚本")
 Tab:AddLabel("本脚本把一些脚本给作成了合集，方便脚本太多不好找")
 Tab:AddLabel("脚本永久免费，禁止倒卖")
 Tab:AddLabel("欢迎投稿脚本")
-Tab:AddLabel("禁止倒卖")
+Tab:AddLabel("半成品")
 
 local Tab = Window:MakeTab({
 	Name = "快捷脚本",
@@ -118,11 +118,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/CloudX-ScriptsWane/Sc
 })
 
 Tab:AddButton({
-  Name = "云脚本",
+  Name = "已删除",
   Default = false,
   Callback = function()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/LOL/main/%E4%BA%91%E8%84%9A%E6%9C%ACCloud%20script.lua", true))()
+
   end
 })
 
