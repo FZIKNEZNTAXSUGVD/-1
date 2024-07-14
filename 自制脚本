@@ -15,7 +15,66 @@ Tab:AddLabel("欢迎使用脚本")
 Tab:AddLabel("本脚本把一些脚本给作成了合集，方便脚本太多不好找")
 Tab:AddLabel("脚本永久免费，禁止倒卖")
 Tab:AddLabel("欢迎投稿脚本")
-Tab:AddLabel("脚本一般会标作者和出处")
+Tab:AddLabel("禁止倒卖")
+
+local Tab = Window:MakeTab({
+	Name = "快捷脚本",
+	Icon = "rbxassetid://7734068321",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "飞行",
+  Callback = function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/U27yQRxS"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "重新做了一遍，懒得写了",
+  Default = false,
+  Callback = function()
+
+
+  end
+})
+
+Tab:AddButton({
+  Name = "未完续",
+  Default = false,
+  Callback = function()
+
+
+  end
+})
+
+Tab:AddButton({
+  Name = "未完续",
+  Default = false,
+  Callback = function()
+
+
+  end
+})
+
+Tab:AddButton({
+  Name = "未完续",
+  Default = false,
+  Callback = function()
+
+
+  end
+})
+
+Tab:AddButton({
+  Name = "未完续",
+  Default = false,
+  Callback = function()
+
+
+  end
+})
 
 local Tab = Window:MakeTab({
 	Name = "国内脚本",
@@ -41,11 +100,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/sharksharksharkshark/
 })
 
 Tab:AddButton({
-  Name = "傻脚本",
+  Name = "叶落中心脚本",
   Default = false,
   Callback = function()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/sharksharksharkshark/shark-shark-shark-shark-shark/main/shark-scriptlollol.txt",true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/Deciduous-center-LS/main/%E8%90%BD%E5%8F%B6%E4%B8%AD%E5%BF%83%E6%B7%B7%E6%B7%86.txt"))()
   end
 })
 
@@ -59,11 +118,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/CloudX-ScriptsWane/Sc
 })
 
 Tab:AddButton({
-  Name = "北极中心",
+  Name = "云脚本",
   Default = false,
   Callback = function()
 
-loadstring(game:HttpGet(("\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\66\101\105\70\101\110\103\67\101\110\116\101\114\47\83\99\114\105\112\116\47\109\97\105\110\47\66\101\105\70\101\110\103\75\101\121\83\121\115\116\101\109\46\108\117\97"),true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/LOL/main/%E4%BA%91%E8%84%9A%E6%9C%ACCloud%20script.lua", true))()
   end
 })
 
