@@ -15,7 +15,34 @@ Tab:AddLabel("欢迎使用脚本")
 Tab:AddLabel("本脚本把一些脚本给作成了合集，方便脚本太多不好找")
 Tab:AddLabel("脚本永久免费，禁止倒卖")
 Tab:AddLabel("欢迎投稿脚本")
-Tab:AddLabel("版本：0.02")
+Tab:AddLabel("半成品")
+
+local Tab = Window:MakeTab({
+	Name = "特殊脚本",
+	Icon = "rbxassetid://7734068321",
+	PremiumOnly = false
+})
+
+Tab:AddLabel("重力枪功能介绍，可以把一些失去固定点（锚块），的东西给举起来，使用方法：拿起物品栏里面的重力枪，对着方块点击，手指点哪里这个方块就飞到哪里，长按屏幕会把方块发射出去")
+Tab:AddLabel("注意：一定要选合适的版本，选错版本无法正常使用")
+Tab:AddLabel("电脑版就不用讲解了，非常简单实用")
+Tab:AddLabel("实在不懂问我")
+
+Tab:AddButton({
+  Name = "重力枪（电脑版）",
+  Callback = function()
+
+loadstring(game:HttpGet("https://scriptblox.com/raw/Fe-Gravity-Gun_991"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "重力枪（手机版）",
+  Callback = function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/Z33NcECh", true))()
+  end
+})
 
 local Tab = Window:MakeTab({
 	Name = "快捷脚本",
