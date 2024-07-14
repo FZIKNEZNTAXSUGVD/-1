@@ -24,7 +24,7 @@ local Tab = Window:MakeTab({
 })
 
 Tab:AddButton({
-  Name = "飞行",
+  Name = "已删除",
   Callback = function()
 
 loadstring(game:HttpGet("https://pastebin.com/raw/U27yQRxS"))()
