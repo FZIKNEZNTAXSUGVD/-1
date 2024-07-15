@@ -15,7 +15,7 @@ Tab:AddLabel("欢迎使用脚本")
 Tab:AddLabel("本脚本把一些脚本给作成了合集，方便脚本太多不好找")
 Tab:AddLabel("脚本永久免费，禁止倒卖")
 Tab:AddLabel("欢迎投稿脚本")
-Tab:AddLabel("版本：0.04")
+Tab:AddLabel("版本：0.05")
 
 local Tab = Window:MakeTab({
 	Name = "特殊脚本",
@@ -219,6 +219,17 @@ Tab:AddButton({
   Callback = function()
 
 loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\103\101\109\120\72\119\65\49"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "King脚本",
+  Default = false,
+  Callback = function()
+
+KingScript = "By King" Roblox= "新飞月二飞春"
+KingTeam= "KingQQ新主群https://qm.qq.com/q/SU0hmhIvwk" 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ShenJiaoBen/main/King-------------Script.txt"))()
   end
 })
 
