@@ -1,4 +1,4 @@
-local CoreGui = game:GetService("StarterGui")CoreGui:SetCore("SendNotification", {    Title = "TM脚本",    Text = "耐心等待（反挂机开启）",    Duration = 5, })print("反挂机开启")		local vu = game:GetService("VirtualUser")		game:GetService("Players").LocalPlayer.Idled:connect(function()		   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)		   wait(1)		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)		end)
+local CoreGui = game:GetService("StarterGui")CoreGui:SetCore("SendNotification", {    Title = "TM脚本",    Text = "耐心等待（反挂机开启）",    Duration = 5, })print("反挂机开启")                local vu = game:GetService("VirtualUser")                game:GetService("Players").LocalPlayer.Idled:connect(function()                   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)                   wait(1)                   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)                end)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "脚本合集", HidePremium = false, SaveConfig = false, IntroText = "欢迎使用", ConfigFolder = "欢迎使用"})
 
@@ -18,10 +18,27 @@ Tab:AddLabel("欢迎投稿脚本")
 Tab:AddLabel("版本：0.05")
 
 local Tab = Window:MakeTab({
-	Name = "特殊脚本",
-	Icon = "rbxassetid://7734068321",
-	PremiumOnly = false
+        Name = "特殊脚本",
+        Icon = "rbxassetid://7734068321",
+        PremiumOnly = false
 })
+
+local Tab = Window:MakeTab({
+        Name = "贡献榜",
+        Icon = "rbxassetid://7734068321",
+        PremiumOnly = false
+})
+
+Tab:AddLabel("TMD2540z")
+Tab:AddLabel("空白")
+Tab:AddLabel("空白")
+Tab:AddLabel("空白")
+Tab:AddLabel("空白")
+Tab:AddLabel("空白")
+Tab:AddLabel("空白")
+Tab:AddLabel("空白")
+Tab:AddLabel("空白")
+Tab:AddLabel("空白")
 
 Tab:AddLabel("注意：一定要选合适的版本，选错版本无法正常使用")
 Tab:AddLabel("电脑版就不用讲解了，非常简单实用")
@@ -51,36 +68,36 @@ Tab:AddButton({
 })
 
 local Tab = Window:MakeTab({
-	Name = "快捷脚本",
-	Icon = "rbxassetid://7734068321",
-	PremiumOnly = false
+        Name = "快捷脚本",
+        Icon = "rbxassetid://7734068321",
+        PremiumOnly = false
 })
 
 Tab:AddTextbox({
-	Name = "移动速度",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-	end	 
-})
- 
-Tab:AddTextbox({
-	Name = "跳跃高度",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-	end	 
+        Name = "移动速度",
+        Default = "",
+        TextDisappear = true,
+        Callback = function(Value)
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        end         
 })
 
 Tab:AddTextbox({
-	Name = "重力设置",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		game.Workspace.Gravity = Value
-	end
+        Name = "跳跃高度",
+        Default = "",
+        TextDisappear = true,
+        Callback = function(Value)
+                game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+        end         
+})
+
+Tab:AddTextbox({
+        Name = "重力设置",
+        Default = "",
+        TextDisappear = true,
+        Callback = function(Value)
+                game.Workspace.Gravity = Value
+        end
 })
 
 Tab:AddButton({
@@ -158,15 +175,15 @@ Tab:AddButton({
   Name = "未完续",
   Default = false,
   Callback = function()
-  
-  
+
+
   end
 })
 
 local Tab = Window:MakeTab({
-	Name = "国内脚本",
-	Icon = "rbxassetid://7734068321",
-	PremiumOnly = false
+        Name = "国内脚本",
+        Icon = "rbxassetid://7734068321",
+        PremiumOnly = false
 })
 
 Tab:AddButton({
@@ -242,7 +259,7 @@ local Tab = Window:MakeTab({
 Tab:AddButton({
     Name = "Vape Lite（开启）",
     Callback = function()
-    
+
 loadstring(game:HttpGet("https://raw.github.com/VcPa/V/main/v"))()
     end
 })
