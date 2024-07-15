@@ -47,33 +47,6 @@ Tab:AddButton({
   Name = "没事，别乱点这个",
   Callback = function()
 
-local function findBaseballBat()
-     -- ...
-end
-
-local function teleportPlayerToPosition(position)
-     local teleportCFrame = CFrame.new(position)
-     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = teleportCFrame
-end
-
-local function pickUpItem(item)
-     item:MoveTo(game.Players.LocalPlayer.Character.HumanoidRootPart)
-end
-
-local function getBaseballBat()
-     local bat = findBaseballBat()
-     if bat then
-         teleportPlayerToPosition(bat.Position)
-         pickUpItem(bat)
-         print("棒球棍已获取")
-     else
-         print("未找到棒球棍")
-     end
-end
-
-while true do
-     getBaseballBat()
-     wait(5)
   end
 })
 
