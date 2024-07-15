@@ -47,36 +47,33 @@ Tab:AddButton({
   Name = "没事，别乱点这个",
   Callback = function()
 
--- 获取玩家的Humanoid
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-
--- 定义一个函数来捡起印钞机
-local function pickUpMoneyPrinters()
-    -- 获取玩家周围的印钞机
-    local printers = game.Workspace:FindPartsInRadius(character.Position, 100, {Tag="MoneyPrinter"})
-    
-    -- 遍历印钞机并捡起
-    for _, printer in pairs(printers) do
-        if printer.Parent == nil then -- 确保印钞机没有被其他玩家捡起
-            local success, err = pcall(function()
-                printer:MoveTo(character.HumanoidRootPart.Position)
-            end)
-            if success then
-                print("捡起印钞机: " .. printer.Name)
-            else
-                print("捡起印钞机失败: " .. err)
-            end
-        end
-    end
+local function findBaseballBat()
+     -- ...
 end
 
--- 每隔一段时间执行一次捡印钞机函数
+local function teleportPlayerToPosition(position)
+     local teleportCFrame = CFrame.new(position)
+     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = teleportCFrame
+end
+
+local function pickUpItem(item)
+     item:MoveTo(game.Players.LocalPlayer.Character.HumanoidRootPart)
+end
+
+local function getBaseballBat()
+     local bat = findBaseballBat()
+     if bat then
+         teleportPlayerToPosition(bat.Position)
+         pickUpItem(bat)
+         print("棒球棍已获取")
+     else
+         print("未找到棒球棍")
+     end
+end
+
 while true do
-    pickUpMoneyPrinters()
-    wait(5) -- 每5秒执行一次
-end
+     getBaseballBat()
+     wait(5)
   end
 })
 
