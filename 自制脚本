@@ -291,6 +291,29 @@ Tab:AddButton({
   end
 })
 
+local Tab = Window:MakeTab({
+        Name = "俄亥俄州",
+        Icon = "rbxassetid://7734068321",
+        PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "俄亥俄州（外网1）",
+  Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Mstir16/legocheats/main/archive/Ohio./script.lua"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "俄亥俄州（外网2）",
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet('https://pastebin.com/raw/MyfCUnGK'))()
+  end
+})
+
 
 
 
