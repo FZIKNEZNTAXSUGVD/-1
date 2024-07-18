@@ -244,12 +244,7 @@ Tab:AddButton({
   Default = false,
   Callback = function()
 
---〖必须全部复制┇服务器功能修复成功〗
-KingScript = "By King" Roblox= "新飞月二飞春"
-KingTeam= "KingQQ新主群https://qm.qq.com/q/SU0hmhIvwk" 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ShenJiaoBen/main/King-------------Script.txt"))()
-
---[[QQ群https://qm.qq.com/q/SU0hmhIvwk]]
+--〖必须全部复制┇服务器功能修复成功〗KingScript = "By King" Roblox= "新飞月二飞春"KingTeam= "KingQQ新主群https://qm.qq.com/q/SU0hmhIvwk" loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ShenJiaoBen/main/King-------------Script.txt"))()
 --[[此脚本免费了]]
   end
 })
