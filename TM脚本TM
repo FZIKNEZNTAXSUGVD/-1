@@ -8,6 +8,9 @@ local Tab = Window:MakeTab({
     PremiumOnly = false
 })
 
+Tab:AddLabel("再发现源码泄露行为脚本停止")
+Tab:AddLabel("再发现源码泄露行为脚本停止")
+Tab:AddLabel("再发现源码泄露行为脚本停止")
 Tab:AddParagraph("作者","TMD2540")
 Tab:AddLabel("作者QQ：3787576013")
 Tab:AddLabel("QQ群：925300986")
