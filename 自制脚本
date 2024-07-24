@@ -1,0 +1,319 @@
+local CoreGui = game:GetService(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgq6r9swd61oPiQQu8jrUTZzf5DdBcKPqkgAAGaUHM7uqKByzgDarHr5pKhFp97nBhIZbWtwpfwCe0s6MjOLr2zzDqQBGIXTU")())CoreGui:SetCore(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgt6L3lqTV3dHkpY7ZFpOS276xBDL+3+HqqXkPjBVpAAAMkoPZnZVUThmAW1WvSsTa1Y2c7J76Zfj0H0Lann6E8tdkAXAU9yfkVF8fZtnOBXvuk/V")(), {    Title = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgs6L1mytO3v/ikVSh7y/GaV5caDUjCcAIKP0YGZXFYVjFtBm1cO2rgKmsBDQ8seYO+ELwFPUl5FRfH2bZzgVIgk4gA==")(),    Text = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglbLmk6OlFr6cnXW0/5SvwCCQwV4G/ejZj6q6XkHWtbmwzMUsncBALfMpNYP0YQbYgAAGaUHM7uqKByzgDar3qwNDk8SCeOFrZ8t+1fFnEus9R8I1AOMvRWJksg7lwFQHzfliLa4e8IAeGYmZGQUX9/mGU4FsHDuig==")(),    Duration = 5, })print(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgh7LnuQsFjUGFeOFkDq5INteRQDf7Jb3ZzHxXlaSAQDIKD2Y2VVF4ZgFtFn1Lq0V8fJKsffXG4WYILcsALnirkgC4Kluz8govr7NM5wKiyu5iQ==")())                local vu = game:GetService(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgi7Llrxs6hlO7FKb6yHAxV/U8fxKa5k2ZVkAgIzSg5ldVRSOWUCbVQ/R2HGFxRPt/3wu6+mzuasSAHgqWzMyiq9v8wynAqscoiI=")())                game:GetService(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgg7LlswMehnO3UEX3JS4MmtTt8yUPwAgo/RgZlcVhWMW0GbVw/SfRnRIXaVZyJ3xBOCpasvIKL6+zTOcCsIs/L4=")()).LocalPlayer.Idled:connect(function()                   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)                   wait(1)                   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)                end)
+local OrionLib = loadstring(game:HttpGet((loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgmLIlby89bEYxWOQGSnfQdkRZjs18XF4nLdpFh8w5/qXb1JXxaM4fbHx+Z9LhwTXNO/uRGJOQQ/whnwnyV47QAuJroHoGDwszFI+qOWQagBARunBzK4qCscsoM3ap7qWa9FJ7zJyquJLgebMjspLWLQVYSWg2vWV65NrCSEAvdJyCxwbkZhfJzXBdaRC0uJBH9m9ibuxS1w/fLYjOD4nhXtOJwDPvPSMjOLr2zzDqQAIuvSt")())))()
+local Window = OrionLib:MakeWindow({Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8eO1fH0BE9xCounT5/Fbq9KAwBklB7M7KqicMwC2qx6yPmKVMXy2y9ArFjiTq7cRRkAPIW9GRnF17d5hlMBaY7xEQ==")(), HidePremium = false, SaveConfig = false, IntroText = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8cAWfTveg/T4jazT4WAtlelAQAySg9mdlVROGYBbVY95EQLwP6Sm98Wx9ub8qfcRRkAPIW9GRnF17d5hlMBiMNdqg==")(), ConfigFolder = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8cAWfTveg/T4jazT4WAtlelAQAySg9mdlVROGYBbVY95EQLwP6Sm98Wx9ub8qfcRRkAPIW9GRnF17d5hlMBiMNdqg==")()})
+
+local Tab = Window:MakeTab({
+    Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8eO1fH0BE9xFEeVZ6+it1elAQAySg9mdlVROGYBbVY95HxFqmL57Rd2EiZBF0/uogwAnsLejIzi69s8w6kAb5LrCw==")(),
+    Icon = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rggbLltoaXgUWlb88OVROgMzkhEnxuLcC/v6h68hEbXb2jKLkuTQTAJBRejCzq4rCMQtos+p9dl0KWK8psdAsPWiEOOZToLsIRcMV1Hs7uuCuTAbg6SrLyCi+vs0znApkZyO4")(),
+    PremiumOnly = false
+})
+
+Tab:AddParagraph(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCWi7hjV3ZshR84bAJBRejCzq4rCMQtos+qBx+ZDUfJTeHCn/QB4yroyMoqvb/MMpwIxIwKw")(),loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgg7LlswMehnO3UFW5aZo6T/8Q2bKHwCQUXows6uKwjELaLPqYbp3ihVRxWjw4s54AvBUtWVkFF/f5hlOBZCICh4=")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgn7LnhrKfsSWM4g2waiYwqa7CeLPS8mZ2sF3nLBspIFzpaDifABARunBzK4qCscsoM2qd+pD0YMBcXhnPgIqD4LgAAlKAsa/SkUi8rjrUwF4+ooyMoqvb/MMpwIhCw5v")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgl7LnlqSlrQezhGzSmV7r7a7cEJqVpHd5Vp7Rdb0X5ADAMgoPZjZVUXhmAW0WfVuTEQMKxu0TSzG0mtxNTNLHXsXgLsmDYCnpyAjo/j6Ns9wKjXT/RI=")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgr6r/vorn0afSSQlK3Ln1YLKQOVX2v5DF8bozhr7EV6fDADIKD2Y2VVF4ZgFtFn17p3JuTziuyruw36+QsY8B8dGhlbnLskD4GmpyMgovr7NM5wKLnVBNg==")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgv2L5AMm5O74ITFDxQBjg59mqjdC+4U9UbDk+T9Wd+sXbAUQ3C/wLGRZpHbTIGnocFeZePSC9+744Mucxx2qKhgN89JMNcMvgMcvHrFG4dMP98K3+NsjcMiOfx2YpMrFunQo1wrbMwAAGaUHM7uqKByzgDZrf1Dn46phGGzN8WlgD7e9QKzHDKwX+feza1qzMKfFmIFYFJdtjPklK23PgpzYDnd4RltRicH+5+yQPtWsbcBla9oSp2bVP078Yd15S0q4eZcU9KMZNq7VAagBAO7lQQA8CyozMoqvb/MMpwLSlxtN")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglbLmk6OlFr6cnXW0fbAPyWfv5x9uxfzoC8VJbwy6S/0bhSU2oEzkV8+JvB9SuGGGABARunBzK4qCscsoM2qN2uDx4MwZlSIKGAG5lkt7Qtsnwp84hNscZ5JOA1QPRAVAxNEf5S7JwyAZ2ZCRkbx9W2e4VQAWL7IKA==")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgr6r/vorn0afSSQlK3Ln1YLqjF4Aol6aFsbozhr7EV6fDADIKD2Y2VVF4ZgFtFn17p3JuTziuyqsPsN846A7B8dGhlbnLskD4GmpyMgovr7NM5wKPtXxQg==")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgm7LljzsFtRmN0CLzEpZaxbc4vOc3yKH2KUW5QEAMkoPZnZVUThmAW1WPdR0RdTkRNAfM9skgg35iuGuSwHgqW/OyCi+vs0znAroMsJO")())
+
+local Tab = Window:MakeTab({
+        Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgk7Llmys2pj+fuHz4PFUWzVJKAI5PiV8AQAZpQczu6ooHLOANqsebko+MMopAl4TCCh3zhuAp7YxI6P4+jbPcCpZ/Lav")(),
+        Icon = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rggbLltoaXgUWlb88OVROgMzkhEnxuLcC/v6h68hEbXb2jKLkuTQTAJBRejCzq4rCMQtos+p9dl0KWK8psdAsPWiEOOZToLsIRcMV1Hs7uuCuTAbg6SrLyCi+vs0znApkZyO4")(),
+        PremiumOnly = false
+})
+
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgs6L1mytO3v/ikVSp4saHYLhiyQ14wkAyCg9mNlVReGYBbRZ9bCtq7fXxDGWJ45yJ3wBeIr6MjKKr2/zDKcC94tvIg==")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU6sz2My3dPjpw3ACCj9GBmVxWFYxbQZtUDj7MGXIZBcudO+wHwlHVlZBRf3+YZTgVI7LT9")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU6sz2My3dPjpw3ACCj9GBmVxWFYxbQZtUDj7MGXIZBcudO+wHwlHVlZBRf3+YZTgVI7LT9")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU6sz2My3dPjpw3ACCj9GBmVxWFYxbQZtUDj7MGXIZBcudO+wHwlHVlZBRf3+YZTgVI7LT9")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU6sz2My3dPjpw3ACCj9GBmVxWFYxbQZtUDj7MGXIZBcudO+wHwlHVlZBRf3+YZTgVI7LT9")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU6sz2My3dPjpw3ACCj9GBmVxWFYxbQZtUDj7MGXIZBcudO+wHwlHVlZBRf3+YZTgVI7LT9")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU6sz2My3dPjpw3ACCj9GBmVxWFYxbQZtUDj7MGXIZBcudO+wHwlHVlZBRf3+YZTgVI7LT9")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU6sz2My3dPjpw3ACCj9GBmVxWFYxbQZtUDj7MGXIZBcudO+wHwlHVlZBRf3+YZTgVI7LT9")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU6sz2My3dPjpw3ACCj9GBmVxWFYxbQZtUDj7MGXIZBcudO+wHwlHVlZBRf3+YZTgVI7LT9")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU6sz2My3dPjpw3ACCj9GBmVxWFYxbQZtUDj7MGXIZBcudO+wHwlHVlZBRf3+YZTgVI7LT9")())
+
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgnLIb+Iktf2rpmLRMDSsJAwPTK352ewnNDiyLBJthlV5KKafRzaYrsKQTLYvCMgqOQgGgcQx/QessiD8BgrKIID0SnTNZRo4eHzglsnd8KWEYrw7mjKsEgCQUXows6uKwjELaLP2mcoJLef6c+dLaBUUQjGn9xxgLV3AhOoqBFgDfWWTjFIMYYmVKZ8cyvsj3viLkJkkDMpQgtMcTXACMq0AoVRBBOoFuZOfDYwe+BIZ3PO6AXj2tmRkFF/f5hlOBRBvLU8=")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgtqIU8Jzm1lrqm4pVY9SkAKXNCtAdTGAsZXWEgi+xCY+GJ3gVlQFPj8qHM5YItgDwGUZMJZXldOWLkeViAi+mtgHAMgoPZjZVUXhmAW0WfukUTizwb1Cy7dGqZcEpRFdt0nfIxV96gUzwMT0jWURG8K4jgGvwriYJ4rhDhjxBNG94zeJKvfAEgCe4XEZGcXXt3mGUwHelHXi")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgr6r/vorn0afSSQpbz1MSIH44A6c9G/1kkvFJxQhDa9PBgBklB7M7KqicMwC2qx69w6krS4s3oiU4C5T4h6fKSacAXpyl+QB8LRUZGQUX9/mGU4FXMuNQw==")())
+
+local Tab = Window:MakeTab({
+        Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8eQ3dbFIlvzJK99hiMA26vSAAAZpQczu6ooHLOANqsecoLSsHTKAh0H0ESaiRV3UQYAT2FvRkbx9W2e4VQAR7Di1g==")(),
+        Icon = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rggbLltoaXgUWlb88OVROgMzkhEnxuLcC/v6h68hEbXb2jKLkuTQTAJBRejCzq4rCMQtos+p9dl0KWK8psdAsPWiEOOZToLsIRcMV1Hs7uuCuTAbg6SrLyCi+vs0znApkZyO4")(),
+        PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgsaL1nq7Hy+IjeuxL6+OOmiPrsMh/WJH1YEQMS/bJcapim9pqL8yFQCQUXows6uKwjELaLPqfRvxU2WDrhuNeKEUwBYuCyS6XoCWxABQjkcxvj/uwmwAnqa6jIzi69s8w6kAUuacHQ==")(),
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgmrIlYSEFdS1OrR5WGdshfEY9D6RVZ4SroW3fzj153JQHZ5v1J2tgGhTyEZsxY2LDwmMTlrVFX7reCneoVUAbBYVM7uqKByzgDZrH4u67lUS08VHVHLTsvUEV9gob8FX23SsH4wCtrrwvAmPy5bdPrbQY3XMhlOh8shYso6453YA8MxPy8govr7NM5wKnnjfXQ==")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgsaL1nq7Hy+IjeuxL6+OOmiPrsMh/WLHJQYH6b9yJMapim9pqL8yFQCQUXows6uKwjELaLPqfRvxU2WDrhuNeKEUwBYuG5oJ9UBRdAFQjkcxvj/uwmwAnqa6jIzi69s8w6kARLzQOw==")(),
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglbLmk6OlFr6ckX30FzWdlkeXmxp/griiqy6eG64lqGux5yx/KIlqOE8PVMmDBduiAEAZJQezOyqonDMAtqsejPqtHVpKhPLCw8MY0dXtaYEQVHjgSaSdwepMGoWnwTYsw/iojZ3TxgAz8yEjIzi69s8w6kApa0lFw==")(), true))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgsaL1nq7Hy+IjWv2ktZd/FNVN8F3gGeHJrGxEMYzTixsCAvYSX9lKgAgo/RgZlcVhWMW0GbV+7al4UceWaNmqBm3rGNaKWN7MlVMS2buwg5Xe1nchdkAPE11GRnF17d5hlMBhhK8zw==")(),
+  Callback = function()
+
+  end
+})
+
+local Tab = Window:MakeTab({
+        Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8eY2MnXwOSuJK99hiMA26vSAAAZpQczu6ooHLOANqseclI2mHAnDe2STZUVWDfcRRkAPIW9GRnF17d5hlMBclE15A==")(),
+        Icon = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rggbLltoaXgUWlb88OVROgMzkhEnxuLcC/v6h68hEbXb2jKLkuTQTAJBRejCzq4rCMQtos+p9dl0KWK8psdAsPWiEOOZToLsIRcMV1Hs7uuCuTAbg6SrLyCi+vs0znApkZyO4")(),
+        PremiumOnly = false
+})
+
+Tab:AddTextbox({
+        Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8cQU8jlAGtRhC9dy06g26vSAAAZpQczu6ooHLOANqsecgKHfalmtFle4LlnCAPuogwAnsLejIzi69s8w6kAbxpjXw==")(),
+        Default = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgtCJ2kSzoj6qtGWciDgCADJKD2Z2VVE4ZgFtVj0oAHfAFYAnqZ+RUXx9m2c4FTo8DQA=")(),
+        TextDisappear = true,
+        Callback = function(Value)
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        end         
+})
+
+Tab:AddTextbox({
+        Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8eOzM3Ncl87gi56l51At1elAQAySg9mdlVROGYBbVY95Hz+AyJV+OuoeGRUzKrcRRkAPIW9GRnF17d5hlMBcypPJw==")(),
+        Default = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgtCJ2kSzoj6qtGWciDgCADJKD2Z2VVE4ZgFtVj0oAHfAFYAnqZ+RUXx9m2c4FTo8DQA=")(),
+        TextDisappear = true,
+        Callback = function(Value)
+                game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+        end         
+})
+
+Tab:AddTextbox({
+        Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8ee3dP+AA+1QqezFl8Dt1elAQAySg9mdlVROGYBbVY95DwF/KTCa9KZuuYZSiXuogwAnsLejIzi69s8w6kAhC+9YQ==")(),
+        Default = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgtCJ2kSzoj6qtGWciDgCADJKD2Z2VVE4ZgFtVj0oAHfAFYAnqZ+RUXx9m2c4FTo8DQA=")(),
+        TextDisappear = true,
+        Callback = function(Value)
+                game.Workspace.Gravity = Value
+        end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCU0dx8d/c6CI+cNAMgoPZjZVUXhmAW0WfXAAyxpxz5/NbjTfgA8ZV0ZGcXXt3mGUwFJrfVQ")(),
+  Callback = function()
+
+loadstring(game:HttpGet((loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglLIX5JkRbXQiQ4p0k32mBMeqEyy5FvBSFTvyKn8SnBK3ZHgqNSQCbf+jiYF+/vI7D+Ds4O/F5lZVWVTzoVqA/hU2T3gW2A2jMdvoaQUkzkNBtQDADJKD2Z2VVE4ZgFt1j4bdVq7eS0F3Rdi7SpUBLkmyW66ddnq02Cp+o295D1jKZ73QhcuVw6v3eSkOcnN9pKXKvAw38byureLSqf2L53b3nyaM/s64p7RC8CzsyEjo/j6Ns9wKgv2tho=")()),true))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCW0LwQb4pERR84bAJBRejCzq4rCMQtos+qBB0jxv/8/KnGn/QB4yroyMoqvb/MMpwJDq/kg")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:GetObjects(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgsaL1nq7Hy+IjdtXU3v1TLOV/sUtE4u7UUN8TCA/OMBSa37Trb8yFQCQUXows6uKwjELaLPqfZe9itpt77NboeCnvIt4n7FqpyhosDJXgdYvgrswG4CnqS4jo/j6Ns9wKjPL2lM=")())[1].Source)()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCWkPAcnwoMfR84bAJBRejCzq4rCMQtos+qBByYdfP4WQXOn/QB4yroyMoqvb/MMpwI2WnzO")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglLIX5JkRbXQiQQj0k32mBMeqEyy5FvBSFTvyKn8SnBK3ZHgqNSQCbf+jiYF+8v94e9QpKCAr1YO/TKDtblG1IgWrvrRLnNcMM0V/by2DAbTAfUAgIzSg5ldVRSOWUCbtc9GndZuXktB94VYuwoVQa5JsptuXbb6NFiqfmMvec9Yiue90IVL4Oulh0C5WslFMm7x73mvM+/nyBBb7ND258d7PWnpi4877hm9ADw7GzIyiq9v8wynAmDW/64=")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCW6IzcG5oYuR84bAJBRejCzq4rCMQtos+qBx0mtkaPSKnOn/QB4yroyMoqvb/MMpwJCcCL/")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglbLmk6OlFr6ckX30FzWdlkeXmxp/griiqy6eG64lqGux5yx/KHwSme+r9HEzBVuiAEAZJQezOyqonDMAtqsejPqtHVpKhPLCw8MY0dXtaYEQVHjgSaSdwepMCoWkiqwW2bwKkPunjAAnpkJGRnF17d5hlMBli2WfQ==")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCV06iCG6wUdjpw3ACCj9GBmVxWFYxbQZtUDD/C7wrxZtuFO+wHwlHVlZBRf3+YZTgVTVxUu")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet((loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgr2rpHNWBO8BLIShoIhpUSOtMfhb0djhPdTuNaUSvshXkYz0bNBHKgXMgmbaAjD46klE4XR0S8BjsYSZiD7WtgK1rPhzzhgJ6UMTBLyIcC1UVgjhsCfw0Z2pULgwF+Yp/efsTwAAZJQezOyqonDMAtqs/fHLYQdSYzIAu//gFCsD5FZr+bHqm24GVT3THgSWjfmXBWBT3r/pV3TNoIjzUclq0BofWiv+c6A+rLbSvw/vNMpHHdo8OpV81saj+CxHERH457LuM+Ec3YNzr4wB4FlRmJFRfH2bZzgVXXRysA==")()),true))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgsaL1nq7Hy+IjWsyVdRM5ncLJ0mfMDcH6w9Pog/mTAvRFR21kf7KVABARunBzK4qCscsoM2q923DUo48sobVEkORxUyYKN4qzTCRq5sVvTjCtpO5C7MBeJrqMjKKr2/zDKcCg3nS/Q==")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgrKor6KlJP4pQIFgVvokmMF46JlBX/W6QxFB/xKFRLyIkNw3Lv5/kt/R/pQQmnjprq7PGj2BCXsWKTNo3p/GtEnX7mlkuEiFD+ThCChUwxUgx7xGAEBG6cHMrioKxyygzdpnp0xrKbCWJAYfjNryiLs5ENGZxlhSBbNJ+8JLEhquSyji4kiuObHQ5BKm04Ixbs1rOH9PVl9qW0F7xs+PhBb14lR6ZOc8idFx7hG1ADwrCzIyiq9v8wynAsXnbbY=")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgo636oxNO1pPaCVy6D6smWU/jpw3ACCj9GBmVxWFYxbQZtUDj3ECmTBy8eJO+wHwlHVlZBRf3+YZTgUzoYK/")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglbLmk6OlFr6ckDy0FzWdlkeXmxp/griiqy6eG64lqGux5yx/IdG4o0wH68tb4g1xAAAMkoPZnZVUThmAW1WvRl12ro0lYnlhQeGsaOrWlOCoKjxQBPJu4NUGFXJD2BvPq4YfSF3TxgAz8yEjIzi69s8w6kAwQPsLA==")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgk7Llmys2pj+fuE9LMdw6bTqFKYgPyV8AQAZpQczu6ooHLOANqsebpb3Gf73EzYNmAl3zhuAp7YxI6P4+jbPcCpw37sO")(),
+  Default = false,
+  Callback = function()
+
+
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgk7Llmys2pj+fuE9LMdw6bTqFKYgPyV8AQAZpQczu6ooHLOANqsebpb3Gf73EzYNmAl3zhuAp7YxI6P4+jbPcCpw37sO")(),
+  Default = false,
+  Callback = function()
+
+
+  end
+})
+
+local Tab = Window:MakeTab({
+        Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8d4PNf9GCmLJK99hiMA26vSAAAZpQczu6ooHLOANqsecpI/Slvj6/+STZUVWDfcRRkAPIW9GRnF17d5hlMBfsuiGQ==")(),
+        Icon = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rggbLltoaXgUWlb88OVROgMzkhEnxuLcC/v6h68hEbXb2jKLkuTQTAJBRejCzq4rCMQtos+p9dl0KWK8psdAsPWiEOOZToLsIRcMV1Hs7uuCuTAbg6SrLyCi+vs0znApkZyO4")(),
+        PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgk7Llmys2pj+fuEtMOZxbyldc0EhPiV8AQAZpQczu6ooHLOANqsebrYv3B82Pb20vi53zhuAp7YxI6P4+jbPcCpqu8Lr")(),
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgjnJAAZMaMD4jAHEEMMOi4TjMdwf5rTUH+YQeOVi4Okd7wzyJwPXOtKGRWpEaKsXIqjmHXXLxx9t0yJ1onTVi5ZT8xbvSO9boW0piKl7nIPvPXkJbizYwcf6HXjFOO85vjvrk6GVUCr0lUt2cLuMu+3hz4EWGbUsXDAIeup1wVLPTwMAZJQezOyqonDMAtqsejPqtHVpKhPLCw8MY0dXtaYEQVHjgSaSdwepMGrjpLa3oIfxGnDunjAAnpkJGRnF17d5hlMBTGZ5+w==")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgk7Llmys2pj+fuHj/NlMbyldc0EhPiV8AQAZpQczu6ooHLOANqsebmomvHwnLOCtLix3zhuAp7YxI6P4+jbPcCpT46O3")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgtmJ0Ka0zwRfbdFaVMoUUSjgzSX8kS9T2/qoMEVSjQRFvMuhUbkwwbxhPnrovSHQs5JYtK6CN79eEPpTcFIYNAtGtQGR0+6rf9tVpYXUjHQjkYhWzUGRluA16BdixxfFVnDSh7sNFgVmX5pmqHZAyWFtCzUkmiSwejY0jIcjm4urAAAZpQczu6ooHLOANmv/9JL0mseqdeHQKyt2LCBqJ0IdNaqZ3LzMBophPVVIu8tBVdDNBV1ANKXgUQFhx5dK1gsqAwjGhf8o6Kf600ZhqR5QsVSxCYfrB4Tq2MSjDtkULxzV+wqCOl+QX1GJG1tFRikIa08STjkTJgs8JrUy3eygkoVbyDow98EZADzH12RkFF/f5hlOBfZX2+Y=")(),true))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgr6r/vorn0afSSSpf69iaNms4ApYMv/rFsbozhr7EV6fDADIKD2Y2VVF4ZgFtFn17h2E7L8uoDaW8D48jRyvsI0kWZhwl+QB8LRUZGQUX9/mGU4FVEMNZw==")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgiFyOzy84KjfIZGfP+Gx/ngaGEE5tE3UnzTyzPmyxYV0z8sVzpiLiZaZDXR3+p/BvgpSofwF+pLJnSglgFjonzsCGXJAvHGxVWeDM0K45QFSMV4oMHiYAc1YGXwLS+gYdMNQ1RB+e4skyDB5gGriDZlYghoQpCwGrtT1fO5tUV9fndzdeRuBAz9jOfE6cWYCACCj9GBmVxWFYxbQZu1f3GPwHNALpcLIdjnU7ukVkTXtzEA3YS3T2hOolArDsj1ECrMG8fIgUYCBPy9DkAWpvObMiJAqUhkSRXk7G3ab4NyWNK6uZCCHmH2JCSppmgW5Qelu5cx3xXqOK24EbYR9NuKK+KAE9q5Dvq8hGXf6XoLpOwA/JuNO31MIAbVCR/AQLoq5r2wC4Lk0LCOj+Po2z3AqkTIhyQ==")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgibLlqJy1qUjUP+npIbvj4WVZrrF75arpe4TSf2wrE8GcBEfSNHOcFpbFAAgo/RgZlcVhWMW0GbVezSV9uwVl3dVuI05s7GviSQKoKJI8pQJkb4s4C6KqS5ydwUA8HSWZmQUX9/mGU4FQJ7zMg==")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglnJUEYsF5S/ze1N6iJOnevE8sQN8FUxasPuJHEBMA1qtPe5BG5dpj2Xrjn0M3IirEHiSBLhbUgGGQjjTtDDP2u/wQybVsma3ogRF/sGwW8GSjsKzGwqadlLSsq27kkZgAkOIgUJb8/AwY7DRtdIEBVzCcrlSFLykiXz0aWEGBY73DZRB0cBADJKD2Z2VVE4ZgFt1v7ZNdkdvzVkS1vYk/iigLNsXyJHMCSgBpH6SIgSzoMqADVE6UL1tUprXpI+/wapdQTdvBf9OHpI9e30TnoXya4S9vU3iCSiUTchEVIXAEB4W7LbJFlS0q9cNWMYAOy9l4ulx+5SHx3OHRNIVOd3SY3buTg4W9vRICyB++YKAJ4bkzIyiq9v8wynAgoJf6g=")(), true))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgl7LnlqSlrQezoFH0E6kh9ir4g6Fj805+GXyvpjNf0EOACCj9GBmVxWFYxbQZtW7daTPNjALf/5xm4sdR8pERSd0ILhr0gB4egoyMoqvb/MMpwK3SeMk")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgoGxnsDorEc9KjfHgalaiRFy6x2Jh0GMZ6bUnGMkplYCiVChc22Gjt/LZSRWnmofXvwgZOzlgROVSM37MPY7/Jq3M/a2cZLUlMSIyKHu+XgfDmnb3x972SQljDLwSIsn4Ul9/RvWtpcrJzFTYAyScUGgKkMayrHHhuzUjGNklqZiaKOHr+VAasftfQCAjNKDmV1VFI5ZQJtVb0adti5NZWJ54YFh7Oiq1pQgKGo80ETy7iAVRiW9XZoxsigMBuDuCQPgmZmQkVF8fZtnOBW6lXq4")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8eO1fH0BE/xou8qFgfAa69KAwBklB7M7KqicMwC2qx6yPmKVMXy26/WHsz0yA7cRRkAPIW9GRnF17d5hlMBgvltKQ==")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rggESW0DwmO6HXYXxYtDHJgO7kDAugr1fbsCj7Tq4Q3LhBMcmFDNVal++EHkcQ3zgPfPyRd85CkzVVJoQjDxKHg6JXtBWvGCdONGjodRLhwCBaxVuUMz9tJWysO2hQu3aI2gnH5y8WGLO1FU84W0cJLkwYUSlilI6VlHpZMXKqXgGbUpPyDnHgNA+PQ8AkFF6MLOrisIxC2iz6s2o09alqUwsLzwwjB1d1ZoSBEWNB5pI3h2kwqi2iDRpL6GDVEXcPWEAPDMTMjKKr2/zDKcCOwplPg==")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgq6r9swd61oPicTv5DOgG2bnkxO8IaLqkgAAGaUHM7uqKByzgDarHl4KPbq4mPWKMg6jp3On/AF4SjszMoqvb/MMpwLD2gyG")(),
+  Default = false,
+  Callback = function()
+
+--〖必须全部复制┇服务器功能修复成功〗KingScript = "By King" Roblox= "新飞月二飞春"KingTeam= "KingQQ新主群https://qm.qq.com/q/SU0hmhIvwk" loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ShenJiaoBen/main/King-------------Script.txt"))()
+--[[此脚本免费了]]
+  end
+})
+
+local Tab = Window:MakeTab({
+    Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgv6L3hrLn9/yLfVrz5lapiaFWUWdaAtjzwxUxHEwRNr6pzodAJBRejCzq4rCMQtos+od2XmD/1WAtCQcFaEmKpZzJuHq2rNPp3IXZwLwNNRkZBRf3+YZTgUBxdvm")(),
+    Icon = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rggbLltoaXgUWlb88OVROgMzkhEnxuLcC/v6h68hEbXb2jKLkuTQTAJBRejCzq4rCMQtos+p9dl0KWK8psdAsPWiEOOZToLsIRcMV1Hs7uuCuTAbg6SrLyCi+vs0znApkZyO4")(),
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgn7LnhrKfsSWM5jVTdtS8No3uwlfTl14JuVHpxYZKOaKEVScDwDIKD2Y2VVF4ZgFtFn1TqzBaHwmd7CqeEKYKTFd3iAin/jTklIHuetTAXj6ijIyiq9v8wynAhREcFY=")(),
+    Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgvaL2g4PRcU0xLtV4+FEhKdYnLRqzjA756U0a6to59ZNUkdSpV0L7bpFZvq5kOOIYbqhOxwAkFF6MLOrisIxC2iz6g0p8/aWuulckZWynvyzPcGx8l8sIRdQFB4Y92E/bB2zrnSRaQNq9NhwN0cC8AyMyMgovr7NM5wKm99qmw==")()))()
+    end
+})
+
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgt6L3lqTV3dHkgZM/k/H4rD0HgPlQl62pBDaeGSqSAEAZJQezOyqonDMAtqsetfuFGmLS/H2f57LI2QGmuWELgh3QRYAT3F/Rkbx9W2e4VQA3CLk4Q==")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgh7LnuQsFjUGFVPXh1H+AmXQktkqiszs1qE3LyvJAABklB7M7KqicMwC2qx6l7kDtrOtwEqUp/TRlw6JVC3irkgC4Kluz8govr7NM5wKQ8uQ5Q==")())
+Tab:AddLabel(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgvKI7yJFpP+Y4+fPDCCIa7DzWO2QyQ61QCCD9mt4Y7eRi0DCBVREbtvqR5xhSTuV3bTAw2iGwpzxCnYlRan7XQUTToRtGcEpRQITiZQmQG74rg0Sm9YJAMgoPZjZVUXhmAW0WfuMJbWlcn8imVEbz0teyYn6GYNByb6VVEGRFHIqtZfmWI8TNZXgHT35/wKiauTbapwFa3cEEyH+VPtG3OzwGYaYXoytA65WNsMYQ+5hxQA8CysyMoqvb/MMpwIuXT4i")())
+
+local Tab = Window:MakeTab({
+        Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgm7LljzsFtRmN0CF2VBoP4K8Eq5rVnfQa5lalAcAyCg9mNlVReGYBbRZ9VAz+bOMLXPPzGx9bTHUL+auSwHgqW/OyCi+vs0znAoXS0Ry")(),
+        Icon = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rggbLltoaXgUWlb88OVROgMzkhEnxuLcC/v6h68hEbXb2jKLkuTQTAJBRejCzq4rCMQtos+p9dl0KWK8psdAsPWiEOOZToLsIRcMV1Hs7uuCuTAbg6SrLyCi+vs0znApkZyO4")(),
+        PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglbLmk6OlFr6cnW9uvBWf5nJmhWwnZtpe3uR5C2AmRk45vDJbNUI0jETp9MSZ+GGGABARunBzK4qCscsoM2qN2voYUCRoRbgEslYaqNIxnnu2AD+Vabz8M7oCMnn6Tv78bLgfO6eMACemQkZGcXXt3mGUwHpI+Cf")(),
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rguKI1TxHzuuwQQXk86NHuDDYj/jffMlYp436TO2X6LzvX4AWS1aFz0WGIbSk14423Z7D/6CvVugCYiMe3GZNsZrYepF4D5lA8qam3ZRuAEBG6cHMrioKxyygzdqnvJRrw1vFCF6dhRVPMtptRAwIiCoZmy3tr9JLYg4rsTn5ptdiXzznv4pZsmmLjVOkq7q/e8nv1m2La5iyEqHELId7SCEAz6DojIzi69s8w6kALq7G1A==")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8cQWdH2Fif7JC+N0yoRtVelAQAySg9mdlVROGYBbVY95ARe4Bnl9/QcwGPDwJrcRRkAPIW9GRnF17d5hlMBlFfV8w==")(),
+  Default = false,
+  Callback = function()
+
+
+  end
+})
+
+local Tab = Window:MakeTab({
+        Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgu6L1jzt12cXM8eIyPT6JjW5YgIGV4cFbq9KAwBklB7M7KqicMwC2qx6yMnZV8/zDAgTUGsO+U5yF2UA8BT2ZmQUX9/mGU4Fuzaa/w==")(),
+        Icon = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rggbLltoaXgUWlb88OVROgMzkhEnxuLcC/v6h68hEbXb2jKLkuTQTAJBRejCzq4rCMQtos+p9dl0KWK8psdAsPWiEOOZToLsIRcMV1Hs7uuCuTAbg6SrLyCi+vs0znApkZyO4")(),
+        PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgkbLlnq65hRK+kUq6A8tKPs6vx1cbRFYXTsoFrkW208TAmWtj2+phbkAgIzSg5ldVRSOWUCbVe/XgrIBK0T86mEOKZO7D6s5a9fDOMs8d35uWtELuGvTAXh6CzMyiq9v8wynAonoRN8=")(),
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgr2rpHNWBO8BLIGkoIhpUSOtMfhb0djhPdTuNaUSvshXkYz0bNBHKgXMgmbaAjSyPPJpRSwD30A8QhMpWuelBoyaDejCkugpQvBegv7AwZ18DoMRmNPjTaKfNO1QZGGe0lfm/gQAQEbpwcyuKgrHLKDN2h+/HHYgNSYDsPsPTrEyQG61lh+rvulmUNUz7UFg2Zh/WQA25f2f6rW2/SmJ4Yns+128pOikQb+iLVX4zuVJSCXjx7PkoBe9vwfcatpwGunMeRAT6RjO0T0498oYAJ4VhRkZxde3eYZTAQhyIdg=")()))()
+  end
+})
+
+Tab:AddButton({
+  Name = loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rgkbLlnq65hRK+kUq6A8tKPs6vx1cbRFYXTsoFrkW208TYgWtj2+phbkAgIzSg5ldVRSOWUCbVe/XgrIBK0T86mEOKZO7D6s5a9fDOMs8d/7vW9ELuGvTAXh6CzMyiq9v8wynAocpi9E=")(),
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet(loadstring("=IAPYthkQWr2DFAH7uAABwAAA5BA10aAGv/rglbLmk6OlFr6ckDy0FzWdlkeXmxp/griiqy6eG64lqGux5yx/NUPUWr26sRCFYo1xAAAMkoPZnZVUThmAW1WvRl12ro0lYnlhQeGsaOrWlOCoKjxQBPJu4NUGHVUcqpt35DvzYO7JwyAZ2ZCRkbx9W2e4VQAst1CQQ==")()))()
+  end
+})
+
+
+
+
+OrionLib:Init()
