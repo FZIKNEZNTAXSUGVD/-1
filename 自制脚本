@@ -1,1 +1,421 @@
-local cG=game:GetService("StarterGui");cG:SetCore("SendNotification",{Title="!!",Text="!!",Duration=5});print("!!");local vU=game:GetService("VirtualUser");game:GetService("Players").LocalPlayer.Idled:Connect(function()vU:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame);wait(1);vU:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)end);local OLib=loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))();local W=OLib:MakeWindow({Name="!!",HidePremium=false,SaveConfig=false,IntroText="!!",ConfigFolder="!!"});local T1=W:MakeTab({Name="!!",Icon="rbxassetid://7734068321",PremiumOnly=false});T1:AddParagraph("!!","TMD2540");T1:AddLabel("!!");T1:AddLabel("!!");T1:AddLabel("!!");local T2=W:MakeTab({Name="!!",Icon="rbxassetid://7734068321",PremiumOnly=false});T2:AddLabel("TMD2540z");T2:AddLabel("!!");T2:AddLabel("!!");T2:AddLabel("!!");T2:AddLabel("!!");T2:AddLabel("!!");T2:AddLabel("!!");T2:AddLabel("!!");T2:AddLabel("!!");T2:AddLabel("!!")
+local ⠢⠔⠨⠢⠨⠢⠢⠔={
+⠢⠨⠢⠢⠨⠨⠢⠢ = tostring(utf8.char((function() return table.unpack({83,116,97,114,116,101,114,71,117,105})end)())),
+⠨⠨⠨⠔⠔⠨⠢⠢ = tostring(utf8.char((function() return table.unpack({83,101,110,100,78,111,116,105,102,105,99,97,116,105,111,110})end)())),
+⠢⠢⠨⠢⠔⠢⠨⠔ = tostring(utf8.char((function() return table.unpack({84,77,33050,26412})end)())),
+⠢⠨⠔⠔⠔⠔⠔⠔ = tostring(utf8.char((function() return table.unpack({32784,24515,31561,24453,65288,21453,25346,26426,24320,21551,65289})end)())),
+⠨⠢⠨⠢⠢⠔⠨⠨ = tostring(utf8.char((function() return table.unpack({21453,25346,26426,24320,21551})end)())),
+⠨⠨⠢⠢⠔⠔⠔⠨ = tostring(utf8.char((function() return table.unpack({86,105,114,116,117,97,108,85,115,101,114})end)())),
+⠨⠨⠔⠢⠔⠢⠢⠢ = tostring(utf8.char((function() return table.unpack({80,108,97,121,101,114,115})end)())),
+⠨⠨⠨⠔⠨⠨⠨⠔ = tostring(utf8.char((function() return table.unpack({39,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,115,104,108,101,120,119,97,114,101,47,79,114,105,111,110,47,109,97,105,110,47,115,111,117,114,99,101,39})end)())),
+⠨⠢⠔⠨⠔⠢⠨⠔ = tostring(utf8.char((function() return table.unpack({33050,26412,21512,38598})end)())),
+⠨⠢⠔⠢⠨⠢⠢⠢ = tostring(utf8.char((function() return table.unpack({27426,36814,20351,29992})end)())),
+⠨⠢⠔⠔⠔⠔⠔⠨ = tostring(utf8.char((function() return table.unpack({27426,36814,20351,29992})end)())),
+⠨⠔⠢⠨⠨⠨⠔⠨ = tostring(utf8.char((function() return table.unpack({33050,26412,20844,21578})end)())),
+⠢⠨⠔⠨⠨⠨⠔⠔ = tostring(utf8.char((function() return table.unpack({114,98,120,97,115,115,101,116,105,100,58,47,47,55,55,51,52,48,54,56,51,50,49})end)())),
+⠨⠢⠔⠨⠢⠔⠢⠔ = tostring(utf8.char((function() return table.unpack({20316,32773})end)())),
+⠨⠨⠔⠢⠢⠔⠔⠢ = tostring(utf8.char((function() return table.unpack({84,77,68,50,53,52,48})end)())),
+⠨⠢⠢⠢⠨⠔⠢⠨ = tostring(utf8.char((function() return table.unpack({20316,32773,81,81,65306,51,55,56,55,53,55,54,48,49,51})end)())),
+⠨⠔⠔⠔⠨⠔⠢⠔ = tostring(utf8.char((function() return table.unpack({81,81,32676,65306,57,50,53,51,48,48,57,56,54})end)())),
+⠨⠔⠨⠨⠔⠨⠔⠨ = tostring(utf8.char((function() return table.unpack({27426,36814,20351,29992,33050,26412})end)())),
+⠢⠨⠢⠢⠔⠔⠔⠢ = tostring(utf8.char((function() return table.unpack({26412,33050,26412,25226,19968,20123,33050,26412,32473,20316,25104,20102,21512,38598,65292,26041,20415,33050,26412,22826,22810,19981,22909,25214,65288,32541,21512,65289})end)())),
+⠨⠔⠨⠢⠔⠢⠨⠨ = tostring(utf8.char((function() return table.unpack({33050,26412,27704,20037,20813,36153,65292,31105,27490,20498,21334})end)())),
+⠢⠢⠨⠢⠨⠔⠔⠨ = tostring(utf8.char((function() return table.unpack({27426,36814,25237,31295,33050,26412})end)())),
+⠢⠔⠨⠔⠢⠔⠢⠔ = tostring(utf8.char((function() return table.unpack({29256,26412,65306,48,46,48,53})end)())),
+⠨⠨⠢⠢⠢⠔⠨⠨ = tostring(utf8.char((function() return table.unpack({36129,29486,27036})end)())),
+⠨⠢⠔⠔⠨⠢⠢⠢ = tostring(utf8.char((function() return table.unpack({114,98,120,97,115,115,101,116,105,100,58,47,47,55,55,51,52,48,54,56,51,50,49})end)())),
+⠨⠢⠔⠨⠔⠨⠨⠔ = tostring(utf8.char((function() return table.unpack({84,77,68,50,53,52,48,122})end)())),
+⠢⠢⠨⠢⠢⠔⠨⠨ = tostring(utf8.char((function() return table.unpack({31354,30333})end)())),
+⠢⠢⠢⠔⠢⠔⠢⠔ = tostring(utf8.char((function() return table.unpack({31354,30333})end)())),
+⠢⠢⠢⠢⠢⠔⠢⠔ = tostring(utf8.char((function() return table.unpack({31354,30333})end)())),
+⠢⠨⠢⠢⠨⠢⠨⠨ = tostring(utf8.char((function() return table.unpack({31354,30333})end)())),
+⠨⠔⠔⠨⠢⠢⠔⠔ = tostring(utf8.char((function() return table.unpack({31354,30333})end)())),
+⠨⠔⠔⠔⠢⠨⠢⠨ = tostring(utf8.char((function() return table.unpack({31354,30333})end)())),
+⠨⠔⠢⠢⠔⠢⠨⠢ = tostring(utf8.char((function() return table.unpack({31354,30333})end)())),
+⠨⠢⠢⠨⠨⠨⠢⠨ = tostring(utf8.char((function() return table.unpack({31354,30333})end)())),
+⠨⠔⠔⠔⠔⠔⠨⠨ = tostring(utf8.char((function() return table.unpack({31354,30333})end)())),
+⠨⠢⠢⠔⠔⠔⠢⠢ = tostring(utf8.char((function() return table.unpack({27880,24847,65306,19968,23450,35201,36873,21512,36866,30340,29256,26412,65292,36873,38169,29256,26412,26080,27861,27491,24120,20351,29992})end)())),
+⠨⠔⠨⠔⠢⠢⠢⠢ = tostring(utf8.char((function() return table.unpack({30005,33041,29256,23601,19981,29992,35762,35299,20102,65292,38750,24120,31616,21333,23454,29992})end)())),
+⠨⠢⠢⠔⠢⠔⠨⠨ = tostring(utf8.char((function() return table.unpack({23454,22312,19981,25026,38382,25105})end)())),
+⠨⠢⠨⠢⠔⠢⠨⠢ = tostring(utf8.char((function() return table.unpack({29305,27530,33050,26412})end)())),
+⠢⠨⠔⠨⠔⠢⠢⠢ = tostring(utf8.char((function() return table.unpack({114,98,120,97,115,115,101,116,105,100,58,47,47,55,55,51,52,48,54,56,51,50,49})end)())),
+⠢⠔⠢⠨⠢⠔⠢⠔ = tostring(utf8.char((function() return table.unpack({37325,21147,26538,65288,30005,33041,29256,65289})end)())),
+⠨⠨⠢⠨⠔⠔⠔⠢ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,115,99,114,105,112,116,98,108,111,120,46,99,111,109,47,114,97,119,47,70,101,45,71,114,97,118,105,116,121,45,71,117,110,95,57,57,49})end)())),
+⠢⠢⠢⠔⠔⠢⠢⠔ = tostring(utf8.char((function() return table.unpack({37325,21147,26538,65288,25163,26426,29256,65289})end)())),
+⠨⠢⠔⠨⠔⠨⠢⠔ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,112,97,115,116,101,98,105,110,46,99,111,109,47,114,97,119,47,90,51,51,78,99,69,67,104})end)())),
+⠨⠢⠔⠢⠔⠔⠔⠔ = tostring(utf8.char((function() return table.unpack({27809,20107,65292,21035,20081,28857,36825,20010})end)())),
+⠢⠢⠢⠢⠔⠔⠨⠢ = tostring(utf8.char((function() return table.unpack({24555,25463,33050,26412})end)())),
+⠢⠨⠢⠢⠨⠔⠢⠔ = tostring(utf8.char((function() return table.unpack({114,98,120,97,115,115,101,116,105,100,58,47,47,55,55,51,52,48,54,56,51,50,49})end)())),
+⠨⠔⠔⠨⠨⠢⠔⠢ = tostring(utf8.char((function() return table.unpack({31227,21160,36895,24230})end)())),
+⠢⠨⠔⠔⠢⠢⠨⠨ = tostring(utf8.char((function() return table.unpack({})end)())),
+⠨⠢⠔⠨⠨⠨⠢⠨ = tostring(utf8.char((function() return table.unpack({36339,36291,39640,24230})end)())),
+⠢⠢⠨⠢⠔⠨⠨⠢ = tostring(utf8.char((function() return table.unpack({})end)())),
+⠨⠢⠢⠔⠢⠔⠨⠢ = tostring(utf8.char((function() return table.unpack({37325,21147,35774,32622})end)())),
+⠢⠢⠢⠨⠢⠨⠨⠢ = tostring(utf8.char((function() return table.unpack({})end)())),
+⠢⠔⠢⠨⠨⠢⠔⠢ = tostring(utf8.char((function() return table.unpack({39134,34892})end)())),
+⠢⠔⠢⠢⠔⠨⠢⠢ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,98,105,108,105,115,111,108,111,110,103,99,104,101,110,103,47,114,111,98,108,111,120,45,47,109,97,105,110,47,102,120})end)())),
+⠨⠢⠔⠔⠨⠢⠔⠔ = tostring(utf8.char((function() return table.unpack({36879,35270})end)())),
+⠨⠨⠔⠢⠨⠢⠔⠔ = tostring(utf8.char((function() return table.unpack({114,98,120,97,115,115,101,116,105,100,58,47,47,49,48,48,57,50,54,57,55,48,51,51})end)())),
+⠨⠨⠨⠢⠢⠢⠢⠢ = tostring(utf8.char((function() return table.unpack({36367,31354})end)())),
+⠨⠨⠨⠢⠨⠨⠨⠨ = tostring(utf8.char((function() return table.unpack({39,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,71,104,111,115,116,80,108,97,121,101,114,51,53,50,47,84,101,115,116,52,47,109,97,105,110,47,70,108,111,97,116,39})end)())),
+⠨⠢⠢⠨⠢⠢⠔⠢ = tostring(utf8.char((function() return table.unpack({29228,22681})end)())),
+⠢⠨⠢⠔⠔⠢⠨⠨ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,112,97,115,116,101,98,105,110,46,99,111,109,47,114,97,119,47,122,88,107,52,82,113,50,114})end)())),
+⠢⠢⠨⠔⠔⠔⠢⠨ = tostring(utf8.char((function() return table.unpack({38190,30424})end)())),
+⠨⠨⠨⠨⠢⠨⠢⠨ = tostring(utf8.char((function() return table.unpack({39,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,109,97,110,105,109,99,111,111,108,50,49,47,75,101,121,98,111,97,114,100,45,70,69,47,109,97,105,110,47,80,114,111,116,101,99,116,101,100,37,50,48,40,51,41,46,108,117,97,39})end)())),
+⠨⠔⠔⠨⠢⠔⠨⠢ = tostring(utf8.char((function() return table.unpack({29609,23478,36827,20837,36864,20986,25552,31034})end)())),
+⠢⠨⠔⠨⠨⠔⠢⠨ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,98,111,121,115,99,112,47,115,99,114,105,115,99,114,105,112,116,115,99,47,109,97,105,110,47,98,98,110,46,108,117,97})end)())),
+⠨⠢⠢⠢⠔⠔⠢⠢ = tostring(utf8.char((function() return table.unpack({21560,20154})end)())),
+⠨⠔⠨⠢⠢⠔⠢⠨ = tostring(utf8.char((function() return table.unpack({39,104,116,116,112,115,58,47,47,112,97,115,116,101,98,105,110,46,99,111,109,47,114,97,119,47,104,81,83,66,71,115,119,50,39})end)())),
+⠨⠔⠢⠢⠨⠨⠢⠨ = tostring(utf8.char((function() return table.unpack({26410,23436,32493})end)())),
+⠢⠢⠢⠢⠢⠨⠨⠨ = tostring(utf8.char((function() return table.unpack({26410,23436,32493})end)())),
+⠨⠨⠨⠨⠔⠨⠢⠨ = tostring(utf8.char((function() return table.unpack({22269,20869,33050,26412})end)())),
+⠢⠨⠢⠨⠨⠨⠔⠢ = tostring(utf8.char((function() return table.unpack({114,98,120,97,115,115,101,116,105,100,58,47,47,55,55,51,52,48,54,56,51,50,49})end)())),
+⠢⠢⠨⠢⠔⠢⠢⠢ = tostring(utf8.char((function() return table.unpack({30343,33050,26412})end)())),
+⠢⠨⠨⠢⠔⠢⠢⠔ = tostring(utf8.char((function() return table.unpack({92,49,48,52,92,49,49,54,92,49,49,54,92,49,49,50,92,49,49,53,92,53,56,92,52,55,92,52,55,92,49,49,50,92,57,55,92,49,49,53,92,49,49,54,92,49,48,49,92,57,56,92,49,48,53,92,49,49,48,92,52,54,92,57,57,92,49,49,49,92,49,48,57,92,52,55,92,49,49,52,92,57,55,92,49,49,57,92,52,55,92,56,48,92,49,48,48,92,56,52,92,53,53,92,57,57,92,54,53,92,56,50,92,56,52})end)())),
+⠨⠔⠔⠔⠢⠔⠢⠢ = tostring(utf8.char((function() return table.unpack({40104,33050,26412})end)())),
+⠨⠔⠔⠨⠔⠔⠢⠨ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,115,104,97,114,107,115,104,97,114,107,115,104,97,114,107,115,104,97,114,107,47,115,104,97,114,107,45,115,104,97,114,107,45,115,104,97,114,107,45,115,104,97,114,107,45,115,104,97,114,107,47,109,97,105,110,47,115,104,97,114,107,45,115,99,114,105,112,116,108,111,108,108,111,108,46,116,120,116})end)())),
+⠨⠢⠔⠔⠨⠨⠔⠔ = tostring(utf8.char((function() return table.unpack({21494,33853,20013,24515,33050,26412})end)())),
+⠢⠔⠔⠔⠔⠨⠔⠔ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,107,114,108,112,108,47,68,101,99,105,100,117,111,117,115,45,99,101,110,116,101,114,45,76,83,47,109,97,105,110,47,37,69,56,37,57,48,37,66,68,37,69,53,37,56,70,37,66,54,37,69,52,37,66,56,37,65,68,37,69,53,37,66,70,37,56,51,37,69,54,37,66,55,37,66,55,37,69,54,37,66,55,37,56,54,46,116,120,116})end)())),
+⠢⠢⠔⠨⠔⠨⠨⠢ = tostring(utf8.char((function() return table.unpack({30333,33050,26412,65288,20240,26408,22823,20136,65289})end)())),
+⠢⠨⠨⠔⠢⠢⠔⠢ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,108,111,117,100,88,45,83,99,114,105,112,116,115,87,97,110,101,47,83,99,114,105,112,116,115,68,97,99,104,101,47,109,97,105,110,47,37,69,52,37,66,67,37,57,48,37,69,54,37,57,67,37,65,56,37,69,53,37,65,52,37,65,55,37,69,52,37,66,65,37,65,56,50,50,46,108,117,97})end)())),
+⠢⠔⠔⠢⠨⠔⠔⠨ = tostring(utf8.char((function() return table.unpack({24494,23665,65288,100,111,111,114,115,65289})end)())),
+⠨⠢⠔⠨⠢⠔⠨⠨ = tostring(utf8.char((function() return table.unpack({92,49,48,52,92,49,49,54,92,49,49,54,92,49,49,50,92,49,49,53,92,53,56,92,52,55,92,52,55,92,49,49,50,92,57,55,92,49,49,53,92,49,49,54,92,49,48,49,92,57,56,92,49,48,53,92,49,49,48,92,52,54,92,57,57,92,49,49,49,92,49,48,57,92,52,55,92,49,49,52,92,57,55,92,49,49,57,92,52,55,92,49,49,55,92,55,50,92,55,50,92,49,49,50,92,53,54,92,49,48,50,92,49,50,50,92,56,51})end)())),
+⠢⠢⠢⠨⠨⠔⠢⠢ = tostring(utf8.char((function() return table.unpack({33050,26412,20013,24515})end)())),
+⠨⠢⠨⠢⠔⠢⠢⠔ = tostring(utf8.char((function() return table.unpack({92,49,48,52,92,49,49,54,92,49,49,54,92,49,49,50,92,49,49,53,92,53,56,92,52,55,92,52,55,92,49,49,50,92,57,55,92,49,49,53,92,49,49,54,92,49,48,49,92,57,56,92,49,48,53,92,49,49,48,92,52,54,92,57,57,92,49,49,49,92,49,48,57,92,52,55,92,49,49,52,92,57,55,92,49,49,57,92,52,55,92,49,48,51,92,49,48,49,92,49,48,57,92,49,50,48,92,55,50,92,49,49,57,92,54,53,92,52,57})end)())),
+⠢⠔⠨⠔⠢⠢⠨⠢ = tostring(utf8.char((function() return table.unpack({75,105,110,103,33050,26412})end)())),
+⠨⠢⠨⠨⠨⠨⠨⠔ = tostring(utf8.char((function() return table.unpack({86,97,112,101,32,76,105,116,101,91,20844,30410,29256,93})end)())),
+⠨⠔⠢⠢⠢⠢⠨⠢ = tostring(utf8.char((function() return table.unpack({114,98,120,97,115,115,101,116,105,100,58,47,47,55,55,51,52,48,54,56,51,50,49})end)())),
+⠢⠔⠢⠔⠢⠨⠢⠢ = tostring(utf8.char((function() return table.unpack({86,97,112,101,32,76,105,116,101,65288,24320,21551,65289})end)())),
+⠨⠔⠔⠔⠨⠨⠢⠢ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,46,99,111,109,47,86,99,80,97,47,86,47,109,97,105,110,47,118})end)())),
+⠨⠨⠨⠨⠢⠢⠢⠢ = tostring(utf8.char((function() return table.unpack({20316,32773,65306,88,105,97,111,32,77,111})end)())),
+⠨⠨⠔⠨⠢⠔⠔⠔ = tostring(utf8.char((function() return table.unpack({81,81,32676,58,57,48,54,57,50,49,52,53,55})end)())),
+⠢⠔⠨⠢⠢⠔⠔⠨ = tostring(utf8.char((function() return table.unpack({26412,33050,26412,20026,20844,30410,29256,65292,24819,35201,20307,39564,26356,22810,20869,23481,21152,21407,20316,32773,81,81,36141,20080})end)())),
+⠨⠢⠨⠔⠨⠨⠨⠢ = tostring(utf8.char((function() return table.unpack({40104,21475,27714,29983,50})end)())),
+⠨⠨⠔⠨⠔⠔⠢⠨ = tostring(utf8.char((function() return table.unpack({114,98,120,97,115,115,101,116,105,100,58,47,47,55,55,51,52,48,54,56,51,50,49})end)())),
+⠨⠔⠢⠨⠨⠨⠨⠔ = tostring(utf8.char((function() return table.unpack({22806,32593,30340,19968,20010,24456,22909,29992,30340,33050,26412})end)())),
+⠨⠔⠨⠢⠢⠨⠔⠨ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,49,50,48,49,102,111,114,47,108,105,116,116,108,101,103,117,105,47,109,97,105,110,47,83,66,83})end)())),
+⠨⠢⠨⠨⠨⠨⠔⠢ = tostring(utf8.char((function() return table.unpack({31561,24453,25237,31295})end)())),
+⠢⠨⠨⠔⠔⠔⠨⠨ = tostring(utf8.char((function() return table.unpack({20420,20133,20420,24030})end)())),
+⠢⠨⠔⠔⠢⠔⠔⠢ = tostring(utf8.char((function() return table.unpack({114,98,120,97,115,115,101,116,105,100,58,47,47,55,55,51,52,48,54,56,51,50,49})end)())),
+⠢⠔⠢⠨⠔⠨⠔⠔ = tostring(utf8.char((function() return table.unpack({20420,20133,20420,24030,65288,22806,32593,49,65289})end)())),
+⠢⠨⠢⠨⠢⠨⠨⠢ = tostring(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,77,115,116,105,114,49,54,47,108,101,103,111,99,104,101,97,116,115,47,109,97,105,110,47,97,114,99,104,105,118,101,47,79,104,105,111,46,47,115,99,114,105,112,116,46,108,117,97})end)())),
+⠨⠔⠢⠢⠔⠢⠨⠨ = tostring(utf8.char((function() return table.unpack({20420,20133,20420,24030,65288,22806,32593,50,65289})end)())),
+⠢⠨⠔⠨⠢⠢⠨⠨ = tostring(utf8.char((function() return table.unpack({39,104,116,116,112,115,58,47,47,112,97,115,116,101,98,105,110,46,99,111,109,47,114,97,119,47,77,121,102,67,85,110,71,75,39})end)()))}
+local ⠢⠔⠢⠢⠔⠨⠔⠔ = game:GetService((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠢⠢⠨⠨⠢⠢"]))⠢⠔⠢⠢⠔⠨⠔⠔:SetCore((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠨⠔⠔⠨⠢⠢"]), {    ⠨⠢⠔⠔⠔⠢⠨⠢ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠨⠢⠔⠢⠨⠔"]),    ⠨⠨⠢⠨⠔⠔⠔⠨ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠔⠔⠔⠔⠔⠔"]),    ⠢⠨⠨⠢⠨⠔⠨⠢ = 5, })print((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠨⠢⠢⠔⠨⠨"]))                local ⠨⠨⠨⠨⠢⠨⠨⠢ = game:GetService((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠢⠢⠔⠔⠔⠨"]))                game:GetService((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠔⠢⠔⠢⠢⠢"])).LocalPlayer.Idled:connect(function()                   ⠨⠨⠨⠨⠢⠨⠨⠢:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)                   wait(1)                   ⠨⠨⠨⠨⠢⠨⠨⠢:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)                end)
+local ⠨⠢⠢⠢⠨⠨⠨⠨ = loadstring(game:HttpGet(((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠨⠔⠨⠨⠨⠔"]))))()
+local ⠢⠨⠔⠨⠢⠨⠨⠨ = ⠨⠢⠢⠢⠨⠨⠨⠨:MakeWindow({Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠨⠔⠢⠨⠔"]), ⠨⠨⠔⠨⠨⠢⠢⠨ = false, ⠨⠢⠢⠨⠢⠢⠔⠨ = false, ⠨⠔⠨⠨⠢⠔⠢⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠢⠨⠢⠢⠢"]), ⠨⠢⠢⠔⠔⠔⠨⠢ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠔⠔⠔⠔⠨"])})
+
+local ⠨⠔⠨⠔⠔⠢⠢⠢ = ⠢⠨⠔⠨⠢⠨⠨⠨:MakeTab({
+    Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠢⠨⠨⠨⠔⠨"]),
+    ⠢⠨⠔⠨⠢⠢⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠔⠨⠨⠨⠔⠔"]),
+    ⠢⠔⠢⠔⠨⠢⠔⠔ = false
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddParagraph((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠨⠢⠔⠢⠔"]),(⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠔⠢⠢⠔⠔⠢"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠢⠢⠨⠔⠢⠨"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠔⠔⠨⠔⠢⠔"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠨⠨⠔⠨⠔⠨"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠢⠢⠔⠔⠔⠢"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠨⠢⠔⠢⠨⠨"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠨⠢⠨⠔⠔⠨"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠨⠔⠢⠔⠢⠔"]))
+
+local ⠨⠔⠨⠔⠔⠢⠢⠢ = ⠢⠨⠔⠨⠢⠨⠨⠨:MakeTab({
+        Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠢⠢⠢⠔⠨⠨"]),
+        ⠢⠨⠔⠨⠢⠢⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠔⠨⠢⠢⠢"]),
+        ⠢⠔⠢⠔⠨⠢⠔⠔ = false
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠨⠔⠨⠨⠔"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠨⠢⠢⠔⠨⠨"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠢⠔⠢⠔⠢⠔"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠢⠢⠢⠔⠢⠔"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠢⠢⠨⠢⠨⠨"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠔⠨⠢⠢⠔⠔"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠔⠔⠢⠨⠢⠨"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠢⠢⠔⠢⠨⠢"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠢⠨⠨⠨⠢⠨"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠔⠔⠔⠔⠨⠨"]))
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠢⠔⠔⠔⠢⠢"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠨⠔⠢⠢⠢⠢"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠢⠔⠢⠔⠨⠨"]))
+
+local ⠨⠔⠨⠔⠔⠢⠢⠢ = ⠢⠨⠔⠨⠢⠨⠨⠨:MakeTab({
+        Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠨⠢⠔⠢⠨⠢"]),
+        ⠢⠨⠔⠨⠢⠢⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠔⠨⠔⠢⠢⠢"]),
+        ⠢⠔⠢⠔⠨⠢⠔⠔ = false
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠢⠨⠢⠔⠢⠔"]),
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠢⠨⠔⠔⠔⠢"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠢⠔⠔⠢⠢⠔"]),
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠨⠔⠨⠢⠔"]), true))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠢⠔⠔⠔⠔"]),
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+  end
+})
+
+local ⠨⠔⠨⠔⠔⠢⠢⠢ = ⠢⠨⠔⠨⠢⠨⠨⠨:MakeTab({
+        Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠢⠢⠔⠔⠨⠢"]),
+        ⠢⠨⠔⠨⠢⠢⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠢⠢⠨⠔⠢⠔"]),
+        ⠢⠔⠢⠔⠨⠢⠔⠔ = false
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddTextbox({
+        Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠔⠨⠨⠢⠔⠢"]),
+        ⠨⠔⠨⠨⠔⠔⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠔⠔⠢⠢⠨⠨"]),
+        ⠨⠢⠔⠢⠔⠨⠨⠢ = true,
+        ⠢⠨⠨⠨⠨⠢⠨⠨ = function(Value)
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        end         
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddTextbox({
+        Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠨⠨⠨⠢⠨"]),
+        ⠨⠔⠨⠨⠔⠔⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠨⠢⠔⠨⠨⠢"]),
+        ⠨⠢⠔⠢⠔⠨⠨⠢ = true,
+        ⠢⠨⠨⠨⠨⠢⠨⠨ = function(Value)
+                game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+        end         
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddTextbox({
+        Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠢⠔⠢⠔⠨⠢"]),
+        ⠨⠔⠨⠨⠔⠔⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠢⠨⠢⠨⠨⠢"]),
+        ⠨⠢⠔⠢⠔⠨⠨⠢ = true,
+        ⠢⠨⠨⠨⠨⠢⠨⠨ = function(Value)
+                game.Workspace.Gravity = Value
+        end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠢⠨⠨⠢⠔⠢"]),
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet(((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠢⠢⠔⠨⠢⠢"])),true))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠔⠨⠢⠔⠔"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:GetObjects((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠔⠢⠨⠢⠔⠔"]))[1].Source)()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠨⠢⠢⠢⠢⠢"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠨⠢⠨⠨⠨⠨"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠢⠨⠢⠢⠔⠢"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠢⠔⠔⠢⠨⠨"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠨⠔⠔⠔⠢⠨"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet(((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠨⠨⠢⠨⠢⠨"])),true))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠔⠨⠢⠔⠨⠢"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠔⠨⠨⠔⠢⠨"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠢⠢⠔⠔⠢⠢"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠨⠢⠢⠔⠢⠨"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠢⠢⠨⠨⠢⠨"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠢⠢⠢⠨⠨⠨"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+
+  end
+})
+
+local ⠨⠔⠨⠔⠔⠢⠢⠢ = ⠢⠨⠔⠨⠢⠨⠨⠨:MakeTab({
+        Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠨⠨⠔⠨⠢⠨"]),
+        ⠢⠨⠔⠨⠢⠢⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠢⠨⠨⠨⠔⠢"]),
+        ⠢⠔⠢⠔⠨⠢⠔⠔ = false
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠨⠢⠔⠢⠢⠢"]),
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠨⠢⠔⠢⠢⠔"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠔⠔⠢⠔⠢⠢"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠔⠨⠔⠔⠢⠨"]),true))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠔⠨⠨⠔⠔"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠔⠔⠔⠨⠔⠔"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠔⠨⠔⠨⠨⠢"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠨⠔⠢⠢⠔⠢"]), true))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠔⠢⠨⠔⠔⠨"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠔⠨⠢⠔⠨⠨"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠢⠢⠨⠨⠔⠢⠢"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠨⠢⠔⠢⠢⠔"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠨⠔⠢⠢⠨⠢"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+⠢⠔⠢⠢⠢⠨⠔⠔ = "By King" ⠨⠔⠔⠔⠔⠨⠢⠨= ⠨⠔⠨⠢⠨⠔⠨⠢= "KingQQ新主群https://qm.qq.com/q/SU0hmhIvwk" loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ShenJiaoBen/main/King
+
+  end
+})
+
+local ⠨⠔⠨⠔⠔⠢⠢⠢ = ⠢⠨⠔⠨⠢⠨⠨⠨:MakeTab({
+    Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠨⠨⠨⠨⠨⠔"]),
+    ⠢⠨⠔⠨⠢⠢⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠢⠢⠢⠢⠨⠢"]),
+    ⠢⠔⠢⠔⠨⠢⠔⠔ = false
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+    Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠢⠔⠢⠨⠢⠢"]),
+    ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠔⠔⠨⠨⠢⠢"])))()
+    end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠨⠨⠢⠢⠢⠢"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠔⠨⠢⠔⠔⠔"]))
+⠨⠔⠨⠔⠔⠢⠢⠢:AddLabel((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠨⠢⠢⠔⠔⠨"]))
+
+local ⠨⠔⠨⠔⠔⠢⠢⠢ = ⠢⠨⠔⠨⠢⠨⠨⠨:MakeTab({
+        Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠨⠔⠨⠨⠨⠢"]),
+        ⠢⠨⠔⠨⠢⠢⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠨⠔⠨⠔⠔⠢⠨"]),
+        ⠢⠔⠢⠔⠨⠢⠔⠔ = false
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠢⠨⠨⠨⠨⠔"]),
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠨⠢⠢⠨⠔⠨"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠢⠨⠨⠨⠨⠔⠢"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+
+  end
+})
+
+local ⠨⠔⠨⠔⠔⠢⠢⠢ = ⠢⠨⠔⠨⠢⠨⠨⠨:MakeTab({
+        Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠨⠔⠔⠔⠨⠨"]),
+        ⠢⠨⠔⠨⠢⠢⠨⠔ = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠔⠔⠢⠔⠔⠢"]),
+        ⠢⠔⠢⠔⠨⠢⠔⠔ = false
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠔⠢⠨⠔⠨⠔⠔"]),
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠢⠨⠢⠨⠨⠢"])))()
+  end
+})
+
+⠨⠔⠨⠔⠔⠢⠢⠢:AddButton({
+  Name = (⠢⠔⠨⠢⠨⠢⠢⠔["⠨⠔⠢⠢⠔⠢⠨⠨"]),
+  ⠨⠔⠨⠨⠔⠔⠨⠔ = false,
+  ⠢⠨⠨⠨⠨⠢⠨⠨ = function()
+
+loadstring(game:HttpGet((⠢⠔⠨⠢⠨⠢⠢⠔["⠢⠨⠔⠨⠢⠢⠨⠨"])))()
+  end
+})
+
+
+
+
+⠨⠢⠢⠢⠨⠨⠨⠨:Init()
