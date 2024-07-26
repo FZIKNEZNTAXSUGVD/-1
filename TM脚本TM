@@ -1,12 +1,3 @@
-local CoreGui = game:GetService("StarterGui")
-
-local notifications = {
-    {Title = "TM脚本", Text = "耐心等待"},
-    {Title = "开源", Text = "禁止开源！"},
-    {Title = "开源", Text = "如果我发现了，脚本将停止更新"},
-    {Title = "启动脚本", Text = "！！！"}
-}
-
 local RunService = game:GetService("RunService")
 
 for _, notification in ipairs(notifications) do
