@@ -13,7 +13,7 @@ for _, notification in ipairs(notifications) do
     CoreGui:SetCore("SendNotification", {
         Title = notification.Title,
         Text = notification.Text,
-        Duration = 8
+        Duration = 5
     })
 
     RunService.Heartbeat:WaitPart(2)
