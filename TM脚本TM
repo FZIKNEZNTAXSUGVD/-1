@@ -1,15 +1,3 @@
-local RunService = game:GetService("RunService")
-
-for _, notification in ipairs(notifications) do
-    CoreGui:SetCore("SendNotification", {
-        Title = notification.Title,
-        Text = notification.Text,
-        Duration = 5
-    })
-
-    RunService.Heartbeat:WaitPart(2)
-end
-
 local LBLG = Instance.new("ScreenGui", getParent)
 local LBL = Instance.new("TextLabel", getParent)
 local player = game.Players.LocalPlayer
