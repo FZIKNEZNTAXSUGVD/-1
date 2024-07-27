@@ -1,0 +1,254 @@
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local HttpService = game:GetService("HttpService")
+
+local OrionLib = {
+    Elements = {},
+    ThemeObjects = {},
+    Connections = {},
+    Flags = {},
+    Themes = {
+        Default = {
+            Main = Color3.fromRGB(25, 25, 25),
+            Second = Color3.fromRGB(32, 32, 32),
+            Stroke = Color3.fromRGB(60, 60, 60),
+            Divider = Color3.fromRGB(60, 60, 60),
+            Text = Color3.fromRGB(240, 240, 240),
+            TextDark = Color3.fromRGB(150, 150, 150)
+        }
+    },
+    SelectedTheme = "Default",
+    Folder = nil,
+    SaveCfg = false
+}
+
+local Orion = Instance.new("ScreenGui")
+Orion.Name = "Orion"
+Orion.Parent = game.CoreGui
+
+for _, Interface in ipairs(game.CoreGui:GetChildren()) do
+    if Interface.Name == Orion.Name and Interface ~= Orion then
+        Interface:Destroy()
+    end
+end
+
+function OrionLib:IsRunning()
+    return Orion.Parent == game:GetService("CoreGui")
+end
+
+function OrionLib:AddConnection(Signal, Function)
+    if (not OrionLib:IsRunning()) then
+        return
+    end
+    local SignalConnect = Signal:Connect(Function)
+    table.insert(OrionLib.Connections, SignalConnect)
+    return SignalConnect
+end
+
+function OrionLib:MakeWindow(WindowConfig)
+    WindowConfig = WindowConfig or {}
+    WindowConfig.Name = WindowConfig.Name or "Orion Library"
+    WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
+    WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
+    WindowConfig.HidePremium = WindowConfig.HidePremium or false
+    WindowConfig.IntroEnabled = WindowConfig.IntroEnabled or true
+    WindowConfig.IntroText = WindowConfig.IntroText or "Orion Library"
+    WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
+    WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
+    WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://8834748103"
+    WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://8834748103"
+
+    OrionLib.Folder = WindowConfig.ConfigFolder
+    OrionLib.SaveCfg = WindowConfig.SaveConfig
+
+    -- 创建主框架
+    local MainFrame = Instance.new("Frame")
+    MainFrame.Size = UDim2.new(0.5, 0, 0.5, 0)
+    MainFrame.Position = UDim2.new(0.25, 0, 0.25, 0)
+    MainFrame.BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Main
+    MainFrame.BackgroundTransparency = 0
+    MainFrame.Parent = Orion
+
+    -- 添加关闭按钮
+    local CloseBtn = Instance.new("TextButton")
+    CloseBtn.Size = UDim2.new(0.05, 0, 0.05, 0)
+    CloseBtn.Position = UDim2.new(0.95, 0, 0.01, 0)
+    CloseBtn.Text = "X"
+    CloseBtn.TextColor3 = Color3.fromRGB(240, 240, 240)
+    CloseBtn.TextSize = 15
+    CloseBtn.Parent = MainFrame
+
+    OrionLib:AddConnection(CloseBtn.ClickDetector, function()
+        MainFrame:Destroy()
+        WindowConfig.CloseCallback()
+    end)
+
+    -- 添加标题
+    local TitleLabel = Instance.new("TextLabel")
+    TitleLabel.Size = UDim2.new(0.9, 0, 0.05, 0)
+    TitleLabel.Position = UDim2.new(0.05, 0, 0.01, 0)
+    TitleLabel.Text = WindowConfig.Name
+    TitleLabel.TextColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Text
+    TitleLabel.TextSize = 15
+    TitleLabel.BackgroundTransparency = 1
+    TitleLabel.Parent = MainFrame
+
+    -- 使窗口可拖动
+    OrionLib:AddConnection(MainFrame, function(Input)
+        if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+            MainFrame.Draggable = true
+            MainFrame.InputBegan:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    MainFrame.Dragging = true
+                    MainFrame.InputChanged:Connect(function(input)
+                        if input.UserInputType == Enum.UserInputType.MouseMovement then
+                            MainFrame.DragInput = input
+                        end
+                    end)
+                end
+            end)
+            MainFrame.InputEnded:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    MainFrame.Dragging = false
+                end
+            end)
+            UserInputService.InputChanged:Connect(function(input)
+                if input == MainFrame.DragInput and MainFrame.Dragging then
+                    local Delta = input.Position - MainFrame.LastMousePos
+                    MainFrame.LastMousePos = input.Position
+                    MainFrame.Position = UDim2.new(MainFrame.Position.X.Scale, MainFrame.Position.X.Offset + Delta.X, MainFrame.Position.Y.Scale, MainFrame.Position.Y.Offset + Delta.Y)
+                end
+            end)
+        end
+    end)
+
+    -- 创建控制开关
+    local ToggleFrame = Instance.new("Frame")
+    ToggleFrame.Size = UDim2.new(0.05, 0, 0.05, 0)
+    ToggleFrame.Position = UDim2.new(0.05, 0, 0.01, 0)
+    ToggleFrame.BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Second
+    ToggleFrame.BackgroundTransparency = 0
+    ToggleFrame.Parent = MainFrame
+
+    -- 添加控制开关按钮
+    local ToggleBtn = Instance.new("TextButton")
+    ToggleBtn.Size = UDim2.new(1, 0, 1, 0)
+    ToggleBtn.Text = ""
+    ToggleBtn.TextColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Text
+    ToggleBtn.TextSize = 15
+    ToggleBtn.BackgroundTransparency = 1
+    ToggleBtn.Parent = ToggleFrame
+
+    OrionLib:AddConnection(ToggleBtn.ClickDetector, function()
+        ToggleBtn.BackgroundColor3 = ToggleBtn.BackgroundColor3 == Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3) and OrionLib.Themes[OrionLib.SelectedTheme].Second or OrionLib.Themes[OrionLib.SelectedTheme].Stroke
+    end)
+
+    -- 创建选项卡容器
+    local TabContainer = Instance.new("Frame")
+    TabContainer.Size = UDim2.new(1, 0, 0.95, 0)
+    TabContainer.Position = UDim2.new(0, 0, 0.05, 0)
+    TabContainer.BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Second
+    TabContainer.BackgroundTransparency = 0
+    TabContainer.Parent = MainFrame
+
+    -- 返回窗口对象
+    return {
+        MainFrame = MainFrame,
+        TabContainer = TabContainer,
+        MakeTab = function(self, TabConfig)
+            TabConfig = TabConfig or {}
+            TabConfig.Name = TabConfig.Name or "New Tab"
+            TabConfig.Icon = TabConfig.Icon or "rbxassetid://8834748103"
+            TabConfig.PremiumOnly = TabConfig.PremiumOnly or false
+
+            -- 创建选项卡按钮
+            local TabBtn = Instance.new("TextButton")
+            TabBtn.Size = UDim2.new(0.2, 0, 0.05, 0)
+            TabBtn.Position = UDim2.new(0, 0, 0, 0)
+            TabBtn.Text = TabConfig.Name
+            TabBtn.TextColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Text
+            TabBtn.TextSize = 15
+            TabBtn.BackgroundTransparency = 0
+            TabBtn.BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Main
+            TabBtn.Parent = self.TabContainer
+
+            -- 创建选项卡内容区域
+            local TabContent = Instance.new("Frame")
+            TabContent.Size = UDim2.new(1, 0, 0.95, 0)
+            TabContent.Position = UDim2.new(0, 0, 0.05, 0)
+            TabContent.BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Main
+            TabContent.BackgroundTransparency = 0
+            TabContent.Parent = self.MainFrame
+
+            -- 添加点击事件以切换选项卡
+            OrionLib:AddConnection(TabBtn.ClickDetector, function()
+                for _, tab in ipairs(self.TabContainer:GetChildren()) do
+                    if tab:IsA("TextButton") then
+                        tab.BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Main
+                    end
+                end
+                TabBtn.BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Second
+
+                for _, content in ipairs(self.MainFrame:GetChildren()) do
+                    if content:IsA("Frame") and content.Name ~= TabContent.Name then
+                        content.Visible = false
+                    else
+                        content.Visible = true
+                    end
+                end
+            end)
+
+            -- 返回选项卡对象
+            return {
+                TabBtn = TabBtn,
+                TabContent = TabContent,
+                AddButton = function(self, ButtonConfig)
+                    ButtonConfig = ButtonConfig or {}
+                    ButtonConfig.Name = ButtonConfig.Name or "Button"
+                    ButtonConfig.Callback = ButtonConfig.Callback or function() end
+
+                    local Button = Instance.new("TextButton")
+                    Button.Size = UDim2.new(0.2, 0, 0.05, 0)
+                    Button.Position = UDim2.new(0, 0, 0, 0)
+                    Button.Text = ButtonConfig.Name
+                    Button.TextColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Text
+                    Button.TextSize = 15
+                    Button.BackgroundTransparency = 0
+                    Button.BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Main
+                    Button.Parent = self.TabContent
+
+                    OrionLib:AddConnection(Button.ClickDetector, function()
+                        ButtonConfig.Callback()
+                    end)
+
+                    return Button
+                end
+            }
+        end
+    }
+end
+
+-- 使用库
+local Window = OrionLib:MakeWindow({
+    Name = "脚本合集",
+    HidePremium = false,
+    SaveConfig = false,
+    IntroText = "欢迎使用",
+    ConfigFolder = "脚本合集"
+})
+
+local Tab = Window:MakeTab({
+    Name = "脚本公告",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+local Button = Tab:AddButton({
+    Name = "测试按钮",
+    Callback = function()
+        print("按钮被点击！")
+    end
+})
