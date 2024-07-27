@@ -1,43 +1,79 @@
-local c = game:GetService("StarterGui")
-c:SetCore("SendNotification", {Title="TM脚本", Text="耐心等待（反挂机开启）", Duration=5})
-print("反挂机开启")
-local vu = game:GetService("VirtualUser")
-game:GetService("Players").LocalPlayer.Idled:Connect(function()
-    vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-    wait(1)
-    vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-end)
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 
-local o = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local WindowConfig = {
+    Name = "身份检测",
+    ConfigFolder = "IdentityDetection",
+    SaveConfig = true,
+    HidePremium = false,
+    IntroEnabled = true,
+    IntroText = "欢迎使用身份检测功能！",
+    CloseCallback = function() print("窗口已关闭。") end,
+    ShowIcon = true,
+    Icon = "rbxassetid://8834748103",
+    IntroIcon = "rbxassetid://8834748103",
+}
 
-local w = o:MakeWindow({Name="脚本合集", HidePremium=false, SaveConfig=false, IntroText="欢迎使用", ConfigFolder="欢迎使用"})
+local Window = OrionLib:MakeWindow(WindowConfig)
 
-local t1 = w:MakeTab({Name="脚本公告", Icon="rbxassetid://7734068321", PremiumOnly=false})
-t1:AddParagraph("作者", "TMD2540")
-t1:AddLabel("作者QQ：3787576013")
-t1:AddLabel("QQ群：925300986")
-t1:AddLabel("欢迎使用脚本")
-t1:AddLabel("本脚本把一些脚本给作成了合集，方便脚本太多不好找（缝合）")
-t1:AddLabel("脚本永久免费，禁止倒卖")
-t1:AddLabel("欢迎投稿脚本")
-t1:AddLabel("版本：0.05")
+local Tab = Window:Tab("身份检测", "10882439086")
+local Section = Tab:section("身份检测")
 
-local t2 = w:MakeTab({Name="贡献榜", Icon="rbxassetid://7734068321", PremiumOnly=false})
-t2:AddLabel("TMD2540z")
-t2:AddLabel("空白")
-t2:AddLabel("空白")
-t2:AddLabel("空白")
-t2:AddLabel("空白")
-t2:AddLabel("空白")
-t2:AddLabel("空白")
-t2:AddLabel("空白")
-t2:AddLabel("空白")
-t2:AddLabel("空白")
+-- 创建一个用于显示身份的文字标签
+local IdentityLabel = Section:AddLabel({
+    Text = "成员",
+    FontSize = 20,
+    Color = Color3.fromRGB(0, 0, 255), -- 蓝色
+    Position = UDim2.new(0.5, 0, 0.5, 0),
+    AnchorPoint = Vector2.new(0.5, 0.5)
+})
 
-t2:AddLabel("注意：一定要选合适的版本，选错版本无法正常使用")
-t2:AddLabel("电脑版就不用讲解了，非常简单实用")
-t2:AddLabel("实在不懂问我")
+-- 用户名单及其对应的身份
+local usernames = {
+    ["JohnDoe"] = "开发者",
+    ["JaneSmith"] = "内测人员",
+    ["AliceBlue"] = "成员",
+    -- 更多用户名和身份...
+}
 
-local t3 = w:MakeTab({Name="特殊脚本", Icon="rbxassetid://7734068321", PremiumOnly=false})
-t3:AddButton({Name="重力枪（电脑版）", Callback=function() loadstring(game:HttpGet("https://scriptblox.com/raw/Fe-Gravity-Gun_991"))() end})
-t3:AddButton({Name="重力枪（手机版）", Callback=function() loadstring(game:HttpGet("https://pastebin.com/raw/Z33NcECh", true))() end})
+-- 根据用户名单匹配最佳的身份
+local function MatchBestIdentity(username)
+    local identity = usernames[username] or "成员"
+    return identity
+end
+
+-- 获取玩家用户名
+local playerName = game.Players.LocalPlayer.Name
+
+-- 开始检测并匹配最佳身份
+local function StartDetection()
+    local identities = {"成员", "内测人员", "开发者"}
+    local colors = {Color3.fromRGB(0, 0, 255), Color3.fromRGB(128, 0, 128), Color3.fromRGB(255, 0, 0)} -- 蓝色、紫色、红色
+    
+    -- 循环三次
+    for i = 1, 3 do
+        for j, identity in ipairs(identities) do
+            IdentityLabel.Text = identity
+            IdentityLabel.Color = colors[j]
+            wait(0.5)
+        end
+    end
+    
+    -- 匹配最佳身份
+    local bestIdentity = MatchBestIdentity(playerName)
+    IdentityLabel.Text = bestIdentity
+    IdentityLabel.Color = colors[tonumber(bestIdentity == "成员" and 1 or bestIdentity == "内测人员" and 2 or 3)]
+    
+    -- 等待两秒
+    wait(2)
+    
+    -- 执行接下来的脚本
+    ExecuteNextScript()
+end
+
+local function ExecuteNextScript()
+    print("执行接下来的脚本...")
+    -- 这里可以添加执行接下来脚本的逻辑
+end
+
+-- 启动检测
+StartDetection()
