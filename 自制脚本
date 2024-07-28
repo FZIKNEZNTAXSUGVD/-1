@@ -1,3 +1,102 @@
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("StarterGui")
+local DeveloperWhitelist = {"TMD2540z"} -- 开发者名单
+local notificationSentCount = 0 -- 用于记录通知发送次数
+
+-- 发送通知的函数
+local function SendNotification(title, text, duration)
+    CoreGui:SetCore("SendNotification", {
+        Title = title,
+        Text = text,
+        Duration = duration,
+    })
+end
+
+-- 检测特定玩家名的函数
+local function CheckPlayerName()
+    for _, player in pairs(Players:GetPlayers()) do
+        if table.find(DeveloperWhitelist, player.Name) then
+            notificationSentCount = notificationSentCount + 1
+            if notificationSentCount <= 3 then
+                SendNotification("开发者检测", "检测到开发者在本服务器", 5)
+            end
+            return -- 发现匹配后跳出循环
+        end
+    end
+end
+
+-- 设置一个定时器，每隔一定时间执行一次检测
+game:GetService("RunService").Heartbeat:Connect(function()
+    CheckPlayerName()
+end)
+
+-- 设置定时器的时间间隔，例如每10秒检测一次
+game:GetService("RunService").Heartbeat:Connect(function()
+    wait(10) -- 等待10秒
+end)
+
+local CoreGui = game:GetService("StarterGui")
+
+-- 定义两个白名单
+local BetaTesterWhitelist = {""} -- 内测人员名单
+local DeveloperWhitelist = {"TMD2540z"} -- 开发者名单
+
+-- 发送通知的函数
+local function SendNotification(title, text, duration)
+    CoreGui:SetCore("SendNotification", {
+        Title = title,
+        Text = text,
+        Duration = duration,
+    })
+end
+
+-- 检测玩家身份并发送通知
+local function CheckPlayerIdentity()
+    -- 获取当前玩家的名字
+    local playerName = game.Players.LocalPlayer.Name
+    
+    -- 发送初始通知
+    SendNotification("身份验证", "正在检测您的身份，请稍候...", 5)
+    
+    -- 模拟检测过程
+    wait(1) -- 等待1秒
+    
+    -- 发送模拟检测过程的通知
+    SendNotification("身份验证", "成员", 0.2)
+    wait(0.4)
+    SendNotification("身份验证", "内测成员", 0.2)
+    wait(0.4)
+    SendNotification("身份验证", "开发者", 0.2)
+    
+    wait(2)
+    
+    -- 发送模拟检测完成的通知
+    SendNotification("身份验证", "？？？", 0.2)
+    SendNotification("身份验证", "？？？", 0.2)
+    SendNotification("身份验证", "？？？", 0.2)
+    
+    wait(3) -- 等待3秒
+
+    -- 检测玩家用户名是否在白名单中
+    local isBetaTester = table.find(BetaTesterWhitelist, playerName) ~= nil
+    local isDeveloper = table.find(DeveloperWhitelist, playerName) ~= nil
+    
+    -- 根据玩家身份发送通知
+    if isBetaTester then
+        SendNotification("身份验证", "您是内测人员", 5)
+    elseif isDeveloper then
+        SendNotification("身份验证", "您是开发者", 5)
+    else
+        SendNotification("身份验证", "您是成员", 5)
+
+wait(2)
+ 
+       end
+end
+
+-- 只执行一次检测
+CheckPlayerIdentity()
+
 local CoreGui = game:GetService("StarterGui")CoreGui:SetCore("SendNotification", {    Title = "TM脚本",    Text = "耐心等待（反挂机开启）",    Duration = 5, })print("反挂机开启")                local vu = game:GetService("VirtualUser")                game:GetService("Players").LocalPlayer.Idled:connect(function()                   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)                   wait(1)                   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)                end)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "脚本合集", HidePremium = false, SaveConfig = false, IntroText = "欢迎使用", ConfigFolder = "欢迎使用"})
