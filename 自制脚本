@@ -197,6 +197,97 @@ local Tab = Window:MakeTab({
         PremiumOnly = false
 })
 
+Tab:AddTextbox({
+        Name = "移动速度",
+        Default = "",
+        TextDisappear = true,
+        Callback = function(Value)
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        end         
+})
+
+Tab:AddTextbox({
+        Name = "跳跃高度",
+        Default = "",
+        TextDisappear = true,
+        Callback = function(Value)
+                game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+        end         
+})
+
+Tab:AddTextbox({
+        Name = "重力设置",
+        Default = "",
+        TextDisappear = true,
+        Callback = function(Value)
+                game.Workspace.Gravity = Value
+        end
+})
+
+Tab:AddButton({
+  Name = "飞行",
+  Callback = function()
+
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/bilisolongcheng/roblox-/main/fx"),true))()
+  end
+})
+
+Tab:AddButton({
+  Name = "踏空",
+  Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Float'))()
+  end
+})
+
+Tab:AddButton({
+  Name = "爬墙",
+  Callback = function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "键盘",
+  Callback = function()
+
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/manimcool21/Keyboard-FE/main/Protected%20(3).lua'),true))()
+  end
+})
+
+Tab:AddButton({
+  Name = "玩家进入退出提示",
+  Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "等待更新",
+  Callback = function()
+
+
+  end
+})
+
+Tab:AddButton({
+  Name = "等待更新",
+  Callback = function()
+
+
+  end
+})
+
+Tab:AddButton({
+  Name = "等待更新",
+  Callback = function()
+
+
+  end
+})
+
 Tab:AddButton({
   Name = "等待更新",
   Callback = function()
