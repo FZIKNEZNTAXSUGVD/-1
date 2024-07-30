@@ -157,6 +157,19 @@ Tab:AddLabel("欢迎投稿脚本")
 Tab:AddLabel("版本：1.01")
 
 local Tab = Window:MakeTab({
+    Name = "投稿榜",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddLabel("TMD2540z")
+Tab:AddLabel("")
+Tab:AddLabel("")
+Tab:AddLabel("")
+Tab:AddLabel("")
+Tab:AddLabel("")
+
+local Tab = Window:MakeTab({
         Name = "特殊脚本",
         Icon = "rbxassetid://7734068321",
         PremiumOnly = false
@@ -227,5 +240,44 @@ Tab:AddButton({
   Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/FZIKNEZNTAXSUGVD/-1/main/TM%E8%84%9A%E6%9C%ACTM"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "俄亥俄州（外网1）",
+  Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Mstir16/legocheats/main/archive/Ohio./script.lua"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "俄亥俄州（外网2）",
+  Default = false,
+  Callback = function()
+
+loadstring(game:HttpGet('https://pastebin.com/raw/MyfCUnGK'))()
+  end
+})
+
+local Tab = Window:MakeTab({
+        Name = "伐木大亨",
+        Icon = "rbxassetid://7734068321",
+        PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "白脚本（伐木大亭）",
+  Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CloudX-ScriptsWane/ScriptsDache/main/%E4%BC%90%E6%9C%A8%E5%A4%A7%E4%BA%A822.lua", true))()
+  end
+})
+
+Tab:AddButton({
+  Name = "伐木大亭（外网）（投）",
+  Callback = function()
+
+loadstring(game:HttpGet"https://raw.githubusercontent.com/darkxwin/darkxsourcethinkyoutousedarkx/main/darkx")()
   end
 })
