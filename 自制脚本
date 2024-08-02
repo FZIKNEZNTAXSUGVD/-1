@@ -43,7 +43,7 @@ local CoreGui = game:GetService("StarterGui")
 
 -- 定义两个白名单
 local BetaTesterWhitelist = {"wzznDdm"} -- 内测人员名单
-local DeveloperWhitelist = {"TMD2540z","TMD2540"} -- 开发者名单
+local DeveloperWhitelist = {"TMD2540z"} -- 开发者名单
 
 -- 发送通知的函数
 local function SendNotification(title, text, duration)
