@@ -30,7 +30,7 @@ loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114
 })
 
 Tab:AddButton({
-    Name = '远程保险',
+    Name = '远程保险（Z）',
     Value = false,
     Callback = function(Value)
     game:GetService('Players').LocalPlayer.PlayerGui.Backpack.Holder.Locker.Visible = true
@@ -162,9 +162,6 @@ local function MoneyPrint2()
      end
 end
 
--- 添加一个函数来停止MoneyPrint2函数的执行
 function StopMoneyPrint2()
     MoneyPrint1 = false
 end
-  end
-})
