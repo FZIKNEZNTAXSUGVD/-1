@@ -100,55 +100,71 @@ end
 })
 
 Tab:AddToggle({
-    Name = '自动捡印钞机',
-    Default = false,
-    Callback = function(Value)
-        MoneyPrint1 = Value
-        if MoneyPrint1 then
-            MoneyPrint2()
-        else
-            -- 当切换关闭时，可以在这里添加一些清理逻辑
-        end
-    end
+     Name = '自动捡印钞机',
+     Default = false,
+     Callback = function(Value)
+         MoneyPrint1 = Value
+         if MoneyPrint1 then
+             MoneyPrint2()
+         else
+             -- 当切换关闭时，可以在这里添加一些清理逻辑
+             MoneyPrint1 = false  -- 确保MoneyPrint1被设置为false
+         end
+     end
 })
 
 local MoneyPrint1 = false
 
 local function MoneyPrint2()
-    while MoneyPrint1 do
-        wait(0.1)
-        local ItemPickupFolder = game:GetService('Workspace').Game.Entities.ItemPickup
-        for _, Entity in pairs(ItemPickupFolder:GetChildren()) do
-            for _, MeshPartOrPart in pairs(Entity:GetChildren()) do
-                if MeshPartOrPart.ClassName == 'MeshPart' or MeshPartOrPart.ClassName == 'Part' then
-                    for _, Child in pairs(MeshPartOrPart:GetChildren()) do
-                        if Child.ClassName == 'ProximityPrompt' then
-                            if Child.ObjectText == 'Money Printer' then
-                                local epoh1 = MeshPartOrPart.CFrame
-                                local PlayersService = game:GetService('Players')
-                                local LocalPlayer = PlayersService.LocalPlayer
-                                local Character = LocalPlayer.Character
-                                local HumanoidRootPart = Character and Character.HumanoidRootPart
-                                if HumanoidRootPart then
-                                    HumanoidRootPart.CFrame = epoh1
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-        end
+     while MoneyPrint1 do
+         wait(0.1)
+         local ItemPickupFolder = game:GetService('Workspace').Game.Entities.ItemPickup
+         for _, Entity in pairs(ItemPickupFolder:GetChildren()) do
+             for _, MeshPartOrPart in pairs(Entity:GetChildren()) do
+                 if MeshPartOrPart.ClassName == 'MeshPart' or MeshPartOrPart.ClassName == 'Part' then
+                     for _, Child in pairs(MeshPartOrPart:GetChildren()) do
+                         if Child.ClassName == 'ProximityPrompt' then
+                             if Child.ObjectText == 'Money Printer' then
+                                 local epoh1 = MeshPartOrPart.CFrame
+                                 local PlayersService = game:GetService('Players')
+                                 local LocalPlayer = PlayersService.LocalPlayer
+                                 local Character = LocalPlayer.Character
+                                 local HumanoidRootPart = Character and Character.HumanoidRootPart
+                                 if HumanoidRootPart then
+                                     HumanoidRootPart.CFrame = epoh1
+                                 end
+                             end
+                         end
+                     end
+                 end
+             end
+         end
 
-        wait(0.1)
+         wait(0.1)
 
-        for _, Entity in pairs(ItemPickupFolder:GetChildren()) do
-            for _, Child in pairs(Entity:GetChildren()) do
-                for _, BillboardGui in pairs(Child:GetChildren()) do
-                    if BillboardGui.ClassName == 'BillboardGui' then
-                        BillboardGui:Destroy()
-                    end
-                end
-            end
-        end
-    end
+         for _, Entity in pairs(ItemPickupFolder:GetChildren()) do
+             for _, Child in pairs(Entity:GetChildren()) do
+                 for _, BillboardGui in pairs(Child:GetChildren()) do
+                     if BillboardGui.ClassName == 'BillboardGui' then
+                         BillboardGui:Destroy()
+                     end
+                 end
+             end
+         end
+     end
 end
+
+-- 添加一个函数来停止MoneyPrint2函数的执行
+function StopMoneyPrint2()
+    MoneyPrint1 = false
+end
+  end
+})
+
+Tab:AddButton({
+    Name = '远程保险',
+    Value = false,
+    Callback = function(Value)
+    game:GetService('Players').LocalPlayer.PlayerGui.Backpack.Holder.Locker.Visible = true
+    end    
+})
