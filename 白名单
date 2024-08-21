@@ -44,25 +44,26 @@ CoreGui:SetCore("SendNotification", {
     Duration = 7, --时间
 }) 
    
--- 查找并瞬移到印钞机
 local function findAndTeleportToMoneyPrinter()
     local workspace = game:GetService('Workspace')
     local entitiesFolder = workspace.Game.Entities.ItemPickup
     local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
-    
+    local foundMoneyPrinter = false
+
     for _, item in pairs(entitiesFolder:GetChildren()) do
         for _, part in pairs(item:GetChildren()) do
             if part.ClassName == 'MeshPart' or part.ClassName == 'Part' then
                 for _, proximityPrompt in pairs(part:GetChildren()) do
                     if proximityPrompt.ClassName == 'ProximityPrompt' and proximityPrompt.ObjectText == 'Money Printer' then
                         humanoidRootPart.CFrame = part.CFrame
+                        foundMoneyPrinter = true
                         break
                     end
                 end
             end
         end
     end
-    
+
     -- 移除所有BillboardGui
     for _, item in pairs(entitiesFolder:GetChildren()) do
         for _, child in pairs(item:GetChildren()) do
@@ -71,6 +72,8 @@ local function findAndTeleportToMoneyPrinter()
             end
         end
     end
+
+    return foundMoneyPrinter
 end
 
 -- 执行服务器切换
@@ -79,9 +82,9 @@ local function switchServer()
 end
 
 -- 主逻辑
-findAndTeleportToMoneyPrinter() -- 立即执行查找并瞬移到印钞机
-wait(5) -- 等待5秒
-switchServer() -- 切换服务器
+if not findAndTeleportToMoneyPrinter() then
+    switchServer()
+end
    
    else
        game.Players.LocalPlayer:Kick("You have been kicked out of the server, automatic execution time 23:59:59")--踢人函数
