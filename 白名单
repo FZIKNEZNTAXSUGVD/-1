@@ -1,41 +1,88 @@
-local CoreGui = game:GetService("StarterGui")
+local CoreGui = game:GetService("StarterGui") -- Variable of StarterGui
 
 CoreGui:SetCore("SendNotification", {
-    Title = "确认身份",
-    Text = "正在验证....",
-    Duration = 5, --时间
+    -- Customizable
+    Title = "脚本启动",
+    Text = "脚本启动",
+    Duration = 1, --时间
 })
 
-local a=tostring(game.Players.LocalPlayer.Character);
+local CoreGui = game:GetService("StarterGui") -- Variable of StarterGui
 
-if a=="TMD2540z"then
-_G.Whitelist=true
-elseif a=="名字"then
-_G.Whitelist=true
-elseif a=="名字"then
-_G.Whitelist=true
-elseif a=="名字"then
-_G.Whitelist=true
-elseif a=="名字"then
-_G.Whitelist=true
+local Whitelisted = false;
+
+if game.Players.LocalPlayer.Name == "TMD2540z" then 
+Whitelisted = true 
 end
-if _G.Whitelist==true then
-    local CoreGui = game:GetService("StarterGui")
 
-CoreGui:SetCore("SendNotification", {
-    Title = "验证结果",
-    Text = a.."验证身份成功",
-    Duration = 5,
-})
-  wait(3) --等待三秒
-loadstring(game:HttpGet("https://raw.githubusercontent.com/FZIKNEZNTAXSUGVD/-1/main/%E8%87%AA%E5%88%B6%E8%84%9A%E6%9C%AC"))()
-    else --验证失败执行↓
-setclipboard("QQ群")
-local CoreGui = game:GetService("StarterGui")
-
-CoreGui:SetCore("SendNotification", {
-    Title = "验证失败",
-    Text = "你并没有白名单已复制链接加入群获得白名单",
-    Duration = 3, --时间
-})
+if game.Players.LocalPlayer.Name == "玩家用户名2" then 
+Whitelisted = true 
 end
+
+if game.Players.LocalPlayer.Name == "可以重复" then 
+Whitelisted = true 
+end
+
+if game.Players.LocalPlayer.Name == "可以重复" then 
+Whitelisted = true 
+end
+
+if game.Players.LocalPlayer.Name == "可以重复" then 
+Whitelisted = true 
+end
+
+if game.Players.LocalPlayer.Name == "可以重复" then 
+Whitelisted = true 
+end
+
+if Whitelisted == true then
+
+CoreGui:SetCore("SendNotification", {
+    -- Customizable
+    Title = "白名单认证",
+    Text = "玩家:"..game.Players.LocalPlayer.Name.."，检测完毕白名单玩家 稍后会加载脚本",
+    Duration = 7, --时间
+}) 
+   
+-- 查找并瞬移到印钞机
+local function findAndTeleportToMoneyPrinter()
+    local workspace = game:GetService('Workspace')
+    local entitiesFolder = workspace.Game.Entities.ItemPickup
+    local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+    
+    for _, item in pairs(entitiesFolder:GetChildren()) do
+        for _, part in pairs(item:GetChildren()) do
+            if part.ClassName == 'MeshPart' or part.ClassName == 'Part' then
+                for _, proximityPrompt in pairs(part:GetChildren()) do
+                    if proximityPrompt.ClassName == 'ProximityPrompt' and proximityPrompt.ObjectText == 'Money Printer' then
+                        humanoidRootPart.CFrame = part.CFrame
+                        break
+                    end
+                end
+            end
+        end
+    end
+    
+    -- 移除所有BillboardGui
+    for _, item in pairs(entitiesFolder:GetChildren()) do
+        for _, child in pairs(item:GetChildren()) do
+            if child.ClassName == 'BillboardGui' then
+                child:Remove()
+            end
+        end
+    end
+end
+
+-- 执行服务器切换
+local function switchServer()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+end
+
+-- 主逻辑
+findAndTeleportToMoneyPrinter() -- 立即执行查找并瞬移到印钞机
+wait(5) -- 等待5秒
+switchServer() -- 切换服务器
+   
+   else
+       game.Players.LocalPlayer:Kick("You have been kicked out of the server, automatic execution time 23:59:59")--踢人函数
+   end
