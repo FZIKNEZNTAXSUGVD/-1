@@ -31,7 +31,7 @@ if game.Players.LocalPlayer.Name == "可以重复" then
 Whitelisted = true 
 end
 
-if game.Players.LocalPlayer.Name == "可以重复" then 
+if game.Players.LocalPlayer.Name == "可以重" then 
 Whitelisted = true 
 end
 
