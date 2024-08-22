@@ -1,1 +1,300 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/FZIKNEZNTAXSUGVD/-1/main/%E7%99%BD%E5%90%8D%E5%8D%95"))()
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local HttpService = game:GetService("HttpService")
+
+local TMDMLib = {}
+
+local TMDM = Instance.new("ScreenGui")
+TMDM.Name = "TMDM"
+TMDM.Parent = game:GetService("CoreGui")
+
+function TMDMLib:IsRunning()
+    return TMDM.Parent == game:GetService("CoreGui")
+end
+
+function TMDMLib:AddConnection(Signal, Function)
+    if (not TMDMLib:IsRunning()) then return end
+    local SignalConnect = Signal:Connect(Function)
+    table.insert(TMDMLib.Connections, SignalConnect)
+    return SignalConnect
+end
+
+-- 创建带有标题栏的窗口
+function TMDMLib:MakeWindow(WindowConfig)
+    WindowConfig = WindowConfig or {}
+    WindowConfig.Name = WindowConfig.Name or "TMDM Library"
+    WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
+    WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
+    WindowConfig.HidePremium = WindowConfig.HidePremium or false
+    WindowConfig.IntroEnabled = WindowConfig.IntroEnabled or true
+    WindowConfig.IntroText = WindowConfig.IntroText or "TMDM Library"
+    WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
+    WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
+    WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://8834748103"
+    WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://8834748103"
+
+    TMDMLib.Folder = WindowConfig.ConfigFolder
+    TMDMLib.SaveCfg = WindowConfig.SaveConfig
+
+    if WindowConfig.SaveConfig then
+        if not isfolder(WindowConfig.ConfigFolder) then
+            makefolder(WindowConfig.ConfigFolder)
+        end
+    end
+
+    local MainWindow = Instance.new("Frame")
+    MainWindow.Size = UDim2.new(0, 600, 0, 400)
+    MainWindow.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    MainWindow.Position = UDim2.new(0.5, -MainWindow.Size.X.Offset / 2, 0.5, -MainWindow.Size.Y.Offset / 2)
+    MainWindow.Parent = TMDM
+
+    local TopBar = Instance.new("Frame")
+    TopBar.Size = UDim2.new(1, 0, 0, 30)
+    TopBar.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    TopBar.Position = UDim2.new(0, 0, 0, 0)
+    TopBar.Parent = MainWindow
+
+    local WindowName = Instance.new("TextLabel")
+    WindowName.Text = WindowConfig.Name
+    WindowName.Size = UDim2.new(1, 0, 1, 0)
+    WindowName.Font = Enum.Font.GothamBold
+    WindowName.TextColor3 = Color3.fromRGB(240, 240, 240)
+    WindowName.BackgroundTransparency = 1
+    WindowName.Position = UDim2.new(0, 50, 0, -24)
+    WindowName.Parent = TopBar
+
+    local TabHolder = Instance.new("ScrollingFrame")
+    TabHolder.Size = UDim2.new(1, 0, 1, -50)
+    TabHolder.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    TabHolder.Parent = MainWindow
+
+    local TabListLayout = Instance.new("UIListLayout")
+    TabListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    TabListLayout.Padding = UDim.new(0, 8)
+    TabListLayout.Parent = TabHolder
+
+    local CloseBtn = Instance.new("TextButton")
+    CloseBtn.Size = UDim2.new(0.5, 0, 1, 0)
+    CloseBtn.Position = UDim2.new(0.5, 0, 0, 0)
+    CloseBtn.BackgroundTransparency = 1
+    CloseBtn.Text = ""
+    CloseBtn.Parent = TopBar
+
+    local MinimizeBtn = Instance.new("TextButton")
+    MinimizeBtn.Size = UDim2.new(0.5, 0, 1, 0)
+    MinimizeBtn.BackgroundTransparency = 1
+    MinimizeBtn.Text = ""
+    MinimizeBtn.Parent = TopBar
+
+    local DragPoint = Instance.new("Frame")
+    DragPoint.Size = UDim2.new(1, 0, 0, 30)
+    DragPoint.BackgroundTransparency = 1
+    DragPoint.Parent = TopBar
+
+    -- 实现移动版拖动
+    local function MakeDraggable(DragPoint, Main)
+        local Dragging, DragInput, MousePos, FramePos = false, nil, nil, nil
+        
+        TMDMLib:AddConnection(DragPoint.InputBegan, function(Input)
+            if Input.UserInputType == Enum.UserInputType.Touch then
+                Dragging = true
+                MousePos = Input.Position
+                FramePos = Main.Position
+                Input.Changed:Connect(function()
+                    if Input.UserInputState == Enum.UserInputState.End then
+                        Dragging = false
+                    end
+                end)
+            end
+        end)
+        
+        TMDMLib:AddConnection(UserInputService.InputChanged, function(Input)
+            if Input.UserInputType == Enum.UserInputType.Touch and Dragging then
+                local Delta = Input.Position - MousePos
+                Main.Position = UDim2.new(FramePos.X.Scale, FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)
+            end
+        end)
+    end
+
+    MakeDraggable(DragPoint, MainWindow)
+
+    TMDMLib:AddConnection(CloseBtn.MouseButton1Up, function()
+        MainWindow.Visible = false
+        TMDMLib:MakeNotification({
+            Name = "Interface Hidden",
+            Content = "Tap RightShift to reopen the interface",
+            Time = 5
+        })
+        WindowConfig.CloseCallback()
+    end)
+
+    TMDMLib:AddConnection(UserInputService.InputBegan, function(Input)
+        if Input.KeyCode == Enum.KeyCode.RightShift and not MainWindow.Visible then
+            MainWindow.Visible = true
+        end
+    end)
+
+    TMDMLib:AddConnection(MinimizeBtn.MouseButton1Up, function()
+        local Minimized = not Minimized
+        if Minimized then
+            TweenService:Create(MainWindow, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, 615, 0, 344)}):Play()
+            MinimizeBtn.Ico.Image = "rbxassetid://7072719338"
+        else
+            TweenService:Create(MainWindow, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, 600, 0, 400)}):Play()
+            MinimizeBtn.Ico.Image = "rbxassetid://7072725342"
+        end
+    end)
+
+    -- 创建菱形悬浮窗
+    local FloatingWindow = Instance.new("Frame")
+    FloatingWindow.Size = UDim2.new(0, 100, 0, 100)
+    FloatingWindow.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    FloatingWindow.Position = UDim2.new(0.5, -FloatingWindow.Size.X.Offset / 2, 0.5, -FloatingWindow.Size.Y.Offset / 2)
+    FloatingWindow.Parent = TMDM
+
+    local FloatingWindowUIListLayout = Instance.new("UIListLayout")
+    FloatingWindowUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    FloatingWindowUIListLayout.Padding = UDim.new(0, 8)
+    FloatingWindowUIListLayout.Parent = FloatingWindow
+
+    -- 添加菱形角
+    local FloatingWindowCorner = Instance.new("UICorner")
+    FloatingWindowCorner.CornerRadius = UDim.new(0.5, 0)
+    FloatingWindowCorner.Parent = FloatingWindow
+
+    -- 创建按钮
+    function TMDMLib:AddButton(Tab, ButtonConfig)
+        ButtonConfig = ButtonConfig or {}
+        ButtonConfig.Name = ButtonConfig.Name or "Button"
+        ButtonConfig.Callback = ButtonConfig.Callback or function() end
+
+        local Button = Instance.new("TextButton")
+        Button.Text = ButtonConfig.Name
+        Button.Size = UDim2.new(1, 0, 0, 30)
+        Button.Font = Enum.Font.Gotham
+        Button.TextColor3 = Color3.fromRGB(240, 240, 240)
+        Button.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+        Button.BackgroundTransparency = 1
+        Button.Parent = Tab
+
+        TMDMLib:AddConnection(Button.MouseButton1Up, function()
+            ButtonConfig.Callback()
+        end)
+    end
+
+    -- 创建选项卡
+    function TMDMLib:MakeTab(TabConfig)
+        TabConfig = TabConfig or {}
+        TabConfig.Name = TabConfig.Name or "Tab"
+        TabConfig.Icon = TabConfig.Icon or "rbxassetid://7734068321"
+        TabConfig.PremiumOnly = TabConfig.PremiumOnly or false
+
+        local Tab = Instance.new("Frame")
+        Tab.Size = UDim2.new(1, 0, 0, 30)
+        Tab.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+        Tab.Position = UDim2.new(0, 0, 0, 0)
+        Tab.Parent = TabHolder
+
+        local TabLabel = Instance.new("TextLabel")
+        TabLabel.Text = TabConfig.Name
+        TabLabel.Size = UDim2.new(1, 0, 1, 0)
+        TabLabel.Font = Enum.Font.GothamBold
+        TabLabel.TextColor3 = Color3.fromRGB(240, 240, 240)
+        TabLabel.BackgroundTransparency = 1
+        TabLabel.Position = UDim2.new(0, 50, 0, -24)
+        TabLabel.Parent = Tab
+
+        local TabIcon = Instance.new("ImageLabel")
+        TabIcon.Image = TabConfig.Icon
+        TabIcon.Size = UDim2.new(0, 30, 0, 30)
+        TabIcon.Position = UDim2.new(0, 0, 0, 0)
+        TabIcon.Parent = Tab
+
+        TMDMLib:AddConnection(Tab.Activated, function()
+            TabLabel.TextColor3 = Color3.fromRGB(240, 240, 240)
+        end)
+
+        function Tab:AddButton(ButtonConfig)
+            TMDMLib:AddButton(Tab, ButtonConfig)
+        end
+
+        return Tab
+    end
+
+    -- 创建展开列表
+    function TMDMLib:MakeExpandList(Tab, ExpandListConfig)
+        ExpandListConfig = ExpandListConfig or {}
+        ExpandListConfig.Name = ExpandListConfig.Name or "Expand List"
+        ExpandListConfig.DefaultExpanded = ExpandListConfig.DefaultExpanded or false
+
+        local ExpandList = Instance.new("Frame")
+        ExpandList.Size = UDim2.new(1, 0, 0, 30)
+        ExpandList.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+        ExpandList.Position = UDim2.new(0, 0, 0, 0)
+        ExpandList.Parent = Tab
+
+        local ExpandListLabel = Instance.new("TextLabel")
+        ExpandListLabel.Text = ExpandListConfig.Name
+        ExpandListLabel.Size = UDim2.new(1, 0, 1, 0)
+        ExpandListLabel.Font = Enum.Font.GothamBold
+        ExpandListLabel.TextColor3 = Color3.fromRGB(240, 240, 240)
+        ExpandListLabel.BackgroundTransparency = 1
+        ExpandListLabel.Position = UDim2.new(0, 50, 0, -24)
+        ExpandListLabel.Parent = ExpandList
+
+        local ExpandListIcon = Instance.new("ImageLabel")
+        ExpandListIcon.Image = "rbxassetid://7072719338"
+        ExpandListIcon.Size = UDim2.new(0, 30, 0, 30)
+        ExpandListIcon.Position = UDim2.new(0, 0, 0, 0)
+        ExpandListIcon.Parent = ExpandList
+
+        local Expanded = ExpandListConfig.DefaultExpanded
+
+        local ExpandListContent = Instance.new("Frame")
+        ExpandListContent.Size = UDim2.new(1, 0, 0, 0)
+        ExpandListContent.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+        ExpandListContent.Position = UDim2.new(0, 0, 0, 30)
+        ExpandListContent.Parent = ExpandList
+
+        TMDMLib:AddConnection(ExpandList.Activated, function()
+            Expanded = not Expanded
+            if Expanded then
+                ExpandListIcon.Image = "rbxassetid://7072725342"
+                TweenService:Create(ExpandListContent, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, 100)}):Play()
+            else
+                ExpandListIcon.Image = "rbxassetid://7072719338"
+                TweenService:Create(ExpandListContent, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, 0)}):Play()
+            end
+        end)
+
+        function ExpandList:AddButton(ButtonConfig)
+            TMDMLib:AddButton(ExpandListContent, ButtonConfig)
+        end
+
+        return ExpandList
+    end
+
+    -- 创建菱形悬浮窗的展开和隐藏按钮
+    local FloatingWindowControlButton = Instance.new("TextButton")
+    FloatingWindowControlButton.Text = "Show/Hide"
+    FloatingWindowControlButton.Size = UDim2.new(1, 0, 0, 30)
+    FloatingWindowControlButton.Font = Enum.Font.Gotham
+    FloatingWindowControlButton.TextColor3 = Color3.fromRGB(240, 240, 240)
+    FloatingWindowControlButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    FloatingWindowControlButton.BackgroundTransparency = 1
+    FloatingWindowControlButton.Parent = FloatingWindow
+
+    local FloatingWindowVisible = true
+
+    TMDMLib:AddConnection(FloatingWindowControlButton.MouseButton1Up, function()
+        FloatingWindowVisible = not FloatingWindowVisible
+        if FloatingWindowVisible then
+            FloatingWindow.Visible = true
+        else
+            FloatingWindow.Visible = false
+        end
+    end)
+
