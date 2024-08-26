@@ -1,0 +1,23 @@
+-- 假设这里有一个函数可以获取当前服务器的ID
+function getServerId()
+    -- 这里应该调用Roblox API 或者游戏内的机制来获取服务器ID
+    -- 返回示例服务器ID
+    return 12345
+end
+
+-- 根据服务器ID执行不同的脚本
+local serverId = getServerId()
+
+if serverId == 7239319209 then
+    -- 执行服务器12345的脚本
+    print("loadstring(game:HttpGet("https://raw.githubusercontent.com/FZIKNEZNTAXSUGVD/-1/main/TM%E8%84%9A%E6%9C%ACTM"))()")
+    -- 这里添加针对此服务器的具体脚本内容
+elseif serverId == 67890 then
+    -- 执行服务器67890的脚本
+    print("正在服务器67890执行脚本...")
+    -- 这里添加针对此服务器的具体脚本内容
+else
+    -- 默认情况下的脚本
+    print("未找到匹配的服务器ID，执行默认脚本...")
+    -- 这里添加默认情况下执行的脚本内容
+end
