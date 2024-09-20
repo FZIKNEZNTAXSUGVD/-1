@@ -474,8 +474,6 @@ Tab:AddButton({
   end
 })
 
-
-
 local KeyChams = {}
 VisualsTab:AddToggle({
 	Name = "钥匙透视",
