@@ -404,9 +404,222 @@ local Tab = Window:MakeTab({
         PremiumOnly = false
 })
 
-Tab:AddButton({  
-    Name = "拯救上帝",
+Tab:AddButton({
+  Name = "夜视仪",
+  Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChinaQY/Scripts/Main/NVCS-3000"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "手电筒（没电会有bug）",
 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/K0t1n/Public/main/Normal%20Flashlight"))()
+    end
+})
+
+Tab:AddButton({
+	Name = "神圣炸弹",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/HolyGrenadeByNerd.lua"))()
+    end
+})
+Tab:AddButton({
+	Name = "十字架",
+    Callback = function()
+loadstring(game:HttpGet('https://gist.githubusercontent.com/C00LBOZO/0c78ad8c74ca26324c87ede16ce8b387/raw/c0887ac0d24fde80bea11ab1a6a696ec296af272/Crucifix'))()
+    end
+})
+
+Tab:AddButton({
+  Name = "剪刀",
+  Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/shears_done.lua"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "骷髅钥匙",
+  Callback = function ()
+    local item = game:GetObjects("rbxassetid://11697889137")[1]item.Parent = game.Players.LocalPlayer.Backpack
+  end
+})
+
+Tab:AddButton({
+	Name = "紫色手电筒（在电梯购买东西的时候使用）",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/K0t1n/Public/main/Purple%20Flashlight"))()
+end
+})  
+
+Tab:AddButton({
+  Name = "可以清除东西的枪",
+  Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/K0t1n/Public/main/Laser%20Gun"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "磁铁",
+  Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/MagnetByNerd.lua"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "门绘图显示",
+  Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/cbhlyy/lyycbh/main/doors1"))()
+  end
+})
+
+
+
+local KeyChams = {}
+VisualsTab:AddToggle({
+	Name = "钥匙透视",
+	Default = false,
+    Flag = "KeyToggle",
+    Save = true,
+	Callback = function(Value)
+		for i,v in pairs(KeyChams) do
+            v.Enabled = Value
+        end
+	end    
+})
+
+local function ApplyKeyChams(inst)
+    wait()
+    local Cham = Instance.new("Highlight")
+    Cham.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    Cham.FillColor = Color3.new(0.980392, 0.670588, 0)
+    Cham.FillTransparency = 0.5
+    Cham.OutlineColor = Color3.new(0.792156, 0.792156, 0.792156)
+    Cham.Parent = game:GetService("CoreGui")
+    Cham.Adornee = inst
+    Cham.Enabled = OrionLib.Flags["KeyToggle"].Value
+    Cham.RobloxLocked = true
+    return Cham
+end
+
+local KeyCoroutine = coroutine.create(function()
+    workspace.CurrentRooms.DescendantAdded:Connect(function(inst)
+        if inst.Name == "KeyObtain" then
+            table.insert(KeyChams,ApplyKeyChams(inst))
+        end
+    end)
+end)
+for i,v in ipairs(workspace:GetDescendants()) do
+    if v.Name == "KeyObtain" then
+        table.insert(KeyChams,ApplyKeyChams(v))
+    end
+end
+coroutine.resume(KeyCoroutine)
+
+local BookChams = {}
+VisualsTab:AddToggle({
+	Name = "50关书透视",
+	Default = false,
+    Flag = "BookToggle",
+    Save = true,
+	Callback = function(Value)
+		for i,v in pairs(BookChams) do
+            v.Enabled = Value
+        end
+	end    
+})
+
+local FigureChams = {}
+VisualsTab:AddToggle({
+	Name = "50关无眼透视",
+	Default = false,
+    Flag = "FigureToggle",
+    Save = true,
+    Callback = function(Value)
+        for i,v in pairs(FigureChams) do
+            v.Enabled = Value
+        end
+    end
+})
+
+local function ApplyBookChams(inst)
+    if inst:IsDescendantOf(game:GetService("Workspace").CurrentRooms:FindFirstChild("50")) and game:GetService("ReplicatedStorage").GameData.LatestRoom.Value == 50 then
+        wait()
+        local Cham = Instance.new("Highlight")
+        Cham.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+        Cham.FillColor = Color3.new(0, 1, 0.749019)
+        Cham.FillTransparency = 0.5
+        Cham.OutlineColor = Color3.new(0.792156, 0.792156, 0.792156)
+        Cham.Parent = game:GetService("CoreGui")
+        Cham.Enabled = OrionLib.Flags["BookToggle"].Value
+        Cham.Adornee = inst
+        Cham.RobloxLocked = true
+        return Cham
+    end
+end
+
+local function ApplyEntityChams(inst)
+    wait()
+    local Cham = Instance.new("Highlight")
+    Cham.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    Cham.FillColor = Color3.new(1, 0, 0)
+    Cham.FillTransparency = 0.5
+    Cham.OutlineColor = Color3.new(0.792156, 0.792156, 0.792156)
+    Cham.Parent = game:GetService("CoreGui")
+    Cham.Enabled = OrionLib.Flags["FigureToggle"].Value
+    Cham.Adornee = inst
+    Cham.RobloxLocked = true
+    return Cham
+end
+
+local BookCoroutine = coroutine.create(function()
+    task.wait(1)
+    for i,v in pairs(game:GetService("Workspace").CurrentRooms["50"].Assets:GetDescendants()) do
+        if v.Name == "LiveHintBook" then
+            table.insert(BookChams,ApplyBookChams(v))
+        end
+    end
+end)
+local EntityCoroutine = coroutine.create(function()
+    local Entity = game:GetService("Workspace").CurrentRooms["50"].FigureSetup:WaitForChild("FigureRagdoll",5)
+    Entity:WaitForChild("Torso",2.5)
+    table.insert(FigureChams,ApplyEntityChams(Entity))
+end)
+
+
+local function ApplyKeyChams(inst)
+    wait()
+    local Cham = Instance.new("Highlight")
+    Cham.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    Cham.FillColor = Color3.new(0.980392, 0.670588, 0)
+    Cham.FillTransparency = 0.5
+    Cham.OutlineColor = Color3.new(0.792156, 0.792156, 0.792156)
+    Cham.Parent = game:GetService("CoreGui")
+    Cham.Adornee = inst
+    Cham.Enabled = OrionLib.Flags["KeyToggle"].Value
+    Cham.RobloxLocked = true
+    return Cham
+end
+
+local KeyCoroutine = coroutine.create(function()
+    workspace.CurrentRooms.DescendantAdded:Connect(function(inst)
+        if inst.Name == "KeyObtain" then
+            table.insert(KeyChams,ApplyKeyChams(inst))
+        end
+    end)
+end)
+for i,v in ipairs(workspace:GetDescendants()) do
+    if v.Name == "KeyObtain" then
+        table.insert(KeyChams,ApplyKeyChams(v))
+    end
+end
+coroutine.resume(KeyCoroutine)
+
+Tab:AddButton({  
+    Name = "拯救上帝（用不了）",
+	Callback = function()
+
 	local Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/lyyaini/lon/main/eodk"))()
 local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/lyyaini/lon/main/eosk"))()
 local tweenService = game:GetService("TweenService")
@@ -739,49 +952,17 @@ end)
 })
 
 Tab:AddButton({
-	Name = "穿墙(无拉回)",
+	Name = "穿墙(低拉回)",
 	Callback = function()
 loadstring(game:HttpGet("https://github.com/DXuwu/OK/raw/main/clip"))()
     end
 })
-Tab:AddButton({
-	Name = "手电筒（没电会有bug）",
-	Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/K0t1n/Public/main/Normal%20Flashlight"))()
-    end
-}) 
-Tab:AddButton({
-	Name = "神圣炸弹",
-    Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/HolyGrenadeByNerd.lua"))()
-    end
-})
-Tab:AddButton({
-	Name = "十字架",
-    Callback = function()
-loadstring(game:HttpGet('https://gist.githubusercontent.com/C00LBOZO/0c78ad8c74ca26324c87ede16ce8b387/raw/c0887ac0d24fde80bea11ab1a6a696ec296af272/Crucifix'))()
-    end
-})
+
 Tab:AddButton({
 	Name = "变身",
 	Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/Public-Scripts/main/Morphing/MorphScript.lua"))();
     end
-})
-Tab:AddButton({
-	Name = "微山2.3.2",
-	Callback = function()
---微山doors 2.3.2(愚人节快乐)
-loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\117\72\72\112\56\102\122\83"))()
-    end
-})
-
-Tab:AddButton({
-  Name = "夜视仪",
-  Callback = function()
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ChinaQY/Scripts/Main/NVCS-3000"))()
-  end
 })
 
 Tab:AddButton({
