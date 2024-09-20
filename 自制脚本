@@ -1,3 +1,4 @@
+---乐仔想偷脚本，我懒得加你，只要你觉得你父母
 local Players = game:GetService("Players")
 local CoreGui = game:GetService("StarterGui")
 local DeveloperWhitelist = {"TMD2540z"} -- 开发者名单
@@ -35,55 +36,6 @@ game:GetService("RunService").Heartbeat:Connect(function()
     wait(10) -- 等待10秒
 end)
 
-------------------------------
-------------------------------
-local CoreGui = game:GetService("StarterGui")
-
--- 定义两个白名单
-local BetaTesterWhitelist = {"wzznDdm","yfttddttr3e"} -- 内测人员名单
-local DeveloperWhitelist = {"TMD2540z", "TMD2540"} -- 开发者名单
-
--- 发送通知的函数
-local function SendNotification(title, text, duration)
-    CoreGui:SetCore("SendNotification", {
-        Title = title,
-        Text = text,
-        Duration = duration,
-    })
-end
-
--- 检测玩家身份并发送通知
-local function CheckPlayerIdentity()
-    -- 获取当前玩家的名字
-    local playerName = game.Players.LocalPlayer.Name
-
-    -- 发送初始通知
-    SendNotification("脚本全被我吃了😋", "正在检测您的身份，请稍候...", 5)
-
-    -- 模拟检测过程
-    wait(2) -- 等待1秒钟
-
-    -- 检测玩家用户名是否在白名单中
-    local isBetaTester = table.find(BetaTesterWhitelist, playerName) ~= nil
-    local isDeveloper = table.find(DeveloperWhitelist, playerName) ~= nil
-
-    -- 根据玩家身份发送通知
-    if isBetaTester then
-        SendNotification("身份验证", "您是内测人员", 5)
-    elseif isDeveloper then
-        SendNotification("身份验证", "您是开发者", 5)
-    else
-        SendNotification("身份验证", "您是成员", 5)
-
-wait(2)
-
-       end
-end
-
--- 只执行一次检测
-CheckPlayerIdentity()
-
--- 加载Orion库
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 -- 创建屏幕GUI元素
@@ -154,23 +106,23 @@ Tab:AddLabel("欢迎使用脚本")
 Tab:AddLabel("本脚本把一些脚本给作成了合集，方便脚本太多不好找（缝合）")
 Tab:AddLabel("脚本永久免费，禁止倒卖")
 Tab:AddLabel("欢迎投稿脚本")
-Tab:AddLabel("版本：1.01")
+Tab:AddLabel("版本：v2")
 
 local Tab = Window:MakeTab({
-    Name = "投稿榜",
+    Name = "人员榜",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
 })
 
-Tab:AddLabel("TMD2540z")
-Tab:AddLabel("lhh2ezaa")
-Tab:AddLabel("")
-Tab:AddLabel("")
-Tab:AddLabel("")
-Tab:AddLabel("")
+Tab:AddLabel("群主：TMD2540z")
+Tab:AddLabel("副群主：kjert231ja")
+Tab:AddLabel("管理：不愿意透露")
+Tab:AddLabel("管理：不愿意透露")
+Tab:AddLabel("管理：不愿意透露")
+Tab:AddLabel("管理：不愿意透露")
 
 local Tab = Window:MakeTab({
-        Name = "特殊脚本",
+        Name = "物品脚本",
         Icon = "rbxassetid://7734068321",
         PremiumOnly = false
 })
@@ -192,7 +144,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/Z33NcECh", true))()
 })
 
 Tab:AddButton({
-  Name = "万物皆可封印十字架（doors专）",
+  Name = "万物皆可封印十字架",
   Callback = function()
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/PenguinManiack/Crucifix/main/Crucifix.lua'))()
@@ -329,7 +281,7 @@ Tab:AddButton({
 })
 
 local Tab = Window:MakeTab({
-        Name = "国内优质脚本",
+        Name = "脚本合集",
         Icon = "rbxassetid://7734068321",
         PremiumOnly = false
 })
@@ -367,10 +319,10 @@ getgenv().LS="落叶中心" loadstring(game:HttpGet("https://raw.githubuserconte
 })
 
 Tab:AddButton({
-  Name = "等待更新",
+  Name = "皮脚本",
   Callback = function()
 
-
+getgenv().XiaoPi="皮脚本QQ群1002100032" loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
   end
 })
 
@@ -443,6 +395,407 @@ Tab:AddButton({
   Callback = function()
 
 
+  end
+})
+
+local Tab = Window:MakeTab({
+        Name = "doors",
+        Icon = "rbxassetid://7734068321",
+        PremiumOnly = false
+})
+
+Tab:AddButton({  
+    Name = "拯救上帝",
+	Callback = function()
+	local Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/lyyaini/lon/main/eodk"))()
+local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/lyyaini/lon/main/eosk"))()
+local tweenService = game:GetService("TweenService")
+local jesusModel = game:GetObjects("rbxassetid://13048955592")[1] or LoadCustomInstance("rbxassetid://13048955592") 
+local caveModel = game:GetObjects("rbxassetid://13049026203")[1] or LoadCustomInstance("rbxassetid://13049026203")
+local CameraShaker = require(game:GetService("ReplicatedStorage").CameraShaker)
+local ranBoulderProximityPrompt = false
+
+-- Npcs
+local civilian1 = game:GetObjects("rbxassetid://13051551926")[1]
+local civilian2 = game:GetObjects("rbxassetid://13051633935")[1]
+local civilian3 = game:GetObjects("rbxassetid://13052090579")[1]
+local tablewithuno = game:GetObjects("rbxassetid://13053069721")[1]
+local luk3 = game:GetObjects("rbxassetid://13053085601")[1]
+local upio = game:GetObjects("rbxassetid://13053089753")[1]
+
+--Toy and Model For The Egg
+local easternegg = game:GetObjects("rbxassetid://13053213567")[1]
+
+-- misc functions
+function deleteStuff()
+    if workspace.CurrentRooms["0"]:FindFirstChild("RiftSpawn") then
+        workspace.CurrentRooms["0"].RiftSpawn:Destroy()
+    end
+    
+    for _,i in ipairs(workspace.CurrentRooms["0"].Assets:GetChildren()) do
+        if i.Name == "Luggage" or i.Name == "Luggage_Cart" or i.Name == "Luggage_Cart_Crouch" then
+            i:Destroy()
+        end
+    end
+end
+
+function fadeOutThing(object,seconds)
+    for _,instance in ipairs(object:GetDescendants()) do
+        if instance:IsA("MeshPart") or instance:IsA("UnionOperation") or instance:IsA("Part") or instance:IsA("Decal") then
+            print()
+            tweenService:Create(instance, TweenInfo.new(seconds,Enum.EasingStyle.Quad), {
+                ["Transparency"] = 1
+            }):Play()
+        end
+    end
+end
+
+function fadeInThing(object,seconds)
+    local function fadeIn(part,seconds)
+        local initialTransparency = part.Transparency
+        part.Transparency = 1
+        local tween = tweenService:Create(part, TweenInfo.new(seconds, Enum.EasingStyle.Quad), {Transparency = initialTransparency}):Play()
+    end
+
+    for _, instance in pairs(object:GetDescendants()) do
+        if instance:IsA("MeshPart") or instance:IsA("UnionOperation") or instance:IsA("Part") or instance:IsA("Decal") then
+            fadeIn(instance,seconds)
+        end
+    end
+end
+
+-- parenting stuff
+jesusModel.Parent = workspace
+caveModel.PrimaryPart = caveModel.Boulder
+
+-- i forgot to set it's primary part ._.
+jesusModel.PrimaryPart = jesusModel["Plank Vertical"]
+
+-- tp in front of the elevator
+jesusModel:PivotTo(CFrame.new(Vector3.new(0.237418652, 2.02649975, 3241.82837, -1.62920685e-07, -1, 1.40790661e-07, 1, -1.62920685e-07, -3.58895669e-08, 3.58895882e-08, 1.40790661e-07, 1)) * CFrame.Angles(0, math.rad(180), math.rad(90)))
+
+-- delete misc things that might interfere
+deleteStuff()
+
+-- main code
+jesusModel.jesus.ProximityPrompt.Triggered:Connect(function()
+    
+    Achievements.Get({
+        Title = "成功解锁彩蛋",
+        Desc = "你拯救了十字架上的耶稣",
+        Reason = "👿👿👿👿",
+        Image = "https://raw.githubusercontent.com/persopoiu/scripts/main/66963_easter_egg_green_icon.png",
+    })
+    -- fade out
+    fadeOutThing(jesusModel,0.5)
+    wait(0.5)
+    jesusModel:Destroy()
+
+    -- fade in
+    caveModel.Parent = workspace
+    wait()
+    fadeInThing(caveModel,1.5)
+
+    -- move the cave model
+    caveModel:PivotTo(CFrame.new(Vector3.new(0, -1.3, 3250, 1, 0, 0, 0, 1, 0, 0, 0, 1)) * CFrame.Angles(math.rad(-90), 0, 0))
+    -- Npc 1
+	civilian1.Parent = game.workspace
+	    wait()
+    fadeInThing(civilian1,1.5)
+   -- Npc 2
+	civilian2.Parent = game.workspace
+	    wait()
+    fadeInThing(civilian2,1.5)
+	--npc 3
+	civilian3.Parent = game.workspace
+	    wait()
+    fadeInThing(civilian3,1.5)
+	--Easteregg
+	easternegg.Parent = game.workspace
+	    wait()
+    fadeInThing(easternegg,1.5)
+    --tablewithuno
+	tablewithuno.Parent = game.workspace
+	    wait()
+    fadeInThing(tablewithuno,1.5)
+    --Luk3
+	luk3.Parent = game.workspace
+	    wait()
+    fadeInThing(luk3,1.5)
+    --Upio
+	upio.Parent = game.workspace
+	    wait()
+    fadeInThing(upio,1.5)
+end)
+
+caveModel.Boulder.ProximityPrompt.Triggered:Connect(function()
+
+    spawn(function()
+        if not ranBoulderProximityPrompt then
+            -- caption
+            firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, '你挪动了石头放出了上帝',true,2.5)
+
+            -- camera shake
+            local camShake = CameraShaker.new(200, function(shakeCFrame)
+                game.Workspace.CurrentCamera.CFrame = game.Workspace.CurrentCamera.CFrame * shakeCFrame
+            end)
+            camShake:Start()
+            camShake:Shake(CameraShaker.Presets.Explosion)
+            wait(1)
+            camShake:Stop()
+
+            ranBoulderProximityPrompt = true
+        end
+    end)
+
+    local boulder = caveModel.Boulder
+
+    spawn(function()
+        for _,i in ipairs(workspace.cave:GetChildren()) do
+            if i.Name == " " then
+                fadeOutThing(i,.5)
+            end
+        end
+
+        wait(.5)
+        for _,i in ipairs(workspace.cave:GetChildren()) do
+            if i.Name == " " then
+                i:Destroy()
+            end
+        end
+    end)
+    
+    tweenService:Create(boulder, TweenInfo.new(1.2, Enum.EasingStyle.Quad),{
+        ["Rotation"] = Vector3.new(80,0,0),
+        ["Position"] = Vector3.new(boulder.Position.X,boulder.Position.Y,3258)
+    }):Play()
+
+    while wait(0.1) do
+        local primaryPart = caveModel.Jesus.Torso
+        local camera = workspace.CurrentCamera
+        local player = game.Players.LocalPlayer
+        local distanceThreshold = 10 -- the maximum distance between the player and the Jesus model for the achievement to be earned
+    
+        -- check if the player is within the distance threshold of the Jesus model's primary part
+        local distance = (primaryPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
+        
+        if distance <= distanceThreshold then
+            -- check if the player's camera is looking at the Jesus model's primary part
+            local direction = primaryPart.Position - camera.CFrame.Position
+            local dotProduct = direction.Unit:Dot(camera.CFrame.LookVector.Unit)
+            
+            if dotProduct > 0.9 then -- the player is looking at the Jesus model
+                break
+            end
+        end
+    end
+
+    Achievements.Get({
+        Title = "救出耶稣已解锁",
+        Desc = "谢谢你救了我",
+        Reason = "我将赐予你力量",
+        Image = "https://github.com/persopoiu/scripts/raw/main/Untitled.png",
+    })
+    loadstring(game:HttpGet('https://pastebin.com/raw/M3X9iuE1'))()
+end)
+
+local npcdialogue = Instance.new("ScreenGui")
+local dialogueFrame = Instance.new("ImageLabel")
+local dialogueLabel = Instance.new("TextLabel")
+
+npcdialogue.Name = "npcdialogue"
+npcdialogue.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+npcdialogue.Enabled = false
+npcdialogue.ResetOnSpawn = false
+
+dialogueFrame.Name = "dialogueFrame"
+dialogueFrame.Parent = npcdialogue
+dialogueFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+dialogueFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+dialogueFrame.BackgroundTransparency = 1.000
+dialogueFrame.Position = UDim2.new(0.5, 0, 0.850000024, 0)
+dialogueFrame.Size = UDim2.new(0.5, 0, 0.200000003, 0)
+dialogueFrame.Image = "rbxassetid://3570695787"
+dialogueFrame.ImageColor3 = Color3.fromRGB(45, 45, 45)
+dialogueFrame.ScaleType = Enum.ScaleType.Slice
+dialogueFrame.SliceCenter = Rect.new(100, 100, 100, 100)
+dialogueFrame.SliceScale = 0.120
+
+dialogueLabel.Name = "dialogueLabel"
+dialogueLabel.Parent = dialogueFrame
+dialogueLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+dialogueLabel.BackgroundTransparency = 1.000
+dialogueLabel.Size = UDim2.new(1, 0, 1, 0)
+dialogueLabel.Font = Enum.Font.Oswald
+dialogueLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+dialogueLabel.TextScaled = true
+dialogueLabel.TextSize = 14.000
+dialogueLabel.TextWrapped = true
+
+local function npc1dialogue()
+    dialogueLabel.Text = "小伙子你也玩原神吗我们都喜欢玩原神"
+    local text = dialogueLabel.Text
+   for i = 1, #text do
+        dialogueLabel.Text = string.sub(text, 1, i)
+        wait(0.05) -- Adjust the speed of the typing effect
+    end
+end
+
+local function npc2dialogue()
+    dialogueLabel.Text = "向上帝祈祷傻逼东西 "
+    local text = dialogueLabel.Text
+   for i = 1, #text do
+        dialogueLabel.Text = string.sub(text, 1, i)
+        wait(0.05) -- Adjust the speed of the typing effect
+    end
+end
+
+local function npc3dialogue()
+    dialogueLabel.Text = "艹你马，挡着我看电视了让开!"
+    local text = dialogueLabel.Text
+   for i = 1, #text do
+        dialogueLabel.Text = string.sub(text, 1, i)
+        wait(0.05) -- Adjust the speed of the typing effect
+    end
+end
+
+local function luk3dialogue()
+    dialogueLabel.Text = "你个傻逼东西还玩原神？"
+    local text = dialogueLabel.Text
+   for i = 1, #text do
+        dialogueLabel.Text = string.sub(text, 1, i)
+        wait(0.05) -- Adjust the speed of the typing effect
+    end
+end
+
+local function upiodialogue()
+    dialogueLabel.Text = "原神真好玩我太喜欢这个游戏了"
+    local text = dialogueLabel.Text
+   for i = 1, #text do
+        dialogueLabel.Text = string.sub(text, 1, i)
+        wait(0.05) -- Adjust the speed of the typing effect
+    end
+end
+
+civilian1.ModulePrompt.Triggered:Connect(function()
+	 npcdialogue.Enabled = true
+     npc1dialogue()
+	 wait(2)
+	 npcdialogue.Enabled = false
+end)
+
+civilian2.ModulePrompt.Triggered:Connect(function()
+	 npcdialogue.Enabled = true
+	npc2dialogue()
+	 wait(2)
+	npcdialogue.Enabled = false
+end)
+
+civilian3.ModulePrompt.Triggered:Connect(function()
+	 npcdialogue.Enabled = true
+	npc3dialogue()
+	 wait(2)
+	npcdialogue.Enabled = false
+end)
+
+luk3.ModulePrompt.Triggered:Connect(function()
+	 npcdialogue.Enabled = true
+	luk3dialogue()
+	 wait(2)
+	npcdialogue.Enabled = false
+end)
+
+upio.ModulePrompt.Triggered:Connect(function()
+	 npcdialogue.Enabled = true
+	upiodialogue()
+	 wait(2)
+	npcdialogue.Enabled = false
+end)
+
+easternegg.ModulePrompt.Triggered:Connect(function()
+local Equipped = false
+local Plr = game.Players.LocalPlayer
+local Char = Plr.Character or Plr.CharacterAdded:Wait()
+local Hum = Char:WaitForChild("Humanoid")
+local eegg = game:GetObjects("rbxassetid://13053427070")[1]
+
+eegg.Parent = game.Players.LocalPlayer.Backpack
+
+	eegg.Equipped:Connect(function()
+		Equipped = true
+    local Idle = eegg.Animations.idle
+    local IdleTrack = Hum:LoadAnimation(Idle)
+
+    IdleTrack:Play()
+	end)
+
+	eegg.Unequipped:Connect(function()
+		Equipped = false
+        IdleTrack:Stop()
+	end)
+	easternegg:Destroy()
+end)
+    end
+})
+
+Tab:AddButton({
+	Name = "穿墙(无拉回)",
+	Callback = function()
+loadstring(game:HttpGet("https://github.com/DXuwu/OK/raw/main/clip"))()
+    end
+})
+Tab:AddButton({
+	Name = "手电筒（没电会有bug）",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/K0t1n/Public/main/Normal%20Flashlight"))()
+    end
+}) 
+Tab:AddButton({
+	Name = "神圣炸弹",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/HolyGrenadeByNerd.lua"))()
+    end
+})
+Tab:AddButton({
+	Name = "十字架",
+    Callback = function()
+loadstring(game:HttpGet('https://gist.githubusercontent.com/C00LBOZO/0c78ad8c74ca26324c87ede16ce8b387/raw/c0887ac0d24fde80bea11ab1a6a696ec296af272/Crucifix'))()
+    end
+})
+Tab:AddButton({
+	Name = "变身",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/Public-Scripts/main/Morphing/MorphScript.lua"))();
+    end
+})
+Tab:AddButton({
+	Name = "微山2.3.2",
+	Callback = function()
+--微山doors 2.3.2(愚人节快乐)
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\117\72\72\112\56\102\122\83"))()
+    end
+})
+
+Tab:AddButton({
+  Name = "夜视仪",
+  Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChinaQY/Scripts/Main/NVCS-3000"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "刷怪菜单",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/JV8XgbQs"))()
+	end
+})
+
+Tab:AddButton({
+  Name = "doors BobHub（汉化）",
+  Callback = function()
+
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\53\84\119\84\56\106\97"))()
   end
 })
 
