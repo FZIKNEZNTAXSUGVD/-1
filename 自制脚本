@@ -326,18 +326,18 @@ getgenv().XiaoPi="皮脚本QQ群1002100032" loadstring(game:HttpGet("https://raw
 })
 
 Tab:AddButton({
-  Name = "武士脚本破解版",
+  Name = "等待更新",
   Callback = function()
 
-武士脚本AL = "武士脚本破解版_破解团队 Advanced Logic（AL）"loadstring(game:HttpGet("https://raw.githubusercontent.com/123hubd7gh/123hubd7gh/main/%E6%AD%A6%E5%A3%AB%E4%B8%AD%E5%BF%83%E7%A0%B4%E8%A7%A3%E7%89%88"))()
+
   end
 })
 
 Tab:AddButton({
-  Name = "禁漫中心",
+  Name = "等待更新",
   Callback = function()
 
-禁漫中心getgenv().LS="禁漫中心" loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/ng/main/jmlllllllIIIIlllllII.lua"))()---公益 大约65个服务器 祝好---公益 暑假无聊 进群：930667114 找群主领取禁漫天堂 轻松快乐
+
   end
 })
 
