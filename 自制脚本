@@ -1,40 +1,3 @@
-local Players = game:GetService("Players")
-local CoreGui = game:GetService("StarterGui")
-local DeveloperWhitelist = {"TMD2540z"} -- 开发者名单
-local notificationSentCount = 0 -- 用于记录通知发送次数
-
--- 发送通知的函数
-local function SendNotification(title, text, duration)
-    CoreGui:SetCore("SendNotification", {
-        Title = title,
-        Text = text,
-        Duration = duration,
-    })
-end
-
--- 检测特定玩家名的函数
-local function CheckPlayerName()
-    for _, player in pairs(Players:GetPlayers()) do
-        if table.find(DeveloperWhitelist, player.Name) then
-            notificationSentCount = notificationSentCount + 1
-            if notificationSentCount <= 2 then
-                SendNotification("开发者检测", "检测到开发者在本服务器", 5)
-            end
-            return -- 发现匹配后跳出循环
-        end
-    end
-end
-
--- 设置一个定时器，每隔一定时间执行一次检测
-game:GetService("RunService").Heartbeat:Connect(function()
-    CheckPlayerName()
-end)
-
--- 设置定时器的时间间隔，例如每10秒检测一次
-game:GetService("RunService").Heartbeat:Connect(function()
-    wait(10) -- 等待10秒
-end)
-
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 -- 创建屏幕GUI元素
@@ -85,7 +48,7 @@ Heartbeat:Connect(HeartbeatUpdate)
 
 -- 创建Orion窗口
 local Window = OrionLib:MakeWindow({
-    Name = "TM脚本",
+    Name = "👁TM脚本一代👁",
     HidePremium = false,
     SaveConfig = false,
     IntroText = "木剑屑制作",
@@ -101,11 +64,11 @@ local Tab = Window:MakeTab({
 Tab:AddParagraph("作者","TMD2540,TMD2540z")
 Tab:AddLabel("作者QQ：3787576013")
 Tab:AddLabel("QQ群：925300986")
-Tab:AddLabel("欢迎使用脚本")
-Tab:AddLabel("本脚本把一些脚本给作成了合集，方便脚本太多不好找（缝合）")
+Tab:AddLabel("👁👁👁👁👁")
+Tab:AddLabel("👁👁👁👁👁")
 Tab:AddLabel("脚本永久免费，禁止倒卖")
 Tab:AddLabel("欢迎投稿脚本")
-Tab:AddLabel("版本：v2")
+Tab:AddLabel("版本： 一代")
 
 local Tab = Window:MakeTab({
     Name = "人员榜",
@@ -147,6 +110,28 @@ Tab:AddButton({
   Callback = function()
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/PenguinManiack/Crucifix/main/Crucifix.lua'))()
+  end
+})
+
+local Tab = Window:MakeTab({
+        Name = "制作脚本（😅",
+        Icon = "rbxassetid://7734068321",
+        PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "废物指令",
+  Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+  end
+})
+
+Tab:AddButton({
+  Name = "废物",
+  Callback = function()
+
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/REDzHUB/RS/main/SimpleSpyMobile')))()
   end
 })
 
