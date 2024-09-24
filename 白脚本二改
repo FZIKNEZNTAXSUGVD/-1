@@ -1,23 +1,176 @@
--- 假设这里有一个函数可以获取当前服务器的ID
-function getServerId()
-    -- 这里应该调用Roblox API 或者游戏内的机制来获取服务器ID
-    -- 返回示例服务器ID
-    return 12345
+local MyUILibrary = {}
+MyUILibrary.__index = MyUILibrary
+
+function MyUILibrary.new(theme)
+    local self = setmetatable({}, MyUILibrary)
+    
+    self.Sections = {}
+    self.Theme = theme or "LightTheme"
+    
+    return self
 end
 
--- 根据服务器ID执行不同的脚本
-local serverId = getServerId()
-
-if serverId == 7239319209 then
-    -- 执行服务器12345的脚本
-    print("loadstring(game:HttpGet("https://raw.githubusercontent.com/FZIKNEZNTAXSUGVD/-1/main/TM%E8%84%9A%E6%9C%ACTM"))()")
-    -- 这里添加针对此服务器的具体脚本内容
-elseif serverId == 67890 then
-    -- 执行服务器67890的脚本
-    print("正在服务器67890执行脚本...")
-    -- 这里添加针对此服务器的具体脚本内容
-else
-    -- 默认情况下的脚本
-    print("未找到匹配的服务器ID，执行默认脚本...")
-    -- 这里添加默认情况下执行的脚本内容
+function MyUILibrary:NewSection(name)
+    local section = {}
+    section.Name = name
+    section.Elements = {}
+    self.Sections[name] = section
+    return section
 end
+
+function MyUILibrary:FindSection(name)
+    return self.Sections[name]
+end
+
+function MyUILibrary:CreateUI()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "MyUILibrary"
+    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    
+    for name, section in pairs(self.Sections) do
+        local frame = Instance.new("Frame")
+        frame.Name = name
+        frame.Size = UDim2.new(0, 200, 0, 300)
+        frame.Position = UDim2.new(0.5, -100, 0.5, -150 + (300 * (name-1)))
+        frame.BackgroundColor = Color3.fromRGB(255, 255, 255)
+        frame.Parent = screenGui
+        
+        for _, element in pairs(section.Elements) do
+            local uiElement = nil
+            if element.Type == "Button" then
+                uiElement = self:CreateButton(element)
+            elseif element.Type == "Toggle" then
+                uiElement = self:CreateToggle(element)
+            elseif element.Type == "TextBox" then
+                uiElement = self:CreateTextBox(element)
+            elseif element.Type == "Slider" then
+                uiElement = self:CreateSlider(element)
+            elseif element.Type == "Dropdown" then
+                uiElement = self:CreateDropdown(element)
+            end
+            uiElement.Parent = frame
+        end
+    end
+    
+    return screenGui
+end
+
+function MyUILibrary:CreateButton(element)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(1, 0, 0, 30)
+    button.Text = element.Text or "Button"
+    button.MouseButton1Click:Connect(function()
+        element.Callback()
+    end)
+    table.insert(element.Section.Elements, button)
+    return button
+end
+
+function MyUILibrary:CreateToggle(element)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 0, 30)
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(0.5, 0, 1, 0)
+    label.Text = element.Text or "Toggle"
+    label.Position = UDim2.new(0, 5, 0, 0)
+    local toggle = Instance.new("TextButton")
+    toggle.Size = UDim2.new(0.5, 0, 1, 0)
+    toggle.Position = UDim2.new(0.5, 0, 0, 0)
+    toggle.Text = "Off"
+    toggle.MouseButton1Click:Connect(function()
+        local state = toggle.Text == "On" and "Off" or "On"
+        toggle.Text = state
+        element.Callback(state)
+    end)
+    frame.Parent = element.Section
+    label.Parent = frame
+    toggle.Parent = frame
+    table.insert(element.Section.Elements, frame)
+    return frame
+end
+
+function MyUILibrary:CreateTextBox(element)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 0, 30)
+    local textBox = Instance.new("TextBox")
+    textBox.Size = UDim2.new(1, 0, 1, 0)
+    textBox.Text = element.Text or ""
+    textBox.Changed:Connect(function()
+        element.Callback(textBox.Text)
+    end)
+    frame.Parent = element.Section
+    textBox.Parent = frame
+    table.insert(element.Section.Elements, frame)
+    return frame
+end
+
+function MyUILibrary:CreateSlider(element)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 0, 30)
+    local slider = Instance.new("ScrollingFrame")
+    slider.Size = UDim2.new(1, 0, 0, 20)
+    slider.Position = UDim2.new(0, 0, 0.5, -10)
+    slider.BackgroundColor = Color3.fromRGB(200, 200, 200)
+    local bar = Instance.new("Frame")
+    bar.Size = UDim2.new(0, element.Value or 0, 1, 0)
+    bar.BackgroundColor = Color3.fromRGB(150, 150, 150)
+    bar.Parent = slider
+    slider.Parent = frame
+    frame.Parent = element.Section
+    local value = element.Value or 0
+    slider.Changed:Connect(function()
+        local percent = slider.CanvasSize.X / slider.AbsoluteWindowSize.X
+        value = element.Min + percent * (element.Max - element.Min)
+        element.Callback(math.floor(value))
+        bar.Size = UDim2.new(percent, 0, 1, 0)
+    end)
+    table.insert(element.Section.Elements, frame)
+    return frame
+end
+
+function MyUILibrary:CreateDropdown(element)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 0, 30)
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(0.5, 0, 1, 0)
+    label.Text = element.Text or "Dropdown"
+    label.Position = UDim2.new(0, 5, 0, 0)
+    local dropdown = Instance.new("TextButton")
+    dropdown.Size = UDim2.new(0.5, 0, 1, 0)
+    dropdown.Position = UDim2.new(0.5, 0, 0, 0)
+    dropdown.Text = element.Items and element.Items[1] or "Select"
+    dropdown.MouseButton1Click:Connect(function()
+        local isOpen = dropdown.Text == "Close"
+        dropdown.Text = isOpen and "Open" or "Close"
+        local window = self:FindSection("DropdownWindow")
+        if window then
+            window:Destroy()
+        end
+        if isOpen then
+            window = self:NewSection("DropdownWindow")
+            local frame = Instance.new("Frame")
+            frame.Size = UDim2.new(1, 0, 0, 150)
+            frame.Position = UDim2.new(0, 0, 1, 0)
+            frame.BackgroundColor = Color3.fromRGB(200, 200, 200)
+            frame.Parent = window
+            for _, v in pairs(element.Items) do
+                local btn = Instance.new("TextButton")
+                btn.Size = UDim2.new(1, 0, 0, 30)
+                btn.Text = v
+                btn.MouseButton1Click:Connect(function()
+                    element.Callback(v)
+                    dropdown.Text = v
+                    window:Destroy()
+                end)
+                btn.Parent = frame
+            end
+        end
+    end)
+    frame.Parent = element.Section
+    label.Parent = frame
+    dropdown.Parent = frame
+    table.insert(element.Section.Elements, frame)
+    return frame
+end
+
+return MyUILibrary
