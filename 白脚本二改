@@ -4,7 +4,7 @@ local Window = OrionLib:MakeWindow({
     Name = "Cm馋猫",
     HidePremium = false,
     SaveConfig = false,
-    IntroText = "木剑屑制作",
+    IntroText = "XXX制作",
     ConfigFolder = "欢迎使用"
 })
 
@@ -14,8 +14,8 @@ local Tab = Window:MakeTab({
     PremiumOnly = false
 })
 
-Tab:AddParagraph("作者","TMD2540,TMD2540z")
-Tab:AddLabel("作者QQ：3787576013")
+Tab:AddParagraph("作者"保密")
+Tab:AddLabel("作者QQ：378##")
 Tab:AddLabel("QQ群：925300986")
 Tab:AddLabel("版本： 二代")
 
