@@ -4,7 +4,7 @@ local Window = OrionLib:MakeWindow({
     Name = "Cm馋猫",
     HidePremium = false,
     SaveConfig = false,
-    IntroText = "XXX制作",
+    IntroText = "###制作",
     ConfigFolder = "欢迎使用"
 })
 
@@ -14,8 +14,8 @@ local Tab = Window:MakeTab({
     PremiumOnly = false
 })
 
-Tab:AddParagraph("作者"保密")
-Tab:AddLabel("作者QQ：378##")
+Tab:AddParagraph("作者","T")
+Tab:AddLabel("作者QQ：3787576013")
 Tab:AddLabel("QQ群：925300986")
 Tab:AddLabel("版本： 二代")
 
@@ -23,6 +23,23 @@ local Tab = Window:MakeTab({
     Name = "某个塔防游戏",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "二连抽无动画",
+  Callback = function()
+  
+local args = {
+    [1] = 1011,
+    [2] = {
+        [1] = 1,
+        [2] = "Money",
+        [3] = 2
+    }
+}
+
+game:GetService("ReplicatedStorage").RemoteFunction.clientRequestServer:InvokeServer(unpack(args))  
+end
 })
 
 Tab:AddButton({
@@ -35,6 +52,23 @@ local args = {
         [1] = 1,
         [2] = "Money",
         [3] = 10
+    }
+}
+
+game:GetService("ReplicatedStorage").RemoteFunction.clientRequestServer:InvokeServer(unpack(args))  
+end
+})
+
+Tab:AddButton({
+  Name = "二连抽无动画",
+  Callback = function()
+  
+local args = {
+    [1] = 1011,
+    [2] = {
+        [1] = 1,
+        [2] = "Money",
+        [3] = 20
     }
 }
 
