@@ -1,7 +1,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({
-    Name = "Cm馋猫",
+    Name = "###",
     HidePremium = false,
     SaveConfig = false,
     IntroText = "###制作",
@@ -20,7 +20,7 @@ Tab:AddLabel("QQ群：925300986")
 Tab:AddLabel("版本： 二代")
 
 local Tab = Window:MakeTab({
-    Name = "某个塔防游戏",
+    Name = "火柴人塔防",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
 })
