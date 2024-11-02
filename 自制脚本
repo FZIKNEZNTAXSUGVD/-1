@@ -48,7 +48,7 @@ Heartbeat:Connect(HeartbeatUpdate)
 
 -- 创建Orion窗口
 local Window = OrionLib:MakeWindow({
-    Name = "👁TM脚本一代👁",
+    Name = "TM脚本一代",
     HidePremium = false,
     SaveConfig = false,
     IntroText = "木剑屑制作",
@@ -64,8 +64,8 @@ local Tab = Window:MakeTab({
 Tab:AddParagraph("作者","TMD2540,TMD2540z")
 Tab:AddLabel("作者QQ：3787576013")
 Tab:AddLabel("QQ群：925300986")
-Tab:AddLabel("👁👁👁👁👁")
-Tab:AddLabel("👁👁👁👁👁")
+Tab:AddLabel("更新变慢")
+Tab:AddLabel("没事")
 Tab:AddLabel("脚本永久免费，禁止倒卖")
 Tab:AddLabel("欢迎投稿脚本")
 Tab:AddLabel("版本： 一代")
@@ -114,13 +114,13 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/PenguinManiack/Crucif
 })
 
 local Tab = Window:MakeTab({
-        Name = "制作脚本（😅",
+        Name = "抓数值",
         Icon = "rbxassetid://7734068321",
         PremiumOnly = false
 })
 
 Tab:AddButton({
-  Name = "废物指令",
+  Name = "指令",
   Callback = function()
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
@@ -879,6 +879,130 @@ Tab:AddButton({
   Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/littlegui/main/SBS"))()
+  end
+})
+
+Tab:AddButton({
+  Name = "等待更新",
+  Callback = function()
+
+
+  end
+})
+
+local Tab = Window:MakeTab({
+        Name = "坦克大战",
+        Icon = "rbxassetid://7734068321",
+        PremiumOnly = false
+})
+
+Tab:AddLabel("使用方法点击以下的属性即可加一点属性。不需要技能点。可以突破上限。")
+
+Tab:AddButton({
+  Name = "体力伤害",
+  Callback = function()
+
+local args = {
+    [1] = "Body Damage"
+}
+
+game:GetService("ReplicatedStorage").Skills.Upgrade:FireServer(unpack(args))
+  end
+})
+
+Tab:AddButton({
+  Name = "子弹伤害",
+  Callback = function()
+
+local args = {
+    [1] = "Bullet Damage"
+}
+
+game:GetService("ReplicatedStorage").Skills.Upgrade:FireServer(unpack(args))
+  end
+})
+
+Tab:AddButton({
+  Name = "子弹穿透",
+  Callback = function()
+
+local args = {
+    [1] = "Bullet Penetration"
+}
+
+game:GetService("ReplicatedStorage").Skills.Upgrade:FireServer(unpack(args))
+  end
+})
+
+Tab:AddButton({
+  Name = "子弹速度",
+  Callback = function()
+
+local args = {
+    [1] = "Bullet Speed"
+}
+
+game:GetService("ReplicatedStorage").Skills.Upgrade:FireServer(unpack(args))
+  end
+})
+
+Tab:AddButton({
+  Name = "生命回复",
+  Callback = function()
+
+local args = {
+    [1] = "Health Regeneration"
+}
+
+game:GetService("ReplicatedStorage").Skills.Upgrade:FireServer(unpack(args))
+  end
+})
+
+Tab:AddButton({
+  Name = "最大生命",
+  Callback = function()
+
+local args = {
+    [1] = "Max Health"
+}
+
+game:GetService("ReplicatedStorage").Skills.Upgrade:FireServer(unpack(args))
+  end
+})
+
+Tab:AddButton({
+  Name = "移动速度",
+  Callback = function()
+
+local args = {
+    [1] = "Movement Speed"
+}
+
+game:GetService("ReplicatedStorage").Skills.Upgrade:FireServer(unpack(args))
+  end
+})
+
+Tab:AddButton({
+  Name = "冷却加载",
+  Callback = function()
+
+local args = {
+    [1] = "Reload"
+}
+
+game:GetService("ReplicatedStorage").Skills.Upgrade:FireServer(unpack(args))
+  end
+})
+
+Tab:AddButton({
+  Name = "盾牌",
+  Callback = function()
+
+local args = {
+    [1] = "Shield"
+}
+
+game:GetService("ReplicatedStorage").Skills.Upgrade:FireServer(unpack(args))
   end
 })
 
