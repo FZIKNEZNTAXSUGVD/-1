@@ -48,11 +48,11 @@ Heartbeat:Connect(HeartbeatUpdate)
 
 -- 创建Orion窗口
 local Window = OrionLib:MakeWindow({
-    Name = "TM脚本一代",
+    Name = "TM脚本Ⅴ1",
     HidePremium = false,
     SaveConfig = false,
     IntroText = "木剑屑制作",
-    ConfigFolder = "欢迎使用"
+    ConfigFolder = "已停更（感谢...）"
 })
 
 local Tab = Window:MakeTab({
@@ -64,24 +64,27 @@ local Tab = Window:MakeTab({
 Tab:AddParagraph("作者","TMD2540,TMD2540z")
 Tab:AddLabel("作者QQ：3787576013")
 Tab:AddLabel("QQ群：925300986")
-Tab:AddLabel("更新变慢")
-Tab:AddLabel("没事")
+Tab:AddLabel("脚本创作时间：2024 7 11")
+Tab:AddLabel("最后一次更新2024 12 1")
+Tab:AddLabel("停更日期：2024 12 29")
+Tab:AddLabel("已停更")
+Tab:AddLabel("虽然一路走来没有人任何人帮我，但也感谢你们")
 Tab:AddLabel("脚本永久免费，禁止倒卖")
 Tab:AddLabel("欢迎投稿脚本")
 Tab:AddLabel("版本： 一代")
 
 local Tab = Window:MakeTab({
-    Name = "人员榜",
+    Name = "贡献榜",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
 })
 
 Tab:AddLabel("群主：TMD2540z")
 Tab:AddLabel("副群主：kjert231ja")
-Tab:AddLabel("管理：不愿意透露")
-Tab:AddLabel("管理：不愿意透露")
-Tab:AddLabel("管理：不愿意透露")
-Tab:AddLabel("管理：不愿意透露")
+Tab:AddLabel("无")
+Tab:AddLabel("无")
+Tab:AddLabel("无")
+Tab:AddLabel("无")
 
 local Tab = Window:MakeTab({
         Name = "物品脚本",
