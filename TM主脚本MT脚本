@@ -1,0 +1,373 @@
+-- SilentUI库核心
+local SilentUI = {}
+SilentUI.__index = SilentUI
+
+-- 创建新窗口
+function SilentUI:new(title)
+    local self = setmetatable({}, SilentUI)
+    self.title = title
+    self.tabs = {}
+    self.gui = Instance.new("ScreenGui")
+    self.gui.Name = "SilentUI"
+    self.gui.Parent = game:GetService("CoreGui")
+    return self
+end
+
+-- 创建新标签页
+function SilentUI:Tab(name, icon)
+    local tab = {
+        name = name,
+        icon = icon,
+        sections = {}
+    }
+    table.insert(self.tabs, tab)
+    return tab
+end
+
+-- 在标签页中创建新部分
+function tab:section(name, collapsible)
+    local section = {
+        name = name,
+        collapsible = collapsible,
+        controls = {}
+    }
+    table.insert(self.sections, section)
+    return section
+end
+
+-- 控件方法
+function section:Label(text)
+    local label = {
+        type = "Label",
+        text = text
+    }
+    table.insert(self.controls, label)
+    return label
+end
+
+function section:Button(text, callback)
+    local button = {
+        type = "Button",
+        text = text,
+        callback = callback
+    }
+    table.insert(self.controls, button)
+    return button
+end
+
+function section:Toggle(text, flag, default, callback)
+    local toggle = {
+        type = "Toggle",
+        text = text,
+        flag = flag,
+        state = default,
+        callback = callback
+    }
+    table.insert(self.controls, toggle)
+    return toggle
+end
+
+function section:Slider(text, flag, min, max, default, callback)
+    local slider = {
+        type = "Slider",
+        text = text,
+        flag = flag,
+        min = min,
+        max = max,
+        value = default,
+        callback = callback
+    }
+    table.insert(self.controls, slider)
+    return slider
+end
+
+function section:Textbox(text, flag, placeholder, callback)
+    local textbox = {
+        type = "Textbox",
+        text = text,
+        flag = flag,
+        placeholder = placeholder,
+        value = "",
+        callback = callback
+    }
+    table.insert(self.controls, textbox)
+    return textbox
+end
+
+-- 渲染UI
+function SilentUI:Render()
+    -- 创建主窗口框架
+    local mainFrame = Instance.new("Frame")
+    mainFrame.Size = UDim2.new(0.4, 0, 0.6, 0)
+    mainFrame.Position = UDim2.new(0.3, 0, 0.2, 0)
+    mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+    mainFrame.Parent = self.gui
+    
+    -- 创建标题栏
+    local titleBar = Instance.new("Frame")
+    titleBar.Size = UDim2.new(1, 0, 0.08, 0)
+    titleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+    titleBar.Parent = mainFrame
+    
+    local title = Instance.new("TextLabel")
+    title.Text = self.title
+    title.Size = UDim2.new(0.8, 0, 1, 0)
+    title.TextColor3 = Color3.fromRGB(200, 200, 255)
+    title.Font = Enum.Font.GothamBold
+    title.TextSize = 18
+    title.Parent = titleBar
+    
+    -- 创建标签页按钮
+    local tabButtons = Instance.new("Frame")
+    tabButtons.Size = UDim2.new(1, 0, 0.1, 0)
+    tabButtons.Position = UDim2.new(0, 0, 0.08, 0)
+    tabButtons.BackgroundTransparency = 1
+    tabButtons.Parent = mainFrame
+    
+    local tabLayout = Instance.new("UIListLayout")
+    tabLayout.FillDirection = Enum.FillDirection.Horizontal
+    tabLayout.Parent = tabButtons
+    
+    for i, tab in ipairs(self.tabs) do
+        local tabBtn = Instance.new("TextButton")
+        tabBtn.Text = tab.name
+        tabBtn.Size = UDim2.new(0.2, 0, 1, 0)
+        tabBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
+        tabBtn.TextColor3 = Color3.fromRGB(200, 200, 255)
+        tabBtn.Font = Enum.Font.Gotham
+        tabBtn.TextSize = 14
+        tabBtn.Parent = tabButtons
+        
+        -- 标签页点击事件
+        tabBtn.MouseButton1Click:Connect(function()
+            self:ShowTab(tab)
+        end)
+    end
+    
+    -- 创建内容区域
+    self.contentFrame = Instance.new("Frame")
+    self.contentFrame.Size = UDim2.new(1, 0, 0.82, 0)
+    self.contentFrame.Position = UDim2.new(0, 0, 0.18, 0)
+    self.contentFrame.BackgroundTransparency = 1
+    self.contentFrame.Parent = mainFrame
+    
+    -- 显示第一个标签页
+    if #self.tabs > 0 then
+        self:ShowTab(self.tabs[1])
+    end
+end
+
+-- 显示指定标签页
+function SilentUI:ShowTab(tab)
+    -- 清除当前内容
+    for _, child in ipairs(self.contentFrame:GetChildren()) do
+        child:Destroy()
+    end
+    
+    -- 创建滚动框架
+    local scrollFrame = Instance.new("ScrollingFrame")
+    scrollFrame.Size = UDim2.new(1, 0, 1, 0)
+    scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+    scrollFrame.ScrollBarThickness = 5
+    scrollFrame.Parent = self.contentFrame
+    
+    local layout = Instance.new("UIListLayout")
+    layout.Padding = UDim.new(0, 10)
+    layout.Parent = scrollFrame
+    
+    -- 渲染每个部分
+    for _, section in ipairs(tab.sections) do
+        local sectionFrame = Instance.new("Frame")
+        sectionFrame.Size = UDim2.new(0.95, 0, 0, 0)
+        sectionFrame.AutomaticSize = Enum.AutomaticSize.Y
+        sectionFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 50)
+        sectionFrame.Parent = scrollFrame
+        
+        local sectionTitle = Instance.new("TextLabel")
+        sectionTitle.Text = section.name
+        sectionTitle.Size = UDim2.new(1, 0, 0, 30)
+        sectionTitle.TextColor3 = Color3.fromRGB(180, 180, 220)
+        sectionTitle.Font = Enum.Font.GothamBold
+        sectionTitle.TextSize = 16
+        sectionTitle.Parent = sectionFrame
+        
+        local controlsFrame = Instance.new("Frame")
+        controlsFrame.Size = UDim2.new(1, 0, 0, 0)
+        controlsFrame.AutomaticSize = Enum.AutomaticSize.Y
+        controlsFrame.BackgroundTransparency = 1
+        controlsFrame.Position = UDim2.new(0, 0, 0, 40)
+        controlsFrame.Parent = sectionFrame
+        
+        local controlsLayout = Instance.new("UIListLayout")
+        controlsLayout.Padding = UDim.new(0, 5)
+        controlsLayout.Parent = controlsFrame
+        
+        -- 渲染控件
+        for _, control in ipairs(section.controls) do
+            if control.type == "Label" then
+                local label = Instance.new("TextLabel")
+                label.Text = control.text
+                label.Size = UDim2.new(1, 0, 0, 25)
+                label.TextColor3 = Color3.fromRGB(200, 200, 255)
+                label.Font = Enum.Font.Gotham
+                label.TextSize = 14
+                label.Parent = controlsFrame
+                
+            elseif control.type == "Button" then
+                local button = Instance.new("TextButton")
+                button.Text = control.text
+                button.Size = UDim2.new(1, 0, 0, 30)
+                button.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
+                button.TextColor3 = Color3.fromRGB(200, 200, 255)
+                button.Font = Enum.Font.Gotham
+                button.TextSize = 14
+                button.Parent = controlsFrame
+                
+                button.MouseButton1Click:Connect(function()
+                    control.callback()
+                end)
+                
+            elseif control.type == "Toggle" then
+                local toggleFrame = Instance.new("Frame")
+                toggleFrame.Size = UDim2.new(1, 0, 0, 30)
+                toggleFrame.BackgroundTransparency = 1
+                toggleFrame.Parent = controlsFrame
+                
+                local label = Instance.new("TextLabel")
+                label.Text = control.text
+                label.Size = UDim2.new(0.7, 0, 1, 0)
+                label.TextColor3 = Color3.fromRGB(200, 200, 255)
+                label.Font = Enum.Font.Gotham
+                label.TextSize = 14
+                label.TextXAlignment = Enum.TextXAlignment.Left
+                label.Parent = toggleFrame
+                
+                local toggle = Instance.new("TextButton")
+                toggle.Size = UDim2.new(0.2, 0, 0.7, 0)
+                toggle.Position = UDim2.new(0.75, 0, 0.15, 0)
+                toggle.BackgroundColor3 = control.state and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(70, 70, 90)
+                toggle.Text = ""
+                toggle.Parent = toggleFrame
+                
+                -- 更新状态函数
+                local function updateState(state)
+                    control.state = state
+                    toggle.BackgroundColor3 = state and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(70, 70, 90)
+                    if control.callback then
+                        control.callback(state)
+                    end
+                end
+                
+                toggle.MouseButton1Click:Connect(function()
+                    updateState(not control.state)
+                end)
+                
+                -- 初始状态
+                updateState(control.state)
+                
+            elseif control.type == "Slider" then
+                local sliderFrame = Instance.new("Frame")
+                sliderFrame.Size = UDim2.new(1, 0, 0, 50)
+                sliderFrame.BackgroundTransparency = 1
+                sliderFrame.Parent = controlsFrame
+                
+                local label = Instance.new("TextLabel")
+                label.Text = control.text
+                label.Size = UDim2.new(1, 0, 0, 20)
+                label.TextColor3 = Color3.fromRGB(200, 200, 255)
+                label.Font = Enum.Font.Gotham
+                label.TextSize = 14
+                label.TextXAlignment = Enum.TextXAlignment.Left
+                label.Parent = sliderFrame
+                
+                local sliderBg = Instance.new("Frame")
+                sliderBg.Size = UDim2.new(1, 0, 0, 10)
+                sliderBg.Position = UDim2.new(0, 0, 0, 30)
+                sliderBg.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+                sliderBg.Parent = sliderFrame
+                
+                local sliderFill = Instance.new("Frame")
+                sliderFill.Size = UDim2.new((control.value - control.min) / (control.max - control.min), 0, 1, 0)
+                sliderFill.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+                sliderFill.Parent = sliderBg
+                
+                local valueLabel = Instance.new("TextLabel")
+                valueLabel.Text = tostring(control.value)
+                valueLabel.Size = UDim2.new(0.2, 0, 0, 20)
+                valueLabel.Position = UDim2.new(0.8, 0, 0, 0)
+                valueLabel.TextColor3 = Color3.fromRGB(200, 200, 255)
+                valueLabel.Font = Enum.Font.Gotham
+                valueLabel.TextSize = 14
+                valueLabel.TextXAlignment = Enum.TextXAlignment.Right
+                valueLabel.Parent = sliderFrame
+                
+                -- 滑块交互逻辑
+                local dragging = false
+                
+                sliderBg.MouseButton1Down:Connect(function()
+                    dragging = true
+                end)
+                
+                game:GetService("UserInputService").InputEnded:Connect(function(input)
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        dragging = false
+                    end
+                end)
+                
+                game:GetService("RunService").Heartbeat:Connect(function()
+                    if dragging then
+                        local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+                        local relativeX = (mouse.X - sliderBg.AbsolutePosition.X) / sliderBg.AbsoluteSize.X
+                        relativeX = math.clamp(relativeX, 0, 1)
+                        local value = math.floor(control.min + (control.max - control.min) * relativeX)
+                        
+                        sliderFill.Size = UDim2.new(relativeX, 0, 1, 0)
+                        valueLabel.Text = tostring(value)
+                        
+                        if control.callback then
+                            control.callback(value)
+                        end
+                    end
+                end)
+                
+            elseif control.type == "Textbox" then
+                local textboxFrame = Instance.new("Frame")
+                textboxFrame.Size = UDim2.new(1, 0, 0, 50)
+                textboxFrame.BackgroundTransparency = 1
+                textboxFrame.Parent = controlsFrame
+                
+                local label = Instance.new("TextLabel")
+                label.Text = control.text
+                label.Size = UDim2.new(1, 0, 0, 20)
+                label.TextColor3 = Color3.fromRGB(200, 200, 255)
+                label.Font = Enum.Font.Gotham
+                label.TextSize = 14
+                label.TextXAlignment = Enum.TextXAlignment.Left
+                label.Parent = textboxFrame
+                
+                local textbox = Instance.new("TextBox")
+                textbox.Size = UDim2.new(1, 0, 0, 30)
+                textbox.Position = UDim2.new(0, 0, 0, 25)
+                textbox.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
+                textbox.TextColor3 = Color3.fromRGB(200, 200, 255)
+                textbox.Font = Enum.Font.Gotham
+                textbox.TextSize = 14
+                textbox.PlaceholderText = control.placeholder
+                textbox.Parent = textboxFrame
+                
+                textbox.FocusLost:Connect(function()
+                    if control.callback then
+                        control.callback(textbox.Text)
+                    end
+                end)
+            end
+        end
+    end
+    
+    -- 更新滚动区域大小
+    layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        scrollFrame.CanvasSize = UDim2.new(0, 0, 0, layout.AbsoluteContentSize.Y)
+    end)
+end
+
+return SilentUI
