@@ -1,25 +1,19 @@
-local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
-local TweenService = game:GetService("TweenService")
-local RunService = game:GetService("RunService")
-
--- 主库定义
 local CANUI = {}
-CANUI.__index = CANUI
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
 
--- 科技风颜色常量
-CANUI.COLORS = {
+-- 样式常量
+CANUI.Styles = {
     BLACK = Color3.fromHex("#050505"),
     GREEN = Color3.fromHex("#00ff40"),
     DARK_GRAY = Color3.fromHex("#121212"),
     ACCENT_GREEN = Color3.fromHex("#00cc33"),
     MID_GRAY = Color3.fromHex("#1a1a1a"),
-    TOGGLE_BG = Color3.fromHex("#2a2a2a"), -- 开关关闭时的背景色
-    BRIGHT_GREEN = Color3.fromHex("#00ff66") -- 开关开启时的颜色
-}
-
--- 动画常量
-CANUI.ANIMATIONS = {
+    TOGGLE_BG = Color3.fromHex("#2a2a2a"),
+    BRIGHT_GREEN = Color3.fromHex("#00ff66"),
+    
     BASE_TWEEN = TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
     MINIMIZE_TWEEN = TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
     FADE_TWEEN = TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
@@ -45,299 +39,273 @@ local function applyStroke(element, color, transparency, thickness)
 end
 
 local function smoothTween(object, properties, tweenInfo)
-    local tween = TweenService:Create(object, tweenInfo or CANUI.ANIMATIONS.BASE_TWEEN, properties)
+    local tween = TweenService:Create(object, tweenInfo or CANUI.Styles.BASE_TWEEN, properties)
     tween:Play()
     return tween
 end
 
-function CANUI.new(windowName)
-    local self = setmetatable({}, CANUI)
-    
-    local player = Players.LocalPlayer
-    local playerGui = player:WaitForChild("PlayerGui")
-    
-    -- 创建主GUI
-    self.gui = Instance.new("ScreenGui")
-    self.gui.Name = windowName or "CANScriptUI"
-    self.gui.ResetOnSpawn = false
-    self.gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    self.gui.Parent = playerGui
-    
-    -- 防止多次创建
-    if self.gui:FindFirstChild("MainFrame") then
-        self.gui:FindFirstChild("MainFrame"):Destroy()
+-- 创建主GUI容器
+function CANUI.CreateScreenGui(parent)
+    if not parent then
+        local player = Players.LocalPlayer
+        parent = player:WaitForChild("PlayerGui")
     end
     
-    self.windows = {}
-    self.tabs = {}
-    self.currentTab = nil
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "CANScriptUI"
+    gui.ResetOnSpawn = false
+    gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    gui.Parent = parent
     
-    self:CreateMainFrame()
+    -- 防止多次创建
+    if gui:FindFirstChild("MainFrame") then
+        gui:FindFirstChild("MainFrame"):Destroy()
+    end
     
-    return self
+    return gui
 end
 
-function CANUI:CreateMainFrame()
+-- 窗口管理
+function CANUI.CreateWindow(gui, options)
+    options = options or {}
+    
+    local window = {
+        gui = gui,
+        minimized = false,
+        enlarged = false,
+        currentTab = nil,
+        tabs = {},
+        elements = {}
+    }
+    
     -- 创建主窗口
-    self.mainFrame = Instance.new("Frame")
-    self.mainFrame.Name = "MainFrame"
-    self.mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-    self.mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-    self.mainFrame.Size = UDim2.new(0.55, 0, 0.55, 0)
-    self.mainFrame.BackgroundColor3 = self.COLORS.BLACK
-    self.mainFrame.BackgroundTransparency = 0.15
-    
-    applyCorner(self.mainFrame, 0.02)
-    applyStroke(self.mainFrame, self.COLORS.GREEN, 0.6, 1)
-    
-    -- 初始入场动画
-    self.mainFrame.BackgroundTransparency = 1
-    self.mainFrame.Size = UDim2.new(0, 0, 0, 0)
-    smoothTween(self.mainFrame, {
-        BackgroundTransparency = 0.15,
-        Size = UDim2.new(0.55, 0, 0.55, 0)
-    }, TweenInfo.new(0.5, Enum.EasingStyle.Back))
-    
-    -- 标题栏
-    self.titleBar = Instance.new("Frame")
-    self.titleBar.Name = "TitleBar"
-    self.titleBar.Size = UDim2.new(1, 0, 0.095, 0)
-    self.titleBar.Position = UDim2.new(0, 0, 0, 0)
-    self.titleBar.BackgroundColor3 = self.COLORS.DARK_GRAY
-    self.titleBar.BackgroundTransparency = 0.1
-    
-    applyCorner(self.titleBar, 0.02)
-    applyStroke(self.titleBar, self.COLORS.GREEN, 0.6, 1)
-    
-    -- 标题文本
-    self.title = Instance.new("TextLabel")
-    self.title.Name = "Title"
-    self.title.Text = self.gui.Name
-    self.title.Size = UDim2.new(0.25, 0, 0.7, 0)
-    self.title.AnchorPoint = Vector2.new(0.5, 0.5)
-    self.title.Position = UDim2.new(0.5, 0, 0.5, 0)
-    self.title.BackgroundTransparency = 1
-    self.title.TextColor3 = self.COLORS.GREEN
-    self.title.Font = Enum.Font.Code
-    self.title.TextSize = 18
-    self.title.TextXAlignment = Enum.TextXAlignment.Center
-    self.title.Parent = self.titleBar
-    
-    -- 添加霓虹效果
-    local titleStroke = applyStroke(self.title, self.COLORS.GREEN, 0.5, 1)
-    
-    -- 关闭按钮
-    self.closeBtn = Instance.new("TextButton")
-    self.closeBtn.Name = "CloseButton"
-    self.closeBtn.Text = "×"
-    self.closeBtn.AnchorPoint = Vector2.new(1, 0.5)
-    self.closeBtn.Position = UDim2.new(0.98, 0, 0.5, 0)
-    self.closeBtn.Size = UDim2.new(0, 32, 0, 32)
-    self.closeBtn.BackgroundTransparency = 1
-    self.closeBtn.TextColor3 = self.COLORS.GREEN
-    self.closeBtn.TextTransparency = 0.2
-    self.closeBtn.Font = Enum.Font.GothamBold
-    self.closeBtn.TextSize = 28
-    self.closeBtn.AutoButtonColor = false
-    
-    -- 最小化按钮
-    self.minBtn = Instance.new("TextButton")
-    self.minBtn.Name = "MinButton"
-    self.minBtn.Text = "–"
-    self.minBtn.AnchorPoint = Vector2.new(0, 0.5)
-    self.minBtn.Position = UDim2.new(0.02, 0, 0.5, 0)
-    self.minBtn.Size = UDim2.new(0, 32, 0, 32)
-    self.minBtn.BackgroundTransparency = 1
-    self.minBtn.TextColor3 = self.COLORS.GREEN
-    self.minBtn.TextTransparency = 0.2
-    self.minBtn.Font = Enum.Font.GothamBold
-    self.minBtn.TextSize = 28
-    self.minBtn.AutoButtonColor = false
-    
-    -- 尺寸切换按钮
-    self.sizeBtn = Instance.new("TextButton")
-    self.sizeBtn.Name = "SizeButton"
-    self.sizeBtn.Text = "▣"
-    self.sizeBtn.AnchorPoint = Vector2.new(0, 0.5)
-    self.sizeBtn.Position = UDim2.new(0.07, 0, 0.5, 0)
-    self.sizeBtn.Size = UDim2.new(0, 32, 0, 32)
-    self.sizeBtn.BackgroundTransparency = 1
-    self.sizeBtn.TextColor3 = self.COLORS.GREEN
-    self.sizeBtn.TextTransparency = 0.2
-    self.sizeBtn.Font = Enum.Font.GothamBold
-    self.sizeBtn.TextSize = 22
-    self.sizeBtn.AutoButtonColor = false
-    
-    -- 内容区域
-    self.contentFrame = Instance.new("Frame")
-    self.contentFrame.Name = "ContentFrame"
-    self.contentFrame.Size = UDim2.new(1, -4, 0.9, -4)
-    self.contentFrame.Position = UDim2.new(0, 2, 0.1, 2)
-    self.contentFrame.BackgroundTransparency = 1
-    self.contentFrame.ClipsDescendants = true
-    
-    -- 主分类栏
-    self.categoryFrame = Instance.new("ScrollingFrame")
-    self.categoryFrame.Name = "CategoryFrame"
-    self.categoryFrame.Size = UDim2.new(0.3, -2, 1, -4)
-    self.categoryFrame.Position = UDim2.new(0, 2, 0, 2)
-    self.categoryFrame.BackgroundColor3 = self.COLORS.DARK_GRAY
-    self.categoryFrame.BackgroundTransparency = 0.3
-    self.categoryFrame.ScrollBarThickness = 3
-    self.categoryFrame.ScrollBarImageTransparency = 0.7
-    self.categoryFrame.ScrollingDirection = Enum.ScrollingDirection.Y
-    self.categoryFrame.ScrollBarImageColor3 = self.COLORS.GREEN
-    self.categoryFrame.ScrollBarImageTransparency = 0.4
-    self.categoryFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
-    self.categoryFrame.ScrollingEnabled = true
-    
-    applyStroke(self.categoryFrame, self.COLORS.GREEN, 0.7, 1)
-    applyCorner(self.categoryFrame, 0.02)
-    
-    self.categoryLayout = Instance.new("UIListLayout")
-    self.categoryLayout.Padding = UDim.new(0, 5)
-    self.categoryLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    self.categoryLayout.Parent = self.categoryFrame
-    
-    -- 分隔线
-    self.separator = Instance.new("Frame")
-    self.separator.Name = "Separator"
-    self.separator.Size = UDim2.new(0.008, 0, 0.96, 0)
-    self.separator.Position = UDim2.new(0.3, 0, 0.02, 0)
-    self.separator.BackgroundColor3 = self.COLORS.GREEN
-    self.separator.BackgroundTransparency = 0.4
-    self.separator.BorderSizePixel = 0
-    
-    -- 子分类栏
-    self.subcategoryFrame = Instance.new("ScrollingFrame")
-    self.subcategoryFrame.Name = "SubcategoryFrame"
-    self.subcategoryFrame.Size = UDim2.new(0.69, -4, 1, -4)
-    self.subcategoryFrame.Position = UDim2.new(0.305, 0, 0, 2)
-    self.subcategoryFrame.BackgroundColor3 = self.COLORS.MID_GRAY
-    self.subcategoryFrame.BackgroundTransparency = 0.3
-    self.subcategoryFrame.ScrollBarThickness = 3
-    self.subcategoryFrame.ScrollBarImageTransparency = 0.7
-    self.subcategoryFrame.ScrollingDirection = Enum.ScrollingDirection.Y
-    self.subcategoryFrame.ScrollBarImageColor3 = self.COLORS.GREEN
-    self.subcategoryFrame.ScrollBarImageTransparency = 0.4
-    self.subcategoryFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
-    self.subcategoryFrame.ScrollingEnabled = true
-    
-    applyStroke(self.subcategoryFrame, self.COLORS.GREEN, 0.7, 1)
-    applyCorner(self.subcategoryFrame, 0.02)
-    
-    self.subcategoryLayout = Instance.new("UIListLayout")
-    self.subcategoryLayout.Padding = UDim.new(0, 5)
-    self.subcategoryLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    self.subcategoryLayout.Parent = self.subcategoryFrame
-    
-    -- 悬浮窗
-    self.floatIcon = Instance.new("TextButton")
-    self.floatIcon.Name = "FloatIcon"
-    self.floatIcon.Text = self.gui.Name
-    self.floatIcon.Size = UDim2.new(0.08, 0, 0.08, 0)
-    self.floatIcon.Position = UDim2.new(0.92, 0, 0.92, 0)
-    self.floatIcon.AnchorPoint = Vector2.new(0.5, 0.5)
-    self.floatIcon.BackgroundColor3 = self.COLORS.BLACK
-    self.floatIcon.BackgroundTransparency = 0.5
-    self.floatIcon.TextColor3 = self.COLORS.GREEN
-    self.floatIcon.Font = Enum.Font.Code
-    self.floatIcon.TextSize = 18
-    self.floatIcon.TextScaled = true
-    self.floatIcon.AutoButtonColor = false
-    self.floatIcon.Visible = false
-    
-    applyStroke(self.floatIcon, self.COLORS.GREEN, 0.4, 1.5)
-    applyCorner(self.floatIcon, 0.2)
-    
-    -- 组装UI
-    self.closeBtn.Parent = self.titleBar
-    self.minBtn.Parent = self.titleBar
-    self.sizeBtn.Parent = self.titleBar
-    self.titleBar.Parent = self.mainFrame
-    self.categoryFrame.Parent = self.contentFrame
-    self.separator.Parent = self.contentFrame
-    self.subcategoryFrame.Parent = self.contentFrame
-    self.contentFrame.Parent = self.mainFrame
-    self.mainFrame.Parent = self.gui
-    self.floatIcon.Parent = self.gui
-    
-    -- 添加动画和交互
-    self:AddAnimations()
-    self:AddDragFunctionality()
-    
-    -- 布局尺寸更新连接
-    self.categoryLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-        self.categoryFrame.CanvasSize = UDim2.new(0, 0, 0, self.categoryLayout.AbsoluteContentSize.Y)
-    end)
-    
-    self.subcategoryLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-        self.subcategoryFrame.CanvasSize = UDim2.new(0, 0, 0, self.subcategoryLayout.AbsoluteContentSize.Y)
-    end)
-    
-    -- 自适应调整
-    self:UpdateUI()
-    workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(function()
-        self:UpdateUI()
-    end)
-    self.gui:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
-        self:UpdateUI()
-    end)
-    
-    return self
-end
+    local mainFrame = Instance.new("Frame")
+    mainFrame.Name = "MainFrame"
+    mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+    mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+    mainFrame.Size = options.size or UDim2.new(0.55, 0, 0.55, 0)
+    mainFrame.BackgroundColor3 = CANUI.Styles.BLACK
+    mainFrame.BackgroundTransparency = 0.15
+    mainFrame.Parent = gui
 
-function CANUI:AddAnimations()
-    -- 关闭按钮悬停动画
-    self.closeBtn.MouseEnter:Connect(function()
-        smoothTween(self.closeBtn, {TextColor3 = Color3.new(1,0.2,0.2), TextTransparency = 0})
-    end)
-    self.closeBtn.MouseLeave:Connect(function()
-        smoothTween(self.closeBtn, {TextColor3 = self.COLORS.GREEN, TextTransparency = 0.2})
-    end)
+    applyCorner(mainFrame, 0.02)
+    applyStroke(mainFrame, CANUI.Styles.GREEN, 0.6, 1)
     
-    -- 最小化按钮悬停动画
-    self.minBtn.MouseEnter:Connect(function()
-        smoothTween(self.minBtn, {TextColor3 = self.COLORS.ACCENT_GREEN, TextTransparency = 0})
+    window.mainFrame = mainFrame
+    window.originalSize = mainFrame.Size:Clone()
+    window.originalPosition = mainFrame.Position:Clone()
+
+    -- 初始入场动画
+    mainFrame.BackgroundTransparency = 1
+    mainFrame.Size = UDim2.new(0, 0, 0, 0)
+    smoothTween(mainFrame, {
+        BackgroundTransparency = 0.15,
+        Size = options.size or UDim2.new(0.55, 0, 0.55, 0)
+    }, TweenInfo.new(0.5, Enum.EasingStyle.Back))
+
+    -- 标题栏
+    local titleBar = Instance.new("Frame")
+    titleBar.Name = "TitleBar"
+    titleBar.Size = UDim2.new(1, 0, 0.095, 0)
+    titleBar.Position = UDim2.new(0, 0, 0, 0)
+    titleBar.BackgroundColor3 = CANUI.Styles.DARK_GRAY
+    titleBar.BackgroundTransparency = 0.1
+    titleBar.Parent = mainFrame
+
+    applyCorner(titleBar, 0.02)
+    applyStroke(titleBar, CANUI.Styles.GREEN, 0.6, 1)
+
+    -- 标题文本
+    local title = Instance.new("TextLabel")
+    title.Name = "Title"
+    title.Text = options.title or "CAN UI"
+    title.Size = UDim2.new(0.25, 0, 0.7, 0)
+    title.AnchorPoint = Vector2.new(0.5, 0.5)
+    title.Position = UDim2.new(0.5, 0, 0.5, 0)
+    title.BackgroundTransparency = 1
+    title.TextColor3 = CANUI.Styles.GREEN
+    title.Font = Enum.Font.Code
+    title.TextSize = 18
+    title.TextXAlignment = Enum.TextXAlignment.Center
+    title.Parent = titleBar
+
+    -- 添加霓虹效果
+    local titleStroke = applyStroke(title, CANUI.Styles.GREEN, 0.5, 1)
+
+    -- 关闭按钮
+    local closeBtn = Instance.new("TextButton")
+    closeBtn.Name = "CloseButton"
+    closeBtn.Text = "×"
+    closeBtn.AnchorPoint = Vector2.new(1, 0.5)
+    closeBtn.Position = UDim2.new(0.98, 0, 0.5, 0)
+    closeBtn.Size = UDim2.new(0, 32, 0, 32)
+    closeBtn.BackgroundTransparency = 1
+    closeBtn.TextColor3 = CANUI.Styles.GREEN
+    closeBtn.TextTransparency = 0.2
+    closeBtn.Font = Enum.Font.GothamBold
+    closeBtn.TextSize = 28
+    closeBtn.AutoButtonColor = false
+
+    -- 最小化按钮
+    local minBtn = Instance.new("TextButton")
+    minBtn.Name = "MinButton"
+    minBtn.Text = "–"
+    minBtn.AnchorPoint = Vector2.new(0, 0.5)
+    minBtn.Position = UDim2.new(0.02, 0, 0.5, 0)
+    minBtn.Size = UDim2.new(0, 32, 0, 32)
+    minBtn.BackgroundTransparency = 1
+    minBtn.TextColor3 = CANUI.Styles.GREEN
+    minBtn.TextTransparency = 0.2
+    minBtn.Font = Enum.Font.GothamBold
+    minBtn.TextSize = 28
+    minBtn.AutoButtonColor = false
+
+    -- 尺寸切换按钮
+    local sizeBtn = Instance.new("TextButton")
+    sizeBtn.Name = "SizeButton"
+    sizeBtn.Text = "▣"
+    sizeBtn.AnchorPoint = Vector2.new(0, 0.5)
+    sizeBtn.Position = UDim2.new(0.07, 0, 0.5, 0)
+    sizeBtn.Size = UDim2.new(0, 32, 0, 32)
+    sizeBtn.BackgroundTransparency = 1
+    sizeBtn.TextColor3 = CANUI.Styles.GREEN
+    sizeBtn.TextTransparency = 0.2
+    sizeBtn.Font = Enum.Font.GothamBold
+    sizeBtn.TextSize = 22
+    sizeBtn.AutoButtonColor = false
+
+    -- 内容区域
+    local contentFrame = Instance.new("Frame")
+    contentFrame.Name = "ContentFrame"
+    contentFrame.Size = UDim2.new(1, -4, 0.9, -4)
+    contentFrame.Position = UDim2.new(0, 2, 0.1, 2)
+    contentFrame.BackgroundTransparency = 1
+    contentFrame.ClipsDescendants = true
+    contentFrame.Parent = mainFrame
+
+    -- 主分类栏
+    local categoryFrame = Instance.new("ScrollingFrame")
+    categoryFrame.Name = "CategoryFrame"
+    categoryFrame.Size = UDim2.new(0.3, -2, 1, -4)
+    categoryFrame.Position = UDim2.new(0, 2, 0, 2)
+    categoryFrame.BackgroundColor3 = CANUI.Styles.DARK_GRAY
+    categoryFrame.BackgroundTransparency = 0.3
+    categoryFrame.ScrollBarThickness = 3
+    categoryFrame.ScrollingDirection = Enum.ScrollingDirection.Y
+    categoryFrame.ScrollBarImageColor3 = CANUI.Styles.GREEN
+    categoryFrame.ScrollBarImageTransparency = 0.4
+    categoryFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+    categoryFrame.ScrollingEnabled = true
+    categoryFrame.Parent = contentFrame
+
+    applyStroke(categoryFrame, CANUI.Styles.GREEN, 0.7, 1)
+    applyCorner(categoryFrame, 0.02)
+
+    local categoryLayout = Instance.new("UIListLayout")
+    categoryLayout.Padding = UDim.new(0, 5)
+    categoryLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    categoryLayout.Parent = categoryFrame
+
+    -- 分隔线
+    local separator = Instance.new("Frame")
+    separator.Name = "Separator"
+    separator.Size = UDim2.new(0.008, 0, 0.96, 0)
+    separator.Position = UDim2.new(0.3, 0, 0.02, 0)
+    separator.BackgroundColor3 = CANUI.Styles.GREEN
+    separator.BackgroundTransparency = 0.4
+    separator.BorderSizePixel = 0
+    separator.Parent = contentFrame
+
+    -- 子分类栏
+    local subcategoryFrame = Instance.new("ScrollingFrame")
+    subcategoryFrame.Name = "SubcategoryFrame"
+    subcategoryFrame.Size = UDim2.new(0.69, -4, 1, -4)
+    subcategoryFrame.Position = UDim2.new(0.305, 0, 0, 2)
+    subcategoryFrame.BackgroundColor3 = CANUI.Styles.MID_GRAY
+    subcategoryFrame.BackgroundTransparency = 0.3
+    subcategoryFrame.ScrollBarThickness = 3
+    subcategoryFrame.ScrollingDirection = Enum.ScrollingDirection.Y
+    subcategoryFrame.ScrollBarImageColor3 = CANUI.Styles.GREEN
+    subcategoryFrame.ScrollBarImageTransparency = 0.4
+    subcategoryFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+    subcategoryFrame.ScrollingEnabled = true
+    subcategoryFrame.Parent = contentFrame
+
+    applyStroke(subcategoryFrame, CANUI.Styles.GREEN, 0.7, 1)
+    applyCorner(subcategoryFrame, 0.02)
+
+    local subcategoryLayout = Instance.new("UIListLayout")
+    subcategoryLayout.Padding = UDim.new(0, 5)
+    subcategoryLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    subcategoryLayout.Parent = subcategoryFrame
+
+    -- 布局尺寸更新连接
+    categoryLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        categoryFrame.CanvasSize = UDim2.new(0, 0, 0, categoryLayout.AbsoluteContentSize.Y)
     end)
-    self.minBtn.MouseLeave:Connect(function()
-        smoothTween(self.minBtn, {TextColor3 = self.COLORS.GREEN, TextTransparency = 0.2})
+
+    subcategoryLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        subcategoryFrame.CanvasSize = UDim2.new(0, 0, 0, subcategoryLayout.AbsoluteContentSize.Y)
     end)
-    
-    -- 尺寸切换按钮悬停动画
-    self.sizeBtn.MouseEnter:Connect(function()
-        smoothTween(self.sizeBtn, {TextColor3 = self.COLORS.ACCENT_GREEN, TextTransparency = 0})
-    end)
-    self.sizeBtn.MouseLeave:Connect(function()
-        smoothTween(self.sizeBtn, {TextColor3 = self.COLORS.GREEN, TextTransparency = 0.2})
-    end)
-    
-    -- 悬浮窗悬停动画
-    self.floatIcon.MouseEnter:Connect(function()
-        smoothTween(self.floatIcon, {
-            TextColor3 = self.COLORS.ACCENT_GREEN,
+
+    -- 悬浮窗
+    local floatIcon = Instance.new("TextButton")
+    floatIcon.Name = "FloatIcon"
+    floatIcon.Text = "CAN"
+    floatIcon.Size = UDim2.new(0.08, 0, 0.08, 0)
+    floatIcon.Position = UDim2.new(0.92, 0, 0.92, 0)
+    floatIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+    floatIcon.BackgroundColor3 = CANUI.Styles.BLACK
+    floatIcon.BackgroundTransparency = 0.5
+    floatIcon.TextColor3 = CANUI.Styles.GREEN
+    floatIcon.Font = Enum.Font.Code
+    floatIcon.TextSize = 18
+    floatIcon.TextScaled = true
+    floatIcon.AutoButtonColor = false
+    floatIcon.Visible = false
+    floatIcon.Parent = gui
+
+    applyStroke(floatIcon, CANUI.Styles.GREEN, 0.4, 1.5)
+    applyCorner(floatIcon, 0.2)
+
+    -- 按钮交互
+    local function setupButtonHover(button, accentColor)
+        button.MouseEnter:Connect(function()
+            smoothTween(button, {TextColor3 = accentColor or CANUI.Styles.ACCENT_GREEN, TextTransparency = 0})
+        end)
+        button.MouseLeave:Connect(function()
+            smoothTween(button, {TextColor3 = CANUI.Styles.GREEN, TextTransparency = 0.2})
+        end)
+    end
+
+    setupButtonHover(closeBtn, Color3.new(1, 0.2, 0.2))
+    setupButtonHover(minBtn)
+    setupButtonHover(sizeBtn)
+
+    -- 按钮动画
+    floatIcon.MouseEnter:Connect(function()
+        smoothTween(floatIcon, {
+            TextColor3 = CANUI.Styles.ACCENT_GREEN,
             BackgroundTransparency = 0.3
         })
     end)
-    self.floatIcon.MouseLeave:Connect(function()
-        smoothTween(self.floatIcon, {
-            TextColor3 = self.COLORS.GREEN,
+    floatIcon.MouseLeave:Connect(function()
+        smoothTween(floatIcon, {
+            TextColor3 = CANUI.Styles.GREEN,
             BackgroundTransparency = 0.5
         })
     end)
-end
 
-function CANUI:AddDragFunctionality()
     -- 标题栏拖动功能
     local dragging = false
     local dragStartPos
     local frameStartPos
     local dragConnection
-    
+
     local function onDragInput(input)
         if dragging then
             local dragDelta = input.Position - dragStartPos
-            self.mainFrame.Position = UDim2.new(
+            mainFrame.Position = UDim2.new(
                 frameStartPos.X.Scale,
                 frameStartPos.X.Offset + dragDelta.X,
                 frameStartPos.Y.Scale,
@@ -345,155 +313,151 @@ function CANUI:AddDragFunctionality()
             )
         end
     end
-    
+
     local function startDrag(input)
         if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
             dragging = true
             dragStartPos = input.Position
-            frameStartPos = self.mainFrame.Position
+            frameStartPos = mainFrame.Position
             
-            self.mainFrame.ZIndex = 10
+            mainFrame.ZIndex = 10
             dragConnection = UserInputService.InputChanged:Connect(onDragInput)
         end
     end
-    
+
     local function stopDrag()
         dragging = false
         if dragConnection then
             dragConnection:Disconnect()
             dragConnection = nil
         end
-        self.mainFrame.ZIndex = 1
+        mainFrame.ZIndex = 1
     end
-    
-    self.titleBar.InputBegan:Connect(startDrag)
+
+    titleBar.InputBegan:Connect(startDrag)
     UserInputService.InputEnded:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
             stopDrag()
         end
     end)
-    
+
     -- 最小化/恢复功能
-    local minimized = false
-    local originalPosition = self.mainFrame.Position
-    local originalSize = self.mainFrame.Size
-    
     local function toggleMinimize()
-        minimized = not minimized
+        window.minimized = not window.minimized
         
-        if minimized then
+        if window.minimized then
+            -- 记录当前位置
+            window.originalPosition = mainFrame.Position
+            window.originalSize = mainFrame.Size
+            
             -- 隐藏除主窗口和标题栏外的所有内容
-            self.contentFrame.Visible = false
+            contentFrame.Visible = false
             
             -- 隐藏标题栏上的文字和按钮
-            self.title.Visible = false
-            self.closeBtn.Visible = false
-            self.minBtn.Visible = false
-            self.sizeBtn.Visible = false
+            title.Visible = false
+            closeBtn.Visible = false
+            minBtn.Visible = false
+            sizeBtn.Visible = false
             
             -- 左右向中间收缩动画
-            smoothTween(self.mainFrame, {
-                Size = UDim2.new(0, 0, self.mainFrame.Size.Y.Scale, self.mainFrame.Size.Y.Offset)
-            }, self.ANIMATIONS.MINIMIZE_TWEEN)
+            smoothTween(mainFrame, {
+                Size = UDim2.new(0, 0, mainFrame.Size.Y.Scale, mainFrame.Size.Y.Offset)
+            }, CANUI.Styles.MINIMIZE_TWEEN)
             
             task.wait(0.3)
             -- 先隐藏主窗口
-            self.mainFrame.Visible = false
+            mainFrame.Visible = false
             -- 然后显示悬浮窗
-            self.floatIcon.Visible = true
+            floatIcon.Visible = true
         else
             -- 先隐藏悬浮窗
-            self.floatIcon.Visible = false
+            floatIcon.Visible = false
             -- 然后显示主窗口
-            self.mainFrame.Visible = true
+            mainFrame.Visible = true
             
             -- 内容区域先不显示
-            self.contentFrame.Visible = false
+            contentFrame.Visible = false
             
             -- 设置主窗口大小为0宽度，准备扩展
-            self.mainFrame.Size = UDim2.new(0, 0, self.mainFrame.Size.Y.Scale, self.mainFrame.Size.Y.Offset)
+            mainFrame.Size = UDim2.new(0, 0, mainFrame.Size.Y.Scale, mainFrame.Size.Y.Offset)
             
             -- 中间向外扩展动画
-            smoothTween(self.mainFrame, {
-                Size = originalSize
-            }, self.ANIMATIONS.MINIMIZE_TWEEN)
+            smoothTween(mainFrame, {
+                Size = window.originalSize
+            }, CANUI.Styles.MINIMIZE_TWEEN)
             
             -- 显示标题栏元素
-            self.title.Visible = true
-            self.closeBtn.Visible = true
-            self.minBtn.Visible = true
-            self.sizeBtn.Visible = true
+            title.Visible = true
+            closeBtn.Visible = true
+            minBtn.Visible = true
+            sizeBtn.Visible = true
             
             -- 添加渐显特效
-            smoothTween(self.title, {TextTransparency = 0}, self.ANIMATIONS.FADE_TWEEN)
-            smoothTween(self.closeBtn, {TextTransparency = 0.2}, self.ANIMATIONS.FADE_TWEEN)
-            smoothTween(self.minBtn, {TextTransparency = 0.2}, self.ANIMATIONS.FADE_TWEEN)
-            smoothTween(self.sizeBtn, {TextTransparency = 0.2}, self.ANIMATIONS.FADE_TWEEN)
+            smoothTween(title, {TextTransparency = 0}, CANUI.Styles.FADE_TWEEN)
+            smoothTween(closeBtn, {TextTransparency = 0.2}, CANUI.Styles.FADE_TWEEN)
+            smoothTween(minBtn, {TextTransparency = 0.2}, CANUI.Styles.FADE_TWEEN)
+            smoothTween(sizeBtn, {TextTransparency = 0.2}, CANUI.Styles.FADE_TWEEN)
             
             task.wait(0.3)
             -- 显示内容区域
-            self.contentFrame.Visible = true
+            contentFrame.Visible = true
         end
     end
-    
-    self.minBtn.MouseButton1Click:Connect(toggleMinimize)
-    self.floatIcon.MouseButton1Click:Connect(toggleMinimize)
-    
+
+    minBtn.MouseButton1Click:Connect(toggleMinimize)
+    floatIcon.MouseButton1Click:Connect(toggleMinimize)
+
     -- 尺寸切换功能
-    local enlarged = false
-    local normalSize = UDim2.new(0.55, 0, 0.55, 0)
-    local largeSize = UDim2.new(0.8, 0, 0.8, 0)
-    
     local function toggleSize()
-        enlarged = not enlarged
+        window.enlarged = not window.enlarged
         
-        if enlarged then
-            smoothTween(self.mainFrame, {Size = largeSize})
-            self.sizeBtn.Text = "□"
+        if window.enlarged then
+            smoothTween(mainFrame, {Size = UDim2.new(0.8, 0, 0.8, 0)})
+            sizeBtn.Text = "□"
         else
-            smoothTween(self.mainFrame, {Size = normalSize})
-            self.sizeBtn.Text = "▣"
+            smoothTween(mainFrame, {Size = window.originalSize})
+            sizeBtn.Text = "▣"
         end
     end
-    
-    self.sizeBtn.MouseButton1Click:Connect(toggleSize)
-    
+
+    sizeBtn.MouseButton1Click:Connect(toggleSize)
+
     -- 关闭功能
-    self.closeBtn.MouseButton1Click:Connect(function()
+    closeBtn.MouseButton1Click:Connect(function()
         -- 优先隐藏悬浮窗
-        self.floatIcon.Visible = false
+        floatIcon.Visible = false
         
         -- 隐藏除主窗口和标题栏外的所有内容
-        self.contentFrame.Visible = false
+        contentFrame.Visible = false
         
         -- 隐藏标题栏上的文字和按钮
-        self.title.Visible = false
-        self.closeBtn.Visible = false
-        self.minBtn.Visible = false
-        self.sizeBtn.Visible = false
+        title.Visible = false
+        closeBtn.Visible = false
+        minBtn.Visible = false
+        sizeBtn.Visible = false
         
-        smoothTween(self.mainFrame, {
+        smoothTween(mainFrame, {
             Size = UDim2.new(0, 0, 0, 0),
             BackgroundTransparency = 1
         })
         task.wait(0.25)
-        self.gui:Destroy()
+        gui:Destroy()
     end)
-    
+
     -- 悬浮窗拖动功能
     local floatDragging = false
     local floatDragStart
     local floatPositionStart
     local dragThreshold = 5
-    
+
     local function startFloatDrag(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             floatDragging = false
             floatDragStart = input.Position
-            floatPositionStart = self.floatIcon.Position
+            floatPositionStart = floatIcon.Position
         end
     end
-    
+
     local function updateFloatDrag(input)
         if floatDragStart and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
             if not floatDragging and (input.Position - floatDragStart).Magnitude > dragThreshold then
@@ -502,7 +466,7 @@ function CANUI:AddDragFunctionality()
             
             if floatDragging then
                 local delta = input.Position - floatDragStart
-                self.floatIcon.Position = UDim2.new(
+                floatIcon.Position = UDim2.new(
                     floatPositionStart.X.Scale,
                     floatPositionStart.X.Offset + delta.X,
                     floatPositionStart.Y.Scale,
@@ -511,7 +475,7 @@ function CANUI:AddDragFunctionality()
             end
         end
     end
-    
+
     local function stopFloatDrag()
         if floatDragging then
             floatDragging = false
@@ -519,455 +483,457 @@ function CANUI:AddDragFunctionality()
         floatDragStart = nil
         floatPositionStart = nil
     end
-    
-    self.floatIcon.InputBegan:Connect(startFloatDrag)
+
+    floatIcon.InputBegan:Connect(startFloatDrag)
     UserInputService.InputChanged:Connect(updateFloatDrag)
     UserInputService.InputEnded:Connect(stopFloatDrag)
-end
 
-function CANUI:UpdateUI()
-    if not self.gui or not self.gui.Parent then return end
-    
-    local viewport = workspace.CurrentCamera.ViewportSize
-    local scale = math.min(viewport.X/1200, viewport.Y/900)
-    
-    if scale > 0.8 and scale < 1.2 then scale = 1 end
-    
-    self.title.TextSize = math.floor(18 * scale)
-    self.closeBtn.TextSize = math.floor(28 * scale)
-    self.minBtn.TextSize = math.floor(28 * scale)
-    self.sizeBtn.TextSize = math.floor(22 * scale)
-    self.floatIcon.TextSize = math.floor(18 * scale)
-    
-    local btnSize = math.min(32, viewport.Y * 0.035)
-    self.closeBtn.Size = UDim2.new(0, btnSize, 0, btnSize)
-    self.minBtn.Size = UDim2.new(0, btnSize, 0, btnSize)
-    self.sizeBtn.Size = UDim2.new(0, btnSize, 0, btnSize)
-    self.sizeBtn.Position = UDim2.new(0.07, 0, 0.5, 0)
-    
-    self.separator.Position = UDim2.new(0.3, 0, 0.02, 0)
-end
-
-function CANUI:Tab(tabName)
-    local tab = {}
-    tab.name = tabName
-    tab.buttons = {}
-    
-    -- 创建分类按钮
-    local btn = Instance.new("TextButton")
-    btn.Name = tabName
-    btn.Text = tabName
-    btn.TextColor3 = Color3.new(0.9, 0.9, 0.9)
-    btn.Font = Enum.Font.Code
-    btn.TextSize = 16
-    btn.TextXAlignment = Enum.TextXAlignment.Center
-    btn.TextScaled = false
-    btn.BackgroundColor3 = self.COLORS.MID_GRAY
-    btn.BackgroundTransparency = 0.4
-    btn.AutoButtonColor = false
-    btn.Size = UDim2.new(0.95, 0, 0, 40)
-    btn.LayoutOrder = #self.tabs + 1
-    
-    applyCorner(btn, 0.02)
-    applyStroke(btn, self.COLORS.GREEN, 0.6, 1)
-    
-    -- 选中指示器
-    local indicator = Instance.new("Frame")
-    indicator.Name = "SelectionIndicator"
-    indicator.BackgroundColor3 = self.COLORS.GREEN
-    indicator.BorderSizePixel = 0
-    indicator.Size = UDim2.new(0, 4, 1, 0)
-    indicator.Position = UDim2.new(0, 0, 0, 0)
-    indicator.Visible = false
-    indicator.Parent = btn
-    
-    -- 选中背景层
-    local bgOverlay = Instance.new("Frame")
-    bgOverlay.Name = "SelectionOverlay"
-    bgOverlay.BackgroundColor3 = self.COLORS.GREEN
-    bgOverlay.BackgroundTransparency = 0.9
-    bgOverlay.Size = UDim2.new(1, 0, 1, 0)
-    bgOverlay.Position = UDim2.new(0, 0, 0, 0)
-    bgOverlay.Visible = false
-    bgOverlay.Parent = btn
-    applyCorner(bgOverlay, 0.02)
-    
-    btn.MouseEnter:Connect(function()
-        if btn ~= self.currentSelectedCategory then
-            smoothTween(btn, {
-                BackgroundTransparency = 0.3,
-                TextColor3 = self.COLORS.ACCENT_GREEN
-            })
+    -- 创建分类按钮函数
+    local function createCategoryButton(name, parent, isMain, index)
+        local btn = Instance.new("TextButton")
+        btn.Name = name
+        btn.Text = name
+        btn.TextColor3 = Color3.new(0.9, 0.9, 0.9)
+        btn.Font = Enum.Font.Code
+        btn.TextSize = isMain and 16 or 14
+        btn.TextXAlignment = isMain and Enum.TextXAlignment.Center or Enum.TextXAlignment.Left
+        btn.TextScaled = false
+        btn.BackgroundColor3 = isMain and CANUI.Styles.MID_GRAY or CANUI.Styles.DARK_GRAY
+        btn.BackgroundTransparency = 0.4
+        btn.AutoButtonColor = false
+        btn.Size = UDim2.new(0.95, 0, 0, isMain and 40 or 34)
+        btn.LayoutOrder = index
+        
+        applyCorner(btn, 0.02)
+        applyStroke(btn, CANUI.Styles.GREEN, 0.6, 1)
+        
+        if isMain then
+            -- 选中指示器（绿线）
+            local indicator = Instance.new("Frame")
+            indicator.Name = "SelectionIndicator"
+            indicator.BackgroundColor3 = CANUI.Styles.GREEN
+            indicator.BorderSizePixel = 0
+            indicator.Size = UDim2.new(0, 4, 1, 0)
+            indicator.Position = UDim2.new(0, 0, 0, 0)
+            indicator.Visible = false
+            indicator.Parent = btn
+            
+            -- 选中背景层（50%透明绿色）
+            local bgOverlay = Instance.new("Frame")
+            bgOverlay.Name = "SelectionOverlay"
+            bgOverlay.BackgroundColor3 = CANUI.Styles.GREEN
+            bgOverlay.BackgroundTransparency = 0.9
+            bgOverlay.Size = UDim2.new(1, 0, 1, 0)
+            bgOverlay.Position = UDim2.new(0, 0, 0, 0)
+            bgOverlay.Visible = false
+            bgOverlay.Parent = btn
+            applyCorner(bgOverlay, 0.02)
+            
+            btn.MouseEnter:Connect(function()
+                if btn ~= window.currentTab then
+                    smoothTween(btn, {
+                        BackgroundTransparency = 0.3,
+                        TextColor3 = CANUI.Styles.ACCENT_GREEN
+                    })
+                end
+            end)
+            
+            btn.MouseLeave:Connect(function()
+                if btn ~= window.currentTab then
+                    smoothTween(btn, {
+                        BackgroundTransparency = 0.4,
+                        TextColor3 = Color3.new(0.9,0.9,0.9)
+                    })
+                else
+                    smoothTween(btn, {
+                        BackgroundTransparency = 0.4,
+                        TextColor3 = CANUI.Styles.GREEN
+                    })
+                end
+            end)
+        else
+            btn.MouseEnter:Connect(function()
+                smoothTween(btn, {
+                    BackgroundTransparency = 0.2,
+                    TextColor3 = CANUI.Styles.ACCENT_GREEN
+                })
+            end)
+            
+            btn.MouseLeave:Connect(function()
+                smoothTween(btn, {
+                    BackgroundTransparency = 0.4,
+                    TextColor3 = Color3.new(0.9,0.9,0.9)
+                })
+            end)
         end
-    end)
+        
+        return btn
+    end
+
+    -- 窗口API
+    function window:AddTab(tabName)
+        local tab = {
+            name = tabName,
+            elements = {}
+        }
+        
+        local btn = createCategoryButton(tabName, categoryFrame, true, #self.tabs + 1)
+        
+        btn.MouseButton1Click:Connect(function()
+            if self.currentTab == btn then return end
+            
+            if self.currentTab then
+                local oldIndicator = self.currentTab:FindFirstChild("SelectionIndicator")
+                local oldOverlay = self.currentTab:FindFirstChild("SelectionOverlay")
+                if oldIndicator then oldIndicator.Visible = false end
+                if oldOverlay then oldOverlay.Visible = false end
+                smoothTween(self.currentTab, {TextColor3 = Color3.new(0.9, 0.9, 0.9)})
+            end
+            
+            self.currentTab = btn
+            
+            local indicator = btn:FindFirstChild("SelectionIndicator")
+            local overlay = btn:FindFirstChild("SelectionOverlay")
+            if indicator then indicator.Visible = true end
+            if overlay then overlay.Visible = true end
+            
+            smoothTween(btn, {TextColor3 = CANUI.Styles.GREEN})
+            
+            -- 清空子分类区域
+            for _, child in ipairs(subcategoryFrame:GetChildren()) do
+                if child:IsA("GuiObject") then child:Destroy() end
+            end
+            
+            -- 添加该标签页的元素
+            for _, element in ipairs(tab.elements) do
+                element:Clone().Parent = subcategoryFrame
+            end
+        end)
+        
+        btn.Parent = categoryFrame
+        table.insert(self.tabs, tab)
+        
+        -- 如果这是第一个标签，自动选中
+        if #self.tabs == 1 then
+            task.spawn(function()
+                task.wait(0.5)
+                if self.tabs[1] then
+                    btn:MouseButton1Click()
+                end
+            end)
+        end
+        
+        return tab
+    end
     
-    btn.MouseLeave:Connect(function()
-        if btn ~= self.currentSelectedCategory then
+    -- 自适应调整
+    local function updateUI()
+        if not gui or not gui.Parent then return end
+        
+        local viewport = workspace.CurrentCamera.ViewportSize
+        local scale = math.min(viewport.X/1200, viewport.Y/900)
+        
+        if scale > 0.8 and scale < 1.2 then scale = 1 end
+        
+        title.TextSize = math.floor(18 * scale)
+        closeBtn.TextSize = math.floor(28 * scale)
+        minBtn.TextSize = math.floor(28 * scale)
+        sizeBtn.TextSize = math.floor(22 * scale)
+        floatIcon.TextSize = math.floor(18 * scale)
+        
+        local btnSize = math.min(32, viewport.Y * 0.035)
+        closeBtn.Size = UDim2.new(0, btnSize, 0, btnSize)
+        minBtn.Size = UDim2.new(0, btnSize, 0, btnSize)
+        sizeBtn.Size = UDim2.new(0, btnSize, 0, btnSize)
+        sizeBtn.Position = UDim2.new(0.07, 0, 0.5, 0)
+        
+        separator.Position = UDim2.new(0.3, 0, 0.02, 0)
+    end
+
+    updateUI()
+    workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(updateUI)
+    gui:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateUI)
+    
+    -- 添加元素方法到tab对象
+    function tab:AddButton(config)
+        local btn = Instance.new("TextButton")
+        btn.Name = config.name or "Button"
+        btn.Text = config.text or "Button"
+        btn.Size = UDim2.new(0.95, 0, 0, 34)
+        btn.BackgroundColor3 = CANUI.Styles.DARK_GRAY
+        btn.BackgroundTransparency = 0.4
+        btn.TextColor3 = Color3.new(0.9, 0.9, 0.9)
+        btn.Font = Enum.Font.Code
+        btn.TextSize = 14
+        btn.TextXAlignment = Enum.TextXAlignment.Left
+        btn.AutoButtonColor = false
+        
+        applyCorner(btn, 0.02)
+        applyStroke(btn, CANUI.Styles.GREEN, 0.6, 1)
+        
+        btn.MouseEnter:Connect(function()
+            smoothTween(btn, {
+                BackgroundTransparency = 0.2,
+                TextColor3 = CANUI.Styles.ACCENT_GREEN
+            })
+        end)
+        
+        btn.MouseLeave:Connect(function()
             smoothTween(btn, {
                 BackgroundTransparency = 0.4,
                 TextColor3 = Color3.new(0.9,0.9,0.9)
             })
-        else
+        end)
+        
+        btn.MouseButton1Click:Connect(function()
+            if config.onClick then config.onClick() end
+            smoothTween(btn, {
+                BackgroundTransparency = 0.1,
+                Size = UDim2.new(0.97,0,0,36)
+            }, TweenInfo.new(0.1))
             smoothTween(btn, {
                 BackgroundTransparency = 0.4,
-                TextColor3 = self.COLORS.GREEN
-            })
-        end
-    end)
-    
-    table.insert(self.tabs, tab)
-    btn.Parent = self.categoryFrame
-    
-    -- 按钮点击事件
-    btn.MouseButton1Click:Connect(function()
-        if self.currentSelectedCategory == btn then return end
-        
-        if self.currentSelectedCategory then
-            local oldIndicator = self.currentSelectedCategory:FindFirstChild("SelectionIndicator")
-            local oldOverlay = self.currentSelectedCategory:FindFirstChild("SelectionOverlay")
-            if oldIndicator then oldIndicator.Visible = false end
-            if oldOverlay then oldOverlay.Visible = false end
-            smoothTween(self.currentSelectedCategory, {TextColor3 = Color3.new(0.9, 0.9, 0.9)})
-        end
-        
-        self.currentSelectedCategory = btn
-        
-        local indicator = btn:FindFirstChild("SelectionIndicator")
-        local overlay = btn:FindFirstChild("SelectionOverlay")
-        if indicator then indicator.Visible = true end
-        if overlay then overlay.Visible = true end
-        
-        smoothTween(btn, {TextColor3 = self.COLORS.GREEN})
-        
-        -- 清除之前的子分类
-        for _, child in ipairs(self.subcategoryFrame:GetChildren()) do
-            if child:IsA("GuiObject") then child:Destroy() end
-        end
-        
-        -- 添加当前标签页的所有按钮
-        for i, btnData in ipairs(tab.buttons) do
-            if btnData.type == "Button" then
-                local btn = self:CreateButton(btnData.name, btnData.text, btnData.onClick)
-                btn.LayoutOrder = i
-                btn.Parent = self.subcategoryFrame
-            elseif btnData.type == "Toggle" then
-                local toggle = self:CreateToggle(btnData.name, btnData.text, btnData.initialState, btnData.onToggle)
-                toggle.LayoutOrder = i
-                toggle.Parent = self.subcategoryFrame
-            elseif btnData.type == "Slider" then
-                local slider = self:CreateSlider(btnData.name, btnData.text, btnData.min, btnData.max, btnData.initialValue, btnData.onChange)
-                slider.LayoutOrder = i
-                slider.Parent = self.subcategoryFrame
-            elseif btnData.type == "Label" then
-                local label = self:CreateLabel(btnData.text)
-                label.LayoutOrder = i
-                label.Parent = self.subcategoryFrame
-            end
-        end
-    end)
-    
-    -- 如果是第一个标签页，默认选中
-    if #self.tabs == 1 then
-        task.spawn(function()
-            task.wait(0.5)
-            btn:MouseButton1Click()
+                Size = UDim2.new(0.95,0,0,34)
+            }, TweenInfo.new(0.3))
         end)
-    end
-    
-    -- 返回标签对象用于添加元素
-    return {
-        Button = function(_, btnName, btnText, callback)
-            table.insert(tab.buttons, {type = "Button", name = btnName, text = btnText, onClick = callback})
-        end,
         
-        Toggle = function(_, toggleName, toggleText, initialState, callback)
-            table.insert(tab.buttons, {type = "Toggle", name = toggleName, text = toggleText, initialState = initialState, onToggle = callback})
-        end,
-        
-        Slider = function(_, sliderName, sliderText, min, max, initialValue, callback)
-            table.insert(tab.buttons, {type = "Slider", name = sliderName, text = sliderText, min = min, max = max, initialValue = initialValue, onChange = callback})
-        end,
-        
-        Label = function(_, text)
-            table.insert(tab.buttons, {type = "Label", text = text})
+        table.insert(self.elements, btn)
+        if self == window.currentTab then
+            btn.Parent = subcategoryFrame
         end
-    }
-end
-
-function CANUI:CreateButton(name, text, onClick)
-    local btn = Instance.new("TextButton")
-    btn.Name = name
-    btn.Text = text
-    btn.Size = UDim2.new(0.95, 0, 0, 34)
-    btn.BackgroundColor3 = self.COLORS.DARK_GRAY
-    btn.BackgroundTransparency = 0.4
-    btn.TextColor3 = Color3.new(0.9, 0.9, 0.9)
-    btn.Font = Enum.Font.Code
-    btn.TextSize = 14
-    btn.TextXAlignment = Enum.TextXAlignment.Left
-    btn.AutoButtonColor = false
-    
-    applyCorner(btn, 0.02)
-    applyStroke(btn, self.COLORS.GREEN, 0.6, 1)
-    
-    btn.MouseEnter:Connect(function()
-        smoothTween(btn, {
-            BackgroundTransparency = 0.2,
-            TextColor3 = self.COLORS.ACCENT_GREEN
-        })
-    end)
-    
-    btn.MouseLeave:Connect(function()
-        smoothTween(btn, {
-            BackgroundTransparency = 0.4,
-            TextColor3 = Color3.new(0.9,0.9,0.9)
-        })
-    end)
-    
-    btn.MouseButton1Click:Connect(function()
-        onClick()
-        smoothTween(btn, {
-            BackgroundTransparency = 0.1,
-            Size = UDim2.new(0.97,0,0,36)
-        }, TweenInfo.new(0.1))
-        smoothTween(btn, {
-            BackgroundTransparency = 0.4,
-            Size = UDim2.new(0.95,0,0,34)
-        }, TweenInfo.new(0.3))
-    end)
-    
-    return btn
-end
-
-function CANUI:CreateToggle(name, text, initialState, onToggle)
-    local btn = Instance.new("Frame")
-    btn.Name = name
-    btn.Size = UDim2.new(0.95, 0, 0, 34)
-    btn.BackgroundTransparency = 1
-    
-    -- 标签
-    local label = Instance.new("TextLabel")
-    label.Text = text
-    label.Size = UDim2.new(0.7, 0, 1, 0)
-    label.Position = UDim2.new(0, 0, 0, 0)
-    label.BackgroundTransparency = 1
-    label.TextColor3 = Color3.new(0.9, 0.9, 0.9)
-    label.Font = Enum.Font.Code
-    label.TextSize = 14
-    label.TextXAlignment = Enum.TextXAlignment.Left
-    label.Parent = btn
-    
-    -- 开关背景
-    local toggleBg = Instance.new("Frame")
-    toggleBg.Name = "ToggleBG"
-    toggleBg.Size = UDim2.new(0.22, 0, 0.55, 0)
-    toggleBg.Position = UDim2.new(0.75, 0, 0.225, 0)
-    toggleBg.BackgroundColor3 = initialState and self.COLORS.BRIGHT_GREEN or self.COLORS.TOGGLE_BG
-    toggleBg.BorderSizePixel = 0
-    applyCorner(toggleBg, 0.5)
-    applyStroke(toggleBg, self.COLORS.GREEN, 0.5, 1)
-    toggleBg.Parent = btn
-    
-    -- 开关滑块
-    local sliderHandle = Instance.new("Frame")
-    sliderHandle.Name = "SliderHandle"
-    sliderHandle.Size = UDim2.new(0.45, 0, 0.85, 0) 
-    sliderHandle.AnchorPoint = Vector2.new(0.5,0.5)
-    sliderHandle.BackgroundColor3 = Color3.new(1,1,1) -- 白色滑块
-    sliderHandle.BorderSizePixel = 0
-    applyCorner(sliderHandle, 0.5)
-    sliderHandle.ZIndex = 2
-    sliderHandle.Parent = toggleBg
-    
-    -- 初始滑块位置
-    if initialState then
-        sliderHandle.Position = UDim2.new(0.7, 0, 0.5, 0) -- 开启状态在右侧
-    else
-        sliderHandle.Position = UDim2.new(0.3, 0, 0.5, 0) -- 关闭状态在左侧
+        
+        return btn
     end
     
-    local state = initialState
-    
-    -- 点击处理函数
-    local function toggleState()
-        state = not state
+    function tab:AddToggle(config)
+        local toggle = Instance.new("Frame")
+        toggle.Name = config.name or "Toggle"
+        toggle.Size = UDim2.new(0.95, 0, 0, 34)
+        toggle.BackgroundTransparency = 1
         
-        if state then
-            smoothTween(toggleBg, {BackgroundColor3 = self.COLORS.BRIGHT_GREEN})
-            smoothTween(sliderHandle, {
-                Position = UDim2.new(0.7, 0, 0.5, 0)
-            })
+        -- 标签 - 左侧文本
+        local label = Instance.new("TextLabel")
+        label.Text = config.text or "Toggle"
+        label.Size = UDim2.new(0.7, 0, 1, 0)
+        label.Position = UDim2.new(0, 0, 0, 0)
+        label.BackgroundTransparency = 1
+        label.TextColor3 = Color3.new(0.9, 0.9, 0.9)
+        label.Font = Enum.Font.Code
+        label.TextSize = 14
+        label.TextXAlignment = Enum.TextXAlignment.Left
+        label.Parent = toggle
+        
+        -- 开关背景 - 椭圆形状
+        local toggleBg = Instance.new("Frame")
+        toggleBg.Name = "ToggleBG"
+        toggleBg.Size = UDim2.new(0.22, 0, 0.55, 0)
+        toggleBg.Position = UDim2.new(0.75, 0, 0.225, 0)
+        toggleBg.BackgroundColor3 = (config.initialState == true) and CANUI.Styles.BRIGHT_GREEN or CANUI.Styles.TOGGLE_BG
+        toggleBg.BorderSizePixel = 0
+        applyCorner(toggleBg, 0.5)
+        applyStroke(toggleBg, CANUI.Styles.GREEN, 0.5, 1)
+        toggleBg.Parent = toggle
+        
+        -- 开关滑块 - 圆形
+        local sliderHandle = Instance.new("Frame")
+        sliderHandle.Name = "SliderHandle"
+        sliderHandle.Size = UDim2.new(0.45, 0, 0.85, 0)
+        sliderHandle.AnchorPoint = Vector2.new(0.5,0.5)
+        sliderHandle.BackgroundColor3 = Color3.new(1,1,1)
+        sliderHandle.BorderSizePixel = 0
+        applyCorner(sliderHandle, 0.5)
+        sliderHandle.ZIndex = 2
+        sliderHandle.Parent = toggleBg
+        
+        -- 根据初始状态设置滑块位置
+        if config.initialState == true then
+            sliderHandle.Position = UDim2.new(0.7, 0, 0.5, 0)
         else
-            smoothTween(toggleBg, {BackgroundColor3 = self.COLORS.TOGGLE_BG})
-            smoothTween(sliderHandle, {
-                Position = UDim2.new(0.3, 0, 0.5, 0)
-            })
+            sliderHandle.Position = UDim2.new(0.3, 0, 0.5, 0)
         end
         
-        if onToggle then
-            onToggle(state)
+        local state = config.initialState or false
+        
+        -- 点击处理函数
+        local function toggleState()
+            state = not state
+            
+            if state then
+                smoothTween(toggleBg, {BackgroundColor3 = CANUI.Styles.BRIGHT_GREEN})
+                smoothTween(sliderHandle, {Position = UDim2.new(0.7, 0, 0.5, 0)})
+            else
+                smoothTween(toggleBg, {BackgroundColor3 = CANUI.Styles.TOGGLE_BG})
+                smoothTween(sliderHandle, {Position = UDim2.new(0.3, 0, 0.5, 0)})
+            end
+            
+            if config.onToggle then config.onToggle(state) end
         end
+        
+        -- 点击区域
+        local hitbox = Instance.new("TextButton")
+        hitbox.Name = "Hitbox"
+        hitbox.Size = UDim2.new(0.25, 0, 0.6, 0)
+        hitbox.Position = UDim2.new(0.75, 0, 0.225, 0)
+        hitbox.BackgroundTransparency = 1
+        hitbox.Text = ""
+        hitbox.Parent = toggle
+        
+        hitbox.MouseButton1Click:Connect(toggleState)
+        
+        table.insert(self.elements, toggle)
+        if self == window.currentTab then
+            toggle.Parent = subcategoryFrame
+        end
+        
+        return toggle
     end
     
-    -- 点击区域
-    local hitbox = Instance.new("TextButton")
-    hitbox.Name = "Hitbox"
-    hitbox.Size = UDim2.new(0.25, 0, 0.6, 0)
-    hitbox.Position = UDim2.new(0.75, 0, 0.225, 0)
-    hitbox.BackgroundTransparency = 1
-    hitbox.Text = ""
-    hitbox.Parent = btn
-    
-    hitbox.MouseButton1Click:Connect(toggleState)
-    
-    return btn
-end
-
-function CANUI:CreateSlider(name, text, min, max, initialValue, onChange)
-    local sliderContainer = Instance.new("Frame")
-    sliderContainer.Name = name
-    sliderContainer.Size = UDim2.new(0.95, 0, 0, 44)
-    sliderContainer.BackgroundTransparency = 1
-    
-    -- 文本标签
-    local label = Instance.new("TextLabel")
-    label.Text = text
-    label.Size = UDim2.new(0.7, 0, 0.5, 0)
-    label.Position = UDim2.new(0, 0, 0, 0)
-    label.BackgroundTransparency = 1
-    label.TextColor3 = Color3.new(0.9, 0.9, 0.9)
-    label.Font = Enum.Font.Code
-    label.TextSize = 14
-    label.TextXAlignment = Enum.TextXAlignment.Left
-    label.Parent = sliderContainer
-    
-    -- 滑块背景
-    local sliderBg = Instance.new("Frame")
-    sliderBg.Name = "SliderBackground"
-    sliderBg.Size = UDim2.new(0.9, 0, 0.4, 0)
-    sliderBg.Position = UDim2.new(0.05, 0, 0.6, 0)
-    sliderBg.BackgroundColor3 = self.COLORS.DARK_GRAY
-    sliderBg.BackgroundTransparency = 0.4
-    applyCorner(sliderBg, 0.5)
-    applyStroke(sliderBg, self.COLORS.GREEN, 0.6, 1)
-    sliderBg.Parent = sliderContainer
-    
-    -- 添加刻度线
-    local divisionLines = Instance.new("Frame")
-    divisionLines.Name = "DivisionLines"
-    divisionLines.Size = UDim2.new(1, 0, 1, 0)
-    divisionLines.BackgroundTransparency = 1
-    divisionLines.Parent = sliderBg
-    
-    -- 创建8条间隔线
-    for i = 0.125, 0.875, 0.125 do
-        local line = Instance.new("Frame")
-        line.Size = UDim2.new(0, 2, 1, 0)
-        line.Position = UDim2.new(i, 0, 0, 0)
-        line.AnchorPoint = Vector2.new(0.5, 0)
-        line.BackgroundColor3 = self.COLORS.GREEN
-        line.BackgroundTransparency = 0.4
-        line.BorderSizePixel = 0
-        line.ZIndex = 1
-        line.Parent = divisionLines
-    end
-    
-    -- 滑块填充
-    local sliderFill = Instance.new("Frame")
-    sliderFill.Name = "SliderFill"
-    sliderFill.Size = UDim2.new(math.clamp((initialValue - min) / (max - min), 0, 1), 0, 1, 0)
-    sliderFill.Position = UDim2.new(0, 0, 0, 0)
-    sliderFill.BackgroundColor3 = self.COLORS.GREEN
-    sliderFill.BackgroundTransparency = 0.5
-    applyCorner(sliderFill, 0.5)
-    sliderFill.ZIndex = 2
-    sliderFill.Parent = sliderBg
-    
-    -- 滑块手柄
-    local sliderHandle = Instance.new("Frame")
-    sliderHandle.Name = "SliderHandle"
-    sliderHandle.Size = UDim2.new(0.06, 0, 1.5, 0)
-    sliderHandle.AnchorPoint = Vector2.new(0.5, 0.5)
-    sliderHandle.Position = UDim2.new(math.clamp((initialValue - min) / (max - min), 0, 1), 0, 0.5, 0)
-    sliderHandle.BackgroundColor3 = self.COLORS.ACCENT_GREEN
-    sliderHandle.BorderSizePixel = 0
-    applyCorner(sliderHandle, 0.5)
-    applyStroke(sliderHandle, self.COLORS.GREEN, 0.2, 1)
-    sliderHandle.ZIndex = 3
-    sliderHandle.Parent = sliderBg
-    
-    -- 值显示
-    local valueLabel = Instance.new("TextLabel")
-    valueLabel.Text = tostring(initialValue)
-    valueLabel.Size = UDim2.new(0.25, 0, 0.5, 0)
-    valueLabel.Position = UDim2.new(0.75, 0, 0, 0)
-    valueLabel.BackgroundTransparency = 1
-    valueLabel.TextColor3 = self.COLORS.GREEN
-    valueLabel.Font = Enum.Font.Code
-    valueLabel.TextSize = 14
-    valueLabel.TextXAlignment = Enum.TextXAlignment.Right
-    valueLabel.Parent = sliderContainer
-    
-    local dragging = false
-    
-    -- 修复初始位置问题
-    RunService.Heartbeat:Once(function()
-        local relativeX = math.clamp((initialValue - min) / (max - min), 0, 1)
-        sliderHandle.Position = UDim2.new(relativeX, 0, 0.5, 0)
-    end)
-    
-    local function updateSlider(input)
-        if dragging and sliderBg then
-            local relativeX = (input.Position.X - sliderBg.AbsolutePosition.X) / sliderBg.AbsoluteSize.X
-            relativeX = math.clamp(relativeX, 0, 1)
-            
-            local value = math.floor(min + (max - min) * relativeX + 0.5)
-            
-            sliderFill.Size = UDim2.new(relativeX, 0, 1, 0)
+    function tab:AddSlider(config)
+        local slider = Instance.new("Frame")
+        slider.Name = config.name or "Slider"
+        slider.Size = UDim2.new(0.95, 0, 0, 44)
+        slider.BackgroundTransparency = 1
+        
+        -- 文本标签
+        local label = Instance.new("TextLabel")
+        label.Text = config.text or "Slider"
+        label.Size = UDim2.new(0.7, 0, 0.5, 0)
+        label.Position = UDim2.new(0, 0, 0, 0)
+        label.BackgroundTransparency = 1
+        label.TextColor3 = Color3.new(0.9, 0.9, 0.9)
+        label.Font = Enum.Font.Code
+        label.TextSize = 14
+        label.TextXAlignment = Enum.TextXAlignment.Left
+        label.Parent = slider
+        
+        -- 滑块背景
+        local sliderBg = Instance.new("Frame")
+        sliderBg.Name = "SliderBackground"
+        sliderBg.Size = UDim2.new(0.9, 0, 0.4, 0)
+        sliderBg.Position = UDim2.new(0.05, 0, 0.6, 0)
+        sliderBg.BackgroundColor3 = CANUI.Styles.DARK_GRAY
+        sliderBg.BackgroundTransparency = 0.4
+        applyCorner(sliderBg, 0.5)
+        applyStroke(sliderBg, CANUI.Styles.GREEN, 0.6, 1)
+        sliderBg.Parent = slider
+        
+        -- 添加刻度线
+        local divisionLines = Instance.new("Frame")
+        divisionLines.Name = "DivisionLines"
+        divisionLines.Size = UDim2.new(1, 0, 1, 0)
+        divisionLines.BackgroundTransparency = 1
+        divisionLines.Parent = sliderBg
+        
+        for i = 0.125, 0.875, 0.125 do
+            local line = Instance.new("Frame")
+            line.Size = UDim2.new(0, 2, 1, 0)
+            line.Position = UDim2.new(i, 0, 0, 0)
+            line.AnchorPoint = Vector2.new(0.5, 0)
+            line.BackgroundColor3 = CANUI.Styles.GREEN
+            line.BackgroundTransparency = 0.4
+            line.BorderSizePixel = 0
+            line.ZIndex = 1
+            line.Parent = divisionLines
+        end
+        
+        -- 滑块填充
+        local sliderFill = Instance.new("Frame")
+        sliderFill.Name = "SliderFill"
+        local initialRatio = math.clamp((config.initialValue - config.min) / (config.max - config.min), 0, 1)
+        sliderFill.Size = UDim2.new(initialRatio, 0, 1, 0)
+        sliderFill.Position = UDim2.new(0, 0, 0, 0)
+        sliderFill.BackgroundColor3 = CANUI.Styles.GREEN
+        sliderFill.BackgroundTransparency = 0.5
+        applyCorner(sliderFill, 0.5)
+        sliderFill.ZIndex = 2
+        sliderFill.Parent = sliderBg
+        
+        -- 滑块手柄
+        local sliderHandle = Instance.new("Frame")
+        sliderHandle.Name = "SliderHandle"
+        sliderHandle.Size = UDim2.new(0.06, 0, 1.5, 0)
+        sliderHandle.AnchorPoint = Vector2.new(0.5, 0.5)
+        sliderHandle.Position = UDim2.new(initialRatio, 0, 0.5, 0)
+        sliderHandle.BackgroundColor3 = CANUI.Styles.ACCENT_GREEN
+        sliderHandle.BorderSizePixel = 0
+        applyCorner(sliderHandle, 0.5)
+        applyStroke(sliderHandle, CANUI.Styles.GREEN, 0.2, 1)
+        sliderHandle.ZIndex = 3
+        sliderHandle.Parent = sliderBg
+        
+        -- 值显示
+        local valueLabel = Instance.new("TextLabel")
+        valueLabel.Text = tostring(config.initialValue)
+        valueLabel.Size = UDim2.new(0.25, 0, 0.5, 0)
+        valueLabel.Position = UDim2.new(0.75, 0, 0, 0)
+        valueLabel.BackgroundTransparency = 1
+        valueLabel.TextColor3 = CANUI.Styles.GREEN
+        valueLabel.Font = Enum.Font.Code
+        valueLabel.TextSize = 14
+        valueLabel.TextXAlignment = Enum.TextXAlignment.Right
+        valueLabel.Parent = slider
+        
+        local dragging = false
+        
+        -- 修复初始位置问题
+        RunService.Heartbeat:Once(function()
+            local relativeX = math.clamp((config.initialValue - config.min) / (config.max - config.min), 0, 1)
             sliderHandle.Position = UDim2.new(relativeX, 0, 0.5, 0)
-            valueLabel.Text = tostring(value)
-            
-            if onChange then
-                onChange(value)
+        end)
+        
+        local function updateSlider(input)
+            if dragging and sliderBg then
+                local relativeX = (input.Position.X - sliderBg.AbsolutePosition.X) / sliderBg.AbsoluteSize.X
+                relativeX = math.clamp(relativeX, 0, 1)
+                
+                local value = math.floor(config.min + (config.max - config.min) * relativeX + 0.5)
+                
+                sliderFill.Size = UDim2.new(relativeX, 0, 1, 0)
+                sliderHandle.Position = UDim2.new(relativeX, 0, 0.5, 0)
+                valueLabel.Text = tostring(value)
+                
+                if config.onChange then
+                    config.onChange(value)
+                end
             end
         end
+        
+        -- 交互处理
+        sliderBg.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 or 
+               input.UserInputType == Enum.UserInputType.Touch then
+                dragging = true
+                updateSlider(input)
+            end
+        end)
+        
+        UserInputService.InputChanged:Connect(function(input)
+            if dragging then
+                updateSlider(input)
+            end
+        end)
+        
+        UserInputService.InputEnded:Connect(function(input)
+            if (input.UserInputType == Enum.UserInputType.MouseButton1 or 
+                input.UserInputType == Enum.UserInputType.Touch) and dragging then
+                dragging = false
+            end
+        end)
+        
+        table.insert(self.elements, slider)
+        if self == window.currentTab then
+            slider.Parent = subcategoryFrame
+        end
+        
+        return slider
     end
     
-    -- 鼠标/触摸交互
-    sliderBg.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or 
-           input.UserInputType == Enum.UserInputType.Touch then
-            dragging = true
-            updateSlider(input)
-        end
-    end)
+    -- 设置父元素
+    closeBtn.Parent = titleBar
+    minBtn.Parent = titleBar
+    sizeBtn.Parent = titleBar
     
-    UserInputService.InputChanged:Connect(function(input)
-        if dragging then
-            updateSlider(input)
-        end
-    end)
-    
-    UserInputService.InputEnded:Connect(function(input)
-        if (input.UserInputType == Enum.UserInputType.MouseButton1 or 
-            input.UserInputType == Enum.UserInputType.Touch) and dragging then
-            dragging = false
-        end
-    end)
-    
-    return sliderContainer
-end
-
-function CANUI:CreateLabel(text)
-    local label = Instance.new("TextLabel")
-    label.Text = text
-    label.Size = UDim2.new(0.95, 0, 0, 30)
-    label.BackgroundTransparency = 1
-    label.TextColor3 = Color3.new(0.9, 0.9, 0.9)
-    label.Font = Enum.Font.Code
-    label.TextSize = 14
-    label.TextXAlignment = Enum.TextXAlignment.Left
-    return label
+    return window
 end
 
 return CANUI
